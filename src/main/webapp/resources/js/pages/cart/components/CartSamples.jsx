@@ -6,7 +6,7 @@ import styled from "styled-components";
 import { SPACE_SM } from "../../../styles/spacing";
 import { blue6, grey1, grey3, red4, red6 } from "../../../styles/colors";
 import AutoSizer from "react-virtualized-auto-sizer";
-import { Button, Input, Tree } from "antd";
+import { Button, Input, Table, Tree } from "antd";
 import { FixedSizeList as VList } from "react-window";
 import { actions } from "../../../redux/reducers/cart";
 import { sampleDetailsActions } from "../../../components/SampleDetails";
@@ -114,13 +114,52 @@ function CartSamplesComponent({
     })),
   }));
 
+  const SamplesTable = ({ samples }) => (
+    <Table
+      showHeader={false}
+      pagination={false}
+      bordered={false}
+      columns={[
+        {
+          key: 2,
+          title: "",
+          render(item, data) {
+            return data.label;
+          },
+        },
+      ]}
+      dataSource={samples.map((s) => ({ key: `sample-${s.id}`, ...s }))}
+    />
+  );
+
   return (
     <Wrapper>
       <CartTools>
         <Search onChange={filterSamples} />
       </CartTools>
       <CartSamplesWrapper className="t-samples-list">
-        <Tree checkable treeData={formattedSamples} />
+        <Table
+          showHeader={false}
+          pagination={false}
+          bordered={false}
+          columns={[
+            {
+              key: 1,
+              title: "BFDSLK",
+              render(item, data) {
+                return data.label;
+              },
+            },
+          ]}
+          expandable={{
+            expandedRowRender(record) {
+              return <SamplesTable samples={record.samples} />;
+            },
+          }}
+          dataSource={samples.map((p) => ({ key: `project-${p.id}`, ...p }))}
+        />
+
+        {/*<Tree checkable treeData={formattedSamples} />*/}
         {/*<AutoSizer>*/}
         {/*  {({ height = 600, width = 400 }) => (*/}
         {/*    <VList*/}
