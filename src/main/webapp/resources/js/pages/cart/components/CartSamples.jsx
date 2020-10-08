@@ -6,14 +6,14 @@ import styled from "styled-components";
 import { SPACE_SM } from "../../../styles/spacing";
 import { blue6, grey1, grey3, red4, red6 } from "../../../styles/colors";
 import AutoSizer from "react-virtualized-auto-sizer";
-import { Button, Input, Table, Tree } from "antd";
+import { Avatar, Button, Input, List, Table, Tag, Tree } from "antd";
 import { FixedSizeList as VList } from "react-window";
 import { actions } from "../../../redux/reducers/cart";
 import { sampleDetailsActions } from "../../../components/SampleDetails";
 import { SampleRenderer } from "./SampleRenderer";
 import { BORDERED_LIGHT } from "../../../styles/borders";
 import { setBaseUrl } from "../../../utilities/url-utilities";
-import { IconLinkOut } from "../../../components/icons/Icons";
+import { IconFile, IconLinkOut } from "../../../components/icons/Icons";
 
 const { Search } = Input;
 
@@ -94,41 +94,41 @@ function CartSamplesComponent({
     />
   );
 
-  const formattedSamples = samples.map((project) => ({
-    title: (
-      <span>
-        {project.label}
-        <Button
-          size="small"
-          type="link"
-          onClick={(e) => e.stopPropagation()}
-          href={setBaseUrl(`/projects/${project.id}`)}
-          icon={<IconLinkOut />}
-        />
-      </span>
-    ),
-    key: `project-${project.id}`,
-    children: project.samples.map((sample) => ({
-      title: sample.label,
-      key: `sample-${sample.id}`,
-    })),
-  }));
+  // const formattedSamples = samples.map((project) => ({
+  //   title: (
+  //     <span>
+  //       {project.label}
+  //       <Button
+  //         size="small"
+  //         type="link"
+  //         onClick={(e) => e.stopPropagation()}
+  //         href={setBaseUrl(`/projects/${project.id}`)}
+  //         icon={<IconLinkOut />}
+  //       />
+  //     </span>
+  //   ),
+  //   key: `project-${project.id}`,
+  //   children: project.samples.map((sample) => ({
+  //     title: sample.label,
+  //     key: `sample-${sample.id}`,
+  //   })),
+  // }));
 
   const SamplesTable = ({ samples }) => (
-    <Table
-      showHeader={false}
-      pagination={false}
-      bordered={false}
-      columns={[
-        {
-          key: 2,
-          title: "",
-          render(item, data) {
-            return data.label;
-          },
-        },
+    <List
+      style={{ marginLeft: 30 }}
+      dataSource={[
+        { label: "test_file_1.fasta" },
+        { label: "test_file_2.fasta" },
       ]}
-      dataSource={samples.map((s) => ({ key: `sample-${s.id}`, ...s }))}
+      renderItem={(item) => (
+        <List.Item>
+          <List.Item.Meta
+            title={item.label}
+            avatar={<Avatar size="small" icon={<IconFile />} />}
+          />
+        </List.Item>
+      )}
     />
   );
 
@@ -147,7 +147,14 @@ function CartSamplesComponent({
               key: 1,
               title: "BFDSLK",
               render(item, data) {
-                return data.label;
+                return (
+                  <div
+                    style={{ display: "flex", justifyContent: "space-between" }}
+                  >
+                    {data.label}
+                    <Tag>{data.project.label}</Tag>
+                  </div>
+                );
               },
             },
           ]}

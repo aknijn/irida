@@ -1,5 +1,10 @@
 package ca.corefacility.bioinformatics.irida.ria.web.services;
 
+import java.util.*;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import ca.corefacility.bioinformatics.irida.model.project.Project;
 import ca.corefacility.bioinformatics.irida.model.sample.Sample;
 import ca.corefacility.bioinformatics.irida.ria.web.ajax.dto.CartSampleModel;
@@ -8,11 +13,8 @@ import ca.corefacility.bioinformatics.irida.ria.web.cart.dto.AddToCartRequest;
 import ca.corefacility.bioinformatics.irida.ria.web.cart.dto.RemoveSampleRequest;
 import ca.corefacility.bioinformatics.irida.ria.web.sessionAttrs.Cart;
 import ca.corefacility.bioinformatics.irida.service.ProjectService;
+import ca.corefacility.bioinformatics.irida.service.SequencingObjectService;
 import ca.corefacility.bioinformatics.irida.service.sample.SampleService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
-import java.util.*;
 
 /**
  * Service for handling all aspects interaction with the Cart.
@@ -22,12 +24,15 @@ public class UICartService {
 	private final Cart cart;
 	private final ProjectService projectService;
 	private final SampleService sampleService;
+	private final SequencingObjectService sequencingObjectService;
 
 	@Autowired
-	public UICartService(Cart cart, ProjectService projectService, SampleService sampleService) {
+	public UICartService(Cart cart, ProjectService projectService, SampleService sampleService,
+			SequencingObjectService sequencingObjectService) {
 		this.cart = cart;
 		this.projectService = projectService;
 		this.sampleService = sampleService;
+		this.sequencingObjectService = sequencingObjectService;
 	}
 
 	/**

@@ -48,6 +48,14 @@ function removeProject(samples, filter, projectId) {
   };
 }
 
+function formatSamples(projects) {
+  const result = projects.map((p) => {
+    const { samples, ...project } = p;
+    return samples.map((s) => ({ project, ...s }));
+  });
+  return result.flat();
+}
+
 export const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
     case types.INITIALIZED:
@@ -68,13 +76,8 @@ export const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         loaded: true,
-        samples: action.payload.samples
-          .map((p) => {
-            const { samples, ...project } = p;
-            return samples.map((s) => ({ project, ...s }));
-          })
-          .flat(),
-        filteredSamples: action.payload.samples,
+        samples: formatSamples(action.payload.samples),
+        filteredSamples: formatSamples(action.payload.samples),
       };
     case types.REMOVE_SAMPLE:
       return {
@@ -111,7 +114,6 @@ export const actions = {
   initialized: (count) => ({ type: types.INITIALIZED, count }),
   add: (samples) => ({ type: types.ADD, samples }),
   updated: (count) => {
-    console.log(count);
     return {
       type: types.UPDATED,
       payload: count,
