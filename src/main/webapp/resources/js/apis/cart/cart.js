@@ -47,14 +47,7 @@ export const getCartIds = async () =>
 export const getSamplesForProjects = async (ids) =>
   axios
     .get(`${AJAX_URL}/samples?${ids.map((id) => `ids=${id}`).join("&")}`)
-    .then(({ data }) =>
-      data
-        .map((project) => {
-          const { samples, ...p } = project;
-          return project.samples.map((sample) => ({ ...sample, project: p }));
-        })
-        .flat()
-    );
+    .then(({ data }) => data);
 
 /**
  * Remove all samples from the cart

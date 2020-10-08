@@ -6,12 +6,14 @@ import styled from "styled-components";
 import { SPACE_SM } from "../../../styles/spacing";
 import { blue6, grey1, grey3, red4, red6 } from "../../../styles/colors";
 import AutoSizer from "react-virtualized-auto-sizer";
-import { Button, Input } from "antd";
+import { Button, Input, Tree } from "antd";
 import { FixedSizeList as VList } from "react-window";
 import { actions } from "../../../redux/reducers/cart";
 import { sampleDetailsActions } from "../../../components/SampleDetails";
 import { SampleRenderer } from "./SampleRenderer";
 import { BORDERED_LIGHT } from "../../../styles/borders";
+import { setBaseUrl } from "../../../utilities/url-utilities";
+import { IconLinkOut } from "../../../components/icons/Icons";
 
 const { Search } = Input;
 
@@ -45,6 +47,7 @@ const CartTools = styled.div`
 
 const CartSamplesWrapper = styled.div`
   flex-grow: 1;
+  background-color: white;
 `;
 
 const ButtonsPanelBottom = styled.div`
@@ -91,24 +94,45 @@ function CartSamplesComponent({
     />
   );
 
+  const formattedSamples = samples.map((project) => ({
+    title: (
+      <span>
+        {project.label}
+        <Button
+          size="small"
+          type="link"
+          onClick={(e) => e.stopPropagation()}
+          href={setBaseUrl(`/projects/${project.id}`)}
+          icon={<IconLinkOut />}
+        />
+      </span>
+    ),
+    key: `project-${project.id}`,
+    children: project.samples.map((sample) => ({
+      title: sample.label,
+      key: `sample-${sample.id}`,
+    })),
+  }));
+
   return (
     <Wrapper>
       <CartTools>
         <Search onChange={filterSamples} />
       </CartTools>
       <CartSamplesWrapper className="t-samples-list">
-        <AutoSizer>
-          {({ height = 600, width = 400 }) => (
-            <VList
-              itemCount={samples.length}
-              itemSize={75}
-              height={height}
-              width={width}
-            >
-              {renderSample}
-            </VList>
-          )}
-        </AutoSizer>
+        <Tree checkable treeData={formattedSamples} />
+        {/*<AutoSizer>*/}
+        {/*  {({ height = 600, width = 400 }) => (*/}
+        {/*    <VList*/}
+        {/*      itemCount={samples.length}*/}
+        {/*      itemSize={75}*/}
+        {/*      height={height}*/}
+        {/*      width={width}*/}
+        {/*    >*/}
+        {/*      {renderSample}*/}
+        {/*    </VList>*/}
+        {/*  )}*/}
+        {/*</AutoSizer>*/}
       </CartSamplesWrapper>
       <ButtonsPanelBottom>
         <EmptyCartButton
