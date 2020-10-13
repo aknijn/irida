@@ -16,7 +16,7 @@ function CartLayout() {
   return (
     <Row style={{ backgroundColor: "orange", width: `100%` }}>
       <SamplesProvider>
-        <Button type="primary"></Button>
+        <div>FOOBAR</div>
       </SamplesProvider>
     </Row>
   );

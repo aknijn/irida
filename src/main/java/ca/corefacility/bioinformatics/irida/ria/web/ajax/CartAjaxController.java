@@ -1,15 +1,17 @@
 package ca.corefacility.bioinformatics.irida.ria.web.ajax;
 
-import ca.corefacility.bioinformatics.irida.ria.web.ajax.dto.cart.CartProjectModel;
-import ca.corefacility.bioinformatics.irida.ria.web.cart.dto.AddToCartRequest;
-import ca.corefacility.bioinformatics.irida.ria.web.cart.dto.RemoveSampleRequest;
-import ca.corefacility.bioinformatics.irida.ria.web.services.UICartService;
+import java.util.List;
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Set;
+import ca.corefacility.bioinformatics.irida.ria.web.ajax.dto.cart.CartModel;
+import ca.corefacility.bioinformatics.irida.ria.web.ajax.dto.cart.CartProjectModel;
+import ca.corefacility.bioinformatics.irida.ria.web.cart.dto.AddToCartRequest;
+import ca.corefacility.bioinformatics.irida.ria.web.cart.dto.RemoveSampleRequest;
+import ca.corefacility.bioinformatics.irida.ria.web.services.UICartService;
 
 /**
  * AJAX controller for cart functionality
@@ -22,6 +24,11 @@ public class CartAjaxController {
 	@Autowired
 	public CartAjaxController(UICartService service) {
 		this.service = service;
+	}
+
+	@GetMapping("")
+	public ResponseEntity<CartModel> getCart() {
+		return ResponseEntity.ok(service.getUICart());
 	}
 
 	/**
