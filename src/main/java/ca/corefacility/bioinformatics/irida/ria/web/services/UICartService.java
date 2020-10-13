@@ -7,13 +7,13 @@ import org.springframework.stereotype.Component;
 
 import ca.corefacility.bioinformatics.irida.model.project.Project;
 import ca.corefacility.bioinformatics.irida.model.sample.Sample;
+import ca.corefacility.bioinformatics.irida.model.sequenceFile.SequencingObject;
 import ca.corefacility.bioinformatics.irida.ria.web.ajax.dto.CartSampleModel;
 import ca.corefacility.bioinformatics.irida.ria.web.ajax.dto.cart.CartProjectModel;
 import ca.corefacility.bioinformatics.irida.ria.web.cart.dto.AddToCartRequest;
 import ca.corefacility.bioinformatics.irida.ria.web.cart.dto.RemoveSampleRequest;
 import ca.corefacility.bioinformatics.irida.ria.web.sessionAttrs.Cart;
 import ca.corefacility.bioinformatics.irida.service.ProjectService;
-import ca.corefacility.bioinformatics.irida.service.SequencingObjectService;
 import ca.corefacility.bioinformatics.irida.service.sample.SampleService;
 
 /**
@@ -24,15 +24,15 @@ public class UICartService {
 	private final Cart cart;
 	private final ProjectService projectService;
 	private final SampleService sampleService;
-	private final SequencingObjectService sequencingObjectService;
+	private final UISequenceFileService sequenceFileService;
 
 	@Autowired
 	public UICartService(Cart cart, ProjectService projectService, SampleService sampleService,
-			SequencingObjectService sequencingObjectService) {
+			UISequenceFileService sequenceFileService) {
 		this.cart = cart;
 		this.projectService = projectService;
 		this.sampleService = sampleService;
-		this.sequencingObjectService = sequencingObjectService;
+		this.sequenceFileService = sequenceFileService;
 	}
 
 	/**
@@ -104,7 +104,8 @@ public class UICartService {
 			List<CartSampleModel> samples = new ArrayList<>();
 			sampleService.readMultiple(cart.getCartSampleIdsForProject(project.getId()))
 					.forEach(sample -> {
-						samples.add(new CartSampleModel(sample));
+						List<SequencingObject> pairedData = sequenceFileService.getPairedEndFilesForSample(sample);
+						samples.add(new CartSampleModel(sample, pairedData));
 					});
 			cartProjectModel.setSamples(samples);
 			cartProjectModels.add(cartProjectModel);

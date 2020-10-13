@@ -6,7 +6,7 @@ import styled from "styled-components";
 import { SPACE_SM } from "../../../styles/spacing";
 import { blue6, grey1, grey3, red4, red6 } from "../../../styles/colors";
 import AutoSizer from "react-virtualized-auto-sizer";
-import { Avatar, Button, Input, List, Table, Tag, Tree } from "antd";
+import { Avatar, Button, Input, List, Radio, Table, Tag, Tree } from "antd";
 import { FixedSizeList as VList } from "react-window";
 import { actions } from "../../../redux/reducers/cart";
 import { sampleDetailsActions } from "../../../components/SampleDetails";
@@ -114,22 +114,18 @@ function CartSamplesComponent({
   //   })),
   // }));
 
-  const SamplesTable = ({ samples }) => (
-    <List
-      style={{ marginLeft: 30 }}
-      dataSource={[
-        { label: "test_file_1.fasta" },
-        { label: "test_file_2.fasta" },
-      ]}
-      renderItem={(item) => (
-        <List.Item>
-          <List.Item.Meta
-            title={item.label}
-            avatar={<Avatar size="small" icon={<IconFile />} />}
-          />
-        </List.Item>
-      )}
-    />
+  const PairedFileList = ({ pairs }) => (
+    <Radio.Group>
+      <List
+        style={{ marginLeft: 30 }}
+        dataSource={pairs}
+        renderItem={(pair) => (
+          <List.Item>
+            <Radio value={pair.id}>{pair.label}</Radio>
+          </List.Item>
+        )}
+      />
+    </Radio.Group>
   );
 
   return (
@@ -147,20 +143,30 @@ function CartSamplesComponent({
               key: 1,
               title: "BFDSLK",
               render(item, data) {
+                const url = setBaseUrl(`/projects/${data.project.id}`);
                 return (
                   <div
-                    style={{ display: "flex", justifyContent: "space-between" }}
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                    }}
                   >
-                    {data.label}
-                    <Tag>{data.project.label}</Tag>
+                    <Button type="link" href={`${url}/samples/${data.id}`}>
+                      {data.label}
+                    </Button>
+                    <Button size="small" href={url}>
+                      {data.project.label}
+                    </Button>
                   </div>
                 );
               },
             },
           ]}
+          size="small"
           expandable={{
             expandedRowRender(record) {
-              return <SamplesTable samples={record.samples} />;
+              return <PairedFileList pairs={record.pairs} />;
             },
           }}
           dataSource={samples.map((p) => ({ key: `project-${p.id}`, ...p }))}
