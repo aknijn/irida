@@ -1,20 +1,8 @@
 import React from "react";
 import { render } from "react-dom";
-import { Provider } from "react-redux";
-import { getStore } from "../../redux/getStore";
-import {
-  getDetailsForSample,
-  sampleDetailsReducer
-} from "../../components/SampleDetails";
-import { actions } from "../../redux/reducers/app";
-import {
-  empty,
-  loadFullCart,
-  removeProjectFromCart,
-  removeSampleFromCart
-} from "../../redux/sagas/cart";
-import { Cart } from "./components/Cart";
+import { Row } from "antd";
 import { setBaseUrl } from "../../utilities/url-utilities";
+import { SamplesProvider } from "./samples-context";
 
 /*
 WEBPACK PUBLIC PATH:
@@ -24,22 +12,14 @@ See: https://webpack.js.org/guides/public-path/#on-the-fly
  */
 __webpack_public_path__ = setBaseUrl(`dist/`);
 
-const store = getStore(
-  { sampleDetailsReducer },
-  {
-    empty,
-    getDetailsForSample,
-    removeSampleFromCart,
-    removeProjectFromCart,
-    loadFullCart
-  }
-);
+function CartLayout() {
+  return (
+    <Row style={{ backgroundColor: "orange", width: `100%` }}>
+      <SamplesProvider>
+        <Button type="primary"></Button>
+      </SamplesProvider>
+    </Row>
+  );
+}
 
-render(
-  <Provider store={store}>
-    <Cart />
-  </Provider>,
-  document.querySelector("#root")
-);
-
-store.dispatch(actions.initialize({}));
+render(<CartLayout />, document.querySelector("#root"));
