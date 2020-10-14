@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import ca.corefacility.bioinformatics.irida.ria.web.ajax.dto.cart.CartModel;
 import ca.corefacility.bioinformatics.irida.ria.web.ajax.dto.cart.CartProjectModel;
 import ca.corefacility.bioinformatics.irida.ria.web.cart.dto.AddToCartRequest;
 import ca.corefacility.bioinformatics.irida.ria.web.cart.dto.RemoveSampleRequest;
@@ -27,7 +26,7 @@ public class CartAjaxController {
 	}
 
 	@GetMapping("")
-	public ResponseEntity<CartModel> getCart() {
+	public ResponseEntity<List<CartProjectModel>> getCart() {
 		return ResponseEntity.ok(service.getUICart());
 	}
 

@@ -7,7 +7,7 @@ const SamplesDispatchContext = React.createContext();
 function reducer(state, action) {
   switch (action.type) {
     case "loaded":
-      return { ...state };
+      return { ...state, samples: action.samples, loading: false };
     default: {
       throw new Error(`Unhandled action type: ${action.type}`);
     }
@@ -15,10 +15,17 @@ function reducer(state, action) {
 }
 
 function SamplesProvider({ children }) {
-  const [state, dispatch] = React.useReducer(reducer, {});
+  const [state, dispatch] = React.useReducer(reducer, { loading: true });
 
   React.useEffect(() => {
-    getCart().then((result) => console.log(result));
+    getCart().then((data) => {
+      const samples = data
+        .map(({ id: projectId, label: projectLabel, samples }) =>
+          samples.map((sample) => ({ ...sample, projectId, projectLabel }))
+        )
+        .flat();
+      dispatch({ type: "loaded", samples });
+    });
   }, []);
 
   return (

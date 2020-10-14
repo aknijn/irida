@@ -9,7 +9,6 @@ import ca.corefacility.bioinformatics.irida.model.project.Project;
 import ca.corefacility.bioinformatics.irida.model.sample.Sample;
 import ca.corefacility.bioinformatics.irida.model.sequenceFile.SequencingObject;
 import ca.corefacility.bioinformatics.irida.ria.web.ajax.dto.CartSampleModel;
-import ca.corefacility.bioinformatics.irida.ria.web.ajax.dto.cart.CartModel;
 import ca.corefacility.bioinformatics.irida.ria.web.ajax.dto.cart.CartProjectModel;
 import ca.corefacility.bioinformatics.irida.ria.web.cart.dto.AddToCartRequest;
 import ca.corefacility.bioinformatics.irida.ria.web.cart.dto.RemoveSampleRequest;
@@ -114,18 +113,19 @@ public class UICartService {
 		return cartProjectModels;
 	}
 
-	public CartModel getUICart() {
+	public List<CartProjectModel> getUICart() {
 		Iterable<Project> projects = projectService.readMultiple(cart.getProjectIdsInCart());
-		CartModel cartModel = new CartModel();
+		List<CartProjectModel> projectList = new ArrayList<>();
 		projects.forEach(project -> {
 			CartProjectModel projectModel = new CartProjectModel(project.getId(), project.getLabel());
 			List<CartSampleModel> sampleModels = new ArrayList<>();
 			sampleService.readMultiple(cart.getCartSampleIdsForProject(project.getId())).forEach(sample -> {
 				sampleModels.add(new CartSampleModel(sample, sequenceFileService.getPairedEndFilesForSample(sample)));
 			});
-			cartModel.put(projectModel, sampleModels);
+			projectModel.setSamples(sampleModels);
+			projectList.add(projectModel);
 		});
-		return cartModel;
+		return projectList;
 	}
 
 	/**

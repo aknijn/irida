@@ -30,7 +30,7 @@ export const getCartCount = async () => {
  * @returns {Promise<void | never>}
  */
 export const getCart = async () =>
-  axios.get(`${AJAX_URL}`).then((response) => response.data);
+  axios.get(`${AJAX_URL}`).then(({ data }) => data);
 
 /**
  * Get a list of projects identifiers that are in the cart
