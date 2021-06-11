@@ -28,7 +28,7 @@ export function SampleDetailViewer({
         .then(setDetails)
         .then(() => setLoading(false));
     }
-  }, [visible]);
+  }, [sampleId, visible]);
 
   const removeSampleFromCart = () => {
     removeSample({ projectId: details.projectId, sampleId });
