@@ -1,10 +1,10 @@
-import React from "react";
 import { Button, List, Radio } from "antd";
-import { grey1, grey3 } from "../../../styles/colors";
-import { SampleDetailViewer } from "../../../components/SampleViewer/SampleDetailViewer";
+import React from "react";
 import { BlockRadioInput } from "../../../components/ant.design/forms/BlockRadioInput";
-import { SPACE_XS } from "../../../styles/spacing";
+import { SampleDetailViewer } from "../../../components/SampleViewer/SampleDetailViewer";
 import { BORDERED_LIGHT } from "../../../styles/borders";
+import { grey1, grey3 } from "../../../styles/colors";
+import { SPACE_XS } from "../../../styles/spacing";
 
 /**
  * React component to display the list of files that can be run on the current
@@ -44,7 +44,7 @@ export function SampleFilesListItem({
       <List.Item.Meta
         title={
           <SampleDetailViewer
-            sampleId={sample.id}
+            sample={sample}
             removeSample={() => removeSample(sample)}
           >
             <Button size="small" style={{ marginLeft: SPACE_XS }}>

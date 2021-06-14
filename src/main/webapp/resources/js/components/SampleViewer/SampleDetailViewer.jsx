@@ -9,25 +9,25 @@ const { Text } = Typography;
 
 /**
  * React component to render details (metadata and files) for a sample.
- * @param sampleId - identifier for a sample
+ * @param sample - identifier for a sample and the name
  * @param removeSample - function to remove the sample from the cart.
  * @param children
  * @returns {JSX.Element}
  * @constructor
  */
 function SampleDetailModal({
-  sampleId,
+  sample,
   removeSample = Function.prototype,
   children,
 }) {
-  console.log(sampleId);
-  const { data: details, isLoading: loading } = useGetSampleDetailsQuery(
-    sampleId
+  console.log(sample.id);
+  const { data: details = {}, isLoading: loading } = useGetSampleDetailsQuery(
+    sample.id
   );
   const [visible, setVisible] = React.useState(false);
 
   const removeSampleFromCart = () => {
-    removeSample({ projectId: details.projectId, sampleId });
+    removeSample({ projectId: details.projectId, sampleId: sample.id });
   };
 
   return (
@@ -35,59 +35,55 @@ function SampleDetailModal({
       {React.cloneElement(children, {
         onClick: () => setVisible(true),
       })}
-      {visible ? (
-        <Modal
-          className="t-sample-details-modal"
-          bodyStyle={{
-            padding: 0,
-            maxHeight: window.innerHeight - 400,
-            overflowY: "auto",
-          }}
-          title={
-            loading ? null : (
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                }}
+      <Modal
+        className="t-sample-details-modal"
+        bodyStyle={{
+          padding: 0,
+          maxHeight: window.innerHeight - 400,
+          overflowY: "auto",
+        }}
+        title={
+          loading ? null : (
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
+            >
+              <Text strong>
+                <span className="t-sample-details-name">{sample.name}</span>
+              </Text>
+              <Button
+                size="small"
+                danger
+                style={{ marginRight: 30 }}
+                onClick={removeSampleFromCart}
               >
-                <Text strong>
-                  <span className="t-sample-details-name">
-                    {details.sample.sampleName}
-                  </span>
-                </Text>
-                <Button
-                  size="small"
-                  danger
-                  style={{ marginRight: 30 }}
-                  onClick={removeSampleFromCart}
-                >
-                  {i18n("SampleDetailsSidebar.removeFromCart")}
-                </Button>
-              </div>
-            )
-          }
-          visible={visible}
-          onCancel={() => setVisible(false)}
-          footer={null}
-          width={720}
-        >
-          <div style={{ margin: 24 }}>
-            {loading ? (
-              <Skeleton active title />
-            ) : (
-              <SampleDetails details={details} />
-            )}
-          </div>
-        </Modal>
-      ) : null}
+                {i18n("SampleDetailsSidebar.removeFromCart")}
+              </Button>
+            </div>
+          )
+        }
+        visible={visible}
+        onCancel={() => setVisible(false)}
+        footer={null}
+        width={720}
+      >
+        <div style={{ margin: 24 }}>
+          {loading ? (
+            <Skeleton active title />
+          ) : (
+            <SampleDetails details={details} />
+          )}
+        </div>
+      </Modal>
     </>
   );
 }
 
-export const SampleDetailViewer = ({ children, sampleId }) => (
+export const SampleDetailViewer = ({ children, sample }) => (
   <Provider store={store}>
-    <SampleDetailModal sampleId={sampleId}>{children}</SampleDetailModal>
+    <SampleDetailModal sample={sample}>{children}</SampleDetailModal>
   </Provider>
 );
