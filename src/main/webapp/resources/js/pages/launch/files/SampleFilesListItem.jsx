@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, List, Radio } from "antd";
 import { grey1, grey3 } from "../../../styles/colors";
-import { SampleDetailViewer } from "../../../components/samples/SampleDetailViewer";
+import { SampleDetailViewer } from "../../../components/SampleViewer/SampleDetailViewer";
 import { BlockRadioInput } from "../../../components/ant.design/forms/BlockRadioInput";
 import { SPACE_XS } from "../../../styles/spacing";
 import { BORDERED_LIGHT } from "../../../styles/borders";

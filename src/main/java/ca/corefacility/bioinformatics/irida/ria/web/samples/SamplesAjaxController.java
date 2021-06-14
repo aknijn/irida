@@ -8,7 +8,6 @@ import java.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -163,9 +162,14 @@ public class SamplesAjaxController {
 	 * @param id {@link Long} identifier for a sample.
 	 * @return {@link SampleDetails} for the {@link Sample}
 	 */
-	@GetMapping(value = "/{id}/details", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<SampleDetails> getSampleDetails(@PathVariable Long id) {
-		return ResponseEntity.ok(uiSampleService.getSampleDetails(id));
+//	@GetMapping(value = "/{id}/details", produces = MediaType.APPLICATION_JSON_VALUE)
+//	public ResponseEntity<SampleDetails> getSampleDetails(@PathVariable Long id) {
+//		return ResponseEntity.ok(uiSampleService.getSampleDetails(id));
+//	}
+
+	@GetMapping( "/details")
+	public ResponseEntity<SampleDetails> getSampleDetails(@RequestParam Long sampleId) {
+		return ResponseEntity.ok(uiSampleService.getSampleDetails(sampleId));
 	}
 
 	/**

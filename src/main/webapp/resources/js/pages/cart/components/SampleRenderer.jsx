@@ -6,7 +6,7 @@ import { grey1, grey4 } from "../../../styles/colors";
 import { SPACE_SM, SPACE_XS } from "../../../styles/spacing";
 import { setBaseUrl } from "../../../utilities/url-utilities";
 import { IconDropDown, IconFolder } from "../../../components/icons/Icons";
-import { SampleDetailViewer } from "../../../components/samples/SampleDetailViewer";
+import { SampleDetailViewer } from "../../../components/SampleViewer/SampleDetailViewer";
 
 const DeleteMenu = ({ removeSample, removeProject }) => (
   <Menu

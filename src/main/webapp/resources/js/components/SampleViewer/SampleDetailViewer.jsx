@@ -1,7 +1,9 @@
-import React from "react";
 import { Button, Modal, Skeleton, Typography } from "antd";
-import { fetchSampleDetails } from "../../apis/samples/samples";
+import React from "react";
+import { Provider } from "react-redux";
+import { useGetSampleDetailsQuery } from "../../apis/samples/sample";
 import { SampleDetails } from "./components/SampleDetails";
+import store from "./store";
 
 const { Text } = Typography;
 
@@ -13,22 +15,16 @@ const { Text } = Typography;
  * @returns {JSX.Element}
  * @constructor
  */
-export function SampleDetailViewer({
+function SampleDetailModal({
   sampleId,
   removeSample = Function.prototype,
   children,
 }) {
-  const [loading, setLoading] = React.useState(true);
-  const [details, setDetails] = React.useState({});
+  console.log(sampleId);
+  const { data: details, isLoading: loading } = useGetSampleDetailsQuery(
+    sampleId
+  );
   const [visible, setVisible] = React.useState(false);
-
-  React.useEffect(() => {
-    if (visible) {
-      fetchSampleDetails(sampleId)
-        .then(setDetails)
-        .then(() => setLoading(false));
-    }
-  }, [sampleId, visible]);
 
   const removeSampleFromCart = () => {
     removeSample({ projectId: details.projectId, sampleId });
@@ -89,3 +85,9 @@ export function SampleDetailViewer({
     </>
   );
 }
+
+export const SampleDetailViewer = ({ children, sampleId }) => (
+  <Provider store={store}>
+    <SampleDetailModal sampleId={sampleId}>{children}</SampleDetailModal>
+  </Provider>
+);
