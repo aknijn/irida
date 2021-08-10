@@ -23,6 +23,7 @@ import ca.corefacility.bioinformatics.irida.model.sample.MetadataTemplateField;
 import ca.corefacility.bioinformatics.irida.model.sample.Sample;
 import ca.corefacility.bioinformatics.irida.model.sample.StaticMetadataTemplateField;
 import ca.corefacility.bioinformatics.irida.model.sample.metadata.MetadataEntry;
+import ca.corefacility.bioinformatics.irida.model.sample.metadata.ProjectMetadataResponse;
 import ca.corefacility.bioinformatics.irida.ria.web.components.agGrid.AgGridColumn;
 import ca.corefacility.bioinformatics.irida.ria.web.linelist.dto.UIMetadataField;
 import ca.corefacility.bioinformatics.irida.ria.web.linelist.dto.UIMetadataFieldDefault;
@@ -76,12 +77,33 @@ public class LineListController {
 
 		List<Long> lockedSamplesInProject = sampleService.getLockedSamplesInProject(project);
 
-		final Map<Long, Set<MetadataEntry>> metadataForProject = sampleService.getMetadataForProject(project);
+		List<MetadataTemplateField> metadataTemplateFields = metadataTemplateService.getPermittedFieldsForCurrentUser(
+				project);
+
+		Map<Long, Set<MetadataEntry>> metadataForProject;
+
+		//check that we have some fields
+		if (!metadataTemplateFields.isEmpty()) {
+			//if we have fields, get all the metadata
+			ProjectMetadataResponse metadataResponse = sampleService.getMetadataForProject(project,
+					metadataTemplateFields);
+
+			metadataForProject = metadataResponse.getMetadata();
+		} else {
+			//if we have no fields, just give an empty map.  We'll just show the date fields
+			metadataForProject = new HashMap<>();
+		}
 
 		List<Sample> projectSamples = sampleService.getSamplesForProjectShallow(project);
+
 		return projectSamples.stream()
 				.map(sample -> {
-					Set<MetadataEntry> metadata = metadataForProject.get(sample.getId());
+					Set<MetadataEntry> metadata = null;
+					if (metadataForProject.containsKey(sample.getId())) {
+						metadata = metadataForProject.get(sample.getId());
+					} else {
+						metadata = new HashSet<>();
+					}
 
 					//check if the project owns the sample
 					boolean ownership = !lockedSamplesInProject.contains(sample.getId());
@@ -301,9 +323,12 @@ public class LineListController {
 	 */
 	public List<AgGridColumn> getProjectMetadataTemplateFields(@RequestParam long projectId, Locale locale) {
 		Project project = projectService.read(projectId);
-		List<MetadataTemplateField> metadataFieldsForProject = metadataTemplateService.getMetadataFieldsForProject(
+
+		List<MetadataTemplateField> permittedFieldsForCurrentUser = metadataTemplateService.getPermittedFieldsForCurrentUser(
 				project);
-		Set<MetadataTemplateField> fieldSet = new HashSet<>(metadataFieldsForProject);
+
+		Set<MetadataTemplateField> fieldSet = permittedFieldsForCurrentUser.stream()
+				.collect(Collectors.toSet());
 
 		// Need to get all the fields from the templates too!
 		List<ProjectMetadataTemplateJoin> templateJoins = metadataTemplateService.getMetadataTemplatesForProject(
@@ -318,6 +343,7 @@ public class LineListController {
 		 */
 		List<StaticMetadataTemplateField> staticMetadataFields = metadataTemplateService.getStaticMetadataFields();
 
+		//TODO: fields in templates here will be added to the fields list even if a user isn't permitted to read them.  Needs refactored
 		/*
 		Get all unique fields from the templates.
 		 */

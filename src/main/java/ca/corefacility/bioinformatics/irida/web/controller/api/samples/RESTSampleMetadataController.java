@@ -15,8 +15,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import ca.corefacility.bioinformatics.irida.model.project.Project;
+import ca.corefacility.bioinformatics.irida.model.sample.MetadataTemplateField;
 import ca.corefacility.bioinformatics.irida.model.sample.Sample;
 import ca.corefacility.bioinformatics.irida.model.sample.metadata.MetadataEntry;
+import ca.corefacility.bioinformatics.irida.model.sample.metadata.ProjectMetadataResponse;
 import ca.corefacility.bioinformatics.irida.service.ProjectService;
 import ca.corefacility.bioinformatics.irida.service.sample.MetadataTemplateService;
 import ca.corefacility.bioinformatics.irida.service.sample.SampleService;
@@ -91,8 +93,14 @@ public class RESTSampleMetadataController {
 		//get the project and samples for the project
 		Project project = projectService.read(projectId);
 
+		List<MetadataTemplateField> metadataTemplateFields = metadataTemplateService.getPermittedFieldsForCurrentUser(
+				project);
+
 		List<Sample> samples = sampleService.getSamplesForProjectShallow(project);
-		Map<Long, Set<MetadataEntry>> metadataForProject = sampleService.getMetadataForProject(project);
+		ProjectMetadataResponse metadataResponse = sampleService.getMetadataForProject(project,
+				metadataTemplateFields);
+
+		final Map<Long, Set<MetadataEntry>> metadataForProject = metadataResponse.getMetadata();
 
 		//for each sample
 		for (Sample s : samples) {

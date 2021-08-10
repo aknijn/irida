@@ -1,16 +1,17 @@
+import { configureStore } from "@reduxjs/toolkit";
 import React from "react";
 import { render } from "react-dom";
 import { Provider } from "react-redux";
-import { getStore } from "../../redux/getStore";
-import { actions } from "../../redux/reducers/app";
-import {
-  empty,
-  loadFullCart,
-  removeProjectFromCart,
-  removeSampleFromCart,
-} from "../../redux/sagas/cart";
-import { Cart } from "./components/Cart";
+import { cartApi } from "../../apis/cart/cart";
+import { projectsApi } from "../../apis/projects/projects";
 import { setBaseUrl } from "../../utilities/url-utilities";
+import { Cart } from "./components/Cart";
+import shareReducer from "./components/share/shareSlice";
+
+/**
+ * @fileoverview This is the entry file for the Cart Page.  It uses a redux store,
+ * configured using the redux toolkit.
+ */
 
 /*
 WEBPACK PUBLIC PATH:
@@ -20,15 +21,15 @@ See: https://webpack.js.org/guides/public-path/#on-the-fly
  */
 __webpack_public_path__ = setBaseUrl(`dist/`);
 
-const store = getStore(
-  {},
-  {
-    empty,
-    removeSampleFromCart,
-    removeProjectFromCart,
-    loadFullCart,
-  }
-);
+const store = configureStore({
+  reducer: {
+    [cartApi.reducerPath]: cartApi.reducer,
+    [projectsApi.reducerPath]: projectsApi.reducer,
+    share: shareReducer,
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(cartApi.middleware, projectsApi.middleware),
+});
 
 render(
   <Provider store={store}>
@@ -36,5 +37,3 @@ render(
   </Provider>,
   document.querySelector("#root")
 );
-
-store.dispatch(actions.initialize({}));

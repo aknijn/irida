@@ -1,9 +1,6 @@
 package ca.corefacility.bioinformatics.irida.repositories.sample;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
@@ -17,6 +14,8 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import ca.corefacility.bioinformatics.irida.model.project.Project;
 import ca.corefacility.bioinformatics.irida.model.sample.MetadataTemplateField;
 import ca.corefacility.bioinformatics.irida.model.sample.metadata.MetadataEntry;
+
+import static com.google.common.base.Preconditions.checkArgument;
 
 /**
  * Implementation of the custom methods for retrieving {@link MetadataEntry}
@@ -34,7 +33,10 @@ public class MetadataEntryRepositoryImpl implements MetadataEntryRepositoryCusto
 	/**
 	 * {@inheritDoc}
 	 */
-	public Map<Long, Set<MetadataEntry>> getMetadataForProject(Project project) {
+	public Map<Long, Set<MetadataEntry>> getMetadataForProject(Project project,
+			List<MetadataTemplateField> requestedFields) {
+		checkArgument(!requestedFields.isEmpty(), "requestedFields must not be empty");
+
 		NamedParameterJdbcTemplate tmpl = new NamedParameterJdbcTemplate(dataSource);
 		MapSqlParameterSource parameters = new MapSqlParameterSource();
 		parameters.addValue("project", project.getId());
@@ -55,7 +57,11 @@ public class MetadataEntryRepositoryImpl implements MetadataEntryRepositoryCusto
 				(rs, rowNum) -> rs.getLong("p.sample_id"));
 
 		//query for all metadata entries used in the project
-		String entityQueryString = "select e.id, e.type, e.value, e.field_id, e.sample_id from metadata_entry e INNER JOIN project_sample s ON s.sample_id=e.sample_id WHERE s.project_id=:project";
+		String entityQueryString = "select e.id, e.type, e.value, e.field_id, e.sample_id from metadata_entry e INNER JOIN project_sample s ON s.sample_id=e.sample_id WHERE s.project_id=:project AND e.field_id IN (:fieldIds)";
+		List<Long> requestedFieldIds = requestedFields.stream()
+				.map(MetadataTemplateField::getId)
+				.collect(Collectors.toList());
+		parameters.addValue("fieldIds", requestedFieldIds);
 
 		//map the results into a SampleMetadataEntry
 		List<SampleMetadataEntry> sampleEntryCollection = tmpl.query(entityQueryString, parameters, (rs, rowNum) -> {

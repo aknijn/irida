@@ -36,7 +36,7 @@ export default function MetadataTemplateMember({ id, projectId }) {
     create one.
      */
     if (!isLoading) {
-      const found = templates.find((template) => template.identifier === id);
+      const found = templates.find((template) => template.identifier == id);
 
       if (found) {
         setTemplate(found);
