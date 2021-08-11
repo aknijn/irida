@@ -16,6 +16,7 @@ export function ShareProject() {
   const project = useSelector((state) => state.share.project);
   const { data: samples = [] } = useGetCartQuery();
   const [projectSamplesInCart, setProjectSamplesInCart] = React.useState([]);
+  const [options, setOptions] = React.useState();
 
   const [query, setQuery] = React.useState("");
   const dispatch = useDispatch();
@@ -26,6 +27,17 @@ export function ShareProject() {
     const project = projects.find((project) => project.identifier === newValue);
     dispatch(setProject(project));
   };
+
+  React.useEffect(() => {
+    if (!isFetching) {
+      setOptions(
+        projects.map((project) => ({
+          label: project.name,
+          value: project.identifier,
+        }))
+      );
+    }
+  }, [isFetching, projects]);
 
   React.useEffect(() => {
     if (project) {
@@ -40,24 +52,13 @@ export function ShareProject() {
 
   return (
     <Space direction="vertical" style={{ display: "block" }}>
-      <Form.Item
-        label={i18n("ShareProject.label")}
-        hasFeedback={projectSamplesInCart.length}
-        validateStatus={projectSamplesInCart.length ? "warning" : "success"}
-        help={
-          projectSamplesInCart.length > 0 &&
-          `Samples from this project are in the cart and will not be re-copied`
-        }
-      >
+      <Form.Item label={i18n("ShareProject.label")}>
         <Select
           autoFocus
           size="large"
           value={project?.identifier}
           onChange={setValue}
-          options={projects.map((project) => ({
-            label: project.name,
-            value: project.identifier,
-          }))}
+          options={options}
           showSearch
           onSearch={setQuery}
           style={{ width: `100%` }}
