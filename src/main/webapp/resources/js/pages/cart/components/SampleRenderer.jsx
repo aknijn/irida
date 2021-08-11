@@ -45,7 +45,8 @@ export class SampleRenderer extends React.Component {
         style={{
           ...this.props.style,
           padding: SPACE_SM,
-          backgroundColor: grey1,
+          backgroundColor:
+            this.props.selectedProject === sample.project.id ? "red" : grey1,
           borderBottom: `1px solid ${grey4}`,
         }}
       >

@@ -3,6 +3,7 @@ import React from "react";
 import { render } from "react-dom";
 import { Provider } from "react-redux";
 import { cartApi } from "../../apis/cart/cart";
+import { projectApi } from "../../apis/projects/project";
 import { projectsApi } from "../../apis/projects/projects";
 import { setBaseUrl } from "../../utilities/url-utilities";
 import { Cart } from "./components/Cart";
@@ -25,10 +26,15 @@ const store = configureStore({
   reducer: {
     [cartApi.reducerPath]: cartApi.reducer,
     [projectsApi.reducerPath]: projectsApi.reducer,
+    [projectApi.reducerPath]: projectApi.reducer,
     share: shareReducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(cartApi.middleware, projectsApi.middleware),
+    getDefaultMiddleware().concat(
+      cartApi.middleware,
+      projectsApi.middleware,
+      projectApi.middleware
+    ),
 });
 
 render(

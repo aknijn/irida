@@ -1,5 +1,6 @@
 package ca.corefacility.bioinformatics.irida.ria.web.projects.settings;
 
+import java.util.List;
 import java.util.Locale;
 
 import javax.validation.ConstraintViolationException;
@@ -22,6 +23,7 @@ import ca.corefacility.bioinformatics.irida.ria.web.ajax.projects.settings.excep
 import ca.corefacility.bioinformatics.irida.ria.web.errors.AjaxItemNotFoundException;
 import ca.corefacility.bioinformatics.irida.ria.web.projects.settings.dto.UpdateProjectAttributeRequest;
 import ca.corefacility.bioinformatics.irida.ria.web.services.UIMetadataService;
+import ca.corefacility.bioinformatics.irida.ria.web.services.UIProjectSampleService;
 import ca.corefacility.bioinformatics.irida.ria.web.services.UIProjectsService;
 import ca.corefacility.bioinformatics.irida.service.ProjectService;
 
@@ -36,14 +38,16 @@ public class ProjectDetailsAjaxController {
 	private final ProjectService projectService;
 	private final UIProjectsService service;
 	private final UIMetadataService metadataService;
+	private final UIProjectSampleService sampleService;
 	private final MessageSource messageSource;
 
 	@Autowired
 	public ProjectDetailsAjaxController(ProjectService projectService, UIProjectsService service,
-			UIMetadataService metadataService, MessageSource messageSource) {
+			UIMetadataService metadataService, UIProjectSampleService sampleService, MessageSource messageSource) {
 		this.projectService = projectService;
 		this.service = service;
 		this.metadataService = metadataService;
+		this.sampleService = sampleService;
 		this.messageSource = messageSource;
 	}
 
@@ -188,5 +192,10 @@ public class ProjectDetailsAjaxController {
 					.body(new AjaxErrorResponse(
 							messageSource.getMessage("server.DeleteProject.error", new Object[] {}, locale)));
 		}
+	}
+
+	@GetMapping("/sampleIds")
+	public List<Long> getAllProjectSampleIds(@RequestParam long projectId) {
+		return sampleService.getAllProjectSampleIds(projectId);
 	}
 }

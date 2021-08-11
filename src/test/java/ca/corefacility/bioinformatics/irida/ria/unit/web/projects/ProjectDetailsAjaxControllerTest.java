@@ -14,6 +14,7 @@ import ca.corefacility.bioinformatics.irida.ria.web.projects.dto.ProjectDetailsR
 import ca.corefacility.bioinformatics.irida.ria.web.projects.settings.ProjectDetailsAjaxController;
 import ca.corefacility.bioinformatics.irida.ria.web.projects.settings.dto.UpdateProjectAttributeRequest;
 import ca.corefacility.bioinformatics.irida.ria.web.services.UIMetadataService;
+import ca.corefacility.bioinformatics.irida.ria.web.services.UIProjectSampleService;
 import ca.corefacility.bioinformatics.irida.ria.web.services.UIProjectsService;
 import ca.corefacility.bioinformatics.irida.service.ProjectService;
 import ca.corefacility.bioinformatics.irida.web.controller.test.unit.TestDataFactory;
@@ -27,14 +28,17 @@ public class ProjectDetailsAjaxControllerTest {
 	private ProjectDetailsAjaxController controller;
 	private UIMetadataService metadataService;
 	private UIProjectsService service;
+	private UIProjectSampleService sampleService;
 
 	@Before
 	public void setUp() {
 		projectService = mock(ProjectService.class);
 		MessageSource messageSource = mock(MessageSource.class);
 		service = mock(UIProjectsService.class);
+		sampleService = mock(UIProjectSampleService.class);
 		metadataService = mock(UIMetadataService.class);
-		controller = new ProjectDetailsAjaxController(projectService, service, metadataService, messageSource);
+		controller = new ProjectDetailsAjaxController(projectService, service, metadataService, sampleService,
+				messageSource);
 
 		Project project = TestDataFactory.constructProject();
 		when(projectService.read(anyLong())).thenReturn(project);

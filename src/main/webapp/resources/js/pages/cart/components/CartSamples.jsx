@@ -1,5 +1,6 @@
 import { Button, Empty, Input, notification, Space, Spin } from "antd";
 import React from "react";
+import { useSelector } from "react-redux";
 import AutoSizer from "react-virtualized-auto-sizer";
 import { FixedSizeList as VList } from "react-window";
 import styled from "styled-components";
@@ -75,12 +76,9 @@ const EmptyCartButton = styled(Button)`
  * @constructor
  */
 export default function CartSamples({ displaySample }) {
+  const project = useSelector((state) => state.share.project);
   const [samples, setSamples] = React.useState([]);
-  const {
-    data: allSamples,
-    isFetching,
-    refetch,
-  } = useGetCartQuery();
+  const { data: allSamples, isFetching, refetch } = useGetCartQuery();
   const [emptyCart] = useEmptyMutation();
   const [removeSample] = useRemoveSampleMutation();
   const [removeProject] = useRemoveProjectMutation();
@@ -118,6 +116,7 @@ export default function CartSamples({ displaySample }) {
         displaySample={displaySample}
         removeSample={() => removeOneSample(sample.id)}
         removeProject={removeOneProject}
+        selectedProject={project?.identifier}
       />
     );
   };

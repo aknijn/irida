@@ -3,6 +3,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useGetCartQuery } from "../../../../apis/cart/cart";
 import { useGetProjectsForUserQuery } from "../../../../apis/projects/projects";
+import { ShareSamples } from "./ShareSamples";
 import { nextStep, setProject } from "./shareSlice";
 
 /**
@@ -70,6 +71,8 @@ export function ShareProject() {
           {i18n("ShareProject.next")}
         </Button>
       </div>
+
+      {project && <ShareSamples projectId={project?.identifier} />}
     </Space>
   );
 }

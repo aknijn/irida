@@ -81,6 +81,12 @@ export const projectApi = createApi({
       }),
       invalidatesTags: ["Project"],
     }),
+    getSampleIdsForProject: build.query({
+      query: (projectId) => ({
+        url: "/sampleIds",
+        params: { projectId },
+      }),
+    }),
   }),
 });
 
@@ -90,6 +96,7 @@ export const {
   useUpdateProjectCoverageMutation,
   useUpdateProjectPriorityMutation,
   useUpdateDefaultMetadataTemplateMutation,
+  useGetSampleIdsForProjectQuery,
 } = projectApi;
 
 export async function deleteProject(projectId) {
