@@ -33,16 +33,27 @@ export function ShareProject() {
       setOptions(
         projects.map((project) => ({
           label: (
-            <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignContent: "center",
+              }}
+            >
               {project.name}
               {samples.findIndex(
                 (s) => s.project.id === Number(project.identifier)
               ) > -1 && (
-                <Tooltip placement="left" title="Samples in cart">
-                  <Tag color="red">
-                    <IconShoppingCart />
-                  </Tag>
-                </Tooltip>
+                <span>
+                  <Tooltip
+                    placement="left"
+                    title={i18n("ShareProject.samples-in-cart")}
+                  >
+                    <Tag color="blues">
+                      <IconShoppingCart />
+                    </Tag>
+                  </Tooltip>
+                </span>
               )}
             </div>
           ),
