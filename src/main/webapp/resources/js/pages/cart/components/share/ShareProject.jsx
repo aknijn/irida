@@ -1,11 +1,11 @@
-import { Button, Form, Select, Space, Spin, Tag, Tooltip } from "antd";
+import { Form, Select, Space, Spin, Tag, Tooltip } from "antd";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useGetCartQuery } from "../../../../apis/cart/cart";
 import { useGetProjectsForUserQuery } from "../../../../apis/projects/projects";
 import { IconShoppingCart } from "../../../../components/icons/Icons";
 import { ShareSamples } from "./ShareSamples";
-import { nextStep, setProject } from "./shareSlice";
+import { setProject } from "./shareSlice";
 
 /**
  * React component to render a select field for selection of the project
@@ -79,12 +79,6 @@ export function ShareProject() {
           notFoundContent={isFetching ? <Spin size="small" /> : null}
         />
       </Form.Item>
-
-      <div style={{ display: "flex", flexDirection: "row-reverse" }}>
-        <Button disabled={!project} onClick={() => dispatch(nextStep())}>
-          {i18n("ShareProject.next")}
-        </Button>
-      </div>
 
       {project && <ShareSamples projectId={project?.identifier} />}
     </Space>

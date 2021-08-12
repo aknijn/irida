@@ -1,4 +1,4 @@
-import { Button, List, Space, Typography } from "antd";
+import { Button, List, Space, Spin, Typography } from "antd";
 import React from "react";
 import {
   useGetCartQuery,
@@ -26,8 +26,6 @@ export function ShareSamples({ projectId }) {
     const updatedSamples = [];
     const updateExisting = [];
     if (!isSamplesLoading && !idsLoading) {
-      console.log("UPDATING - INSIDE");
-      console.log(allSamples);
       allSamples.forEach((sample) => {
         // Find out if sample is in the selected project
         if (ids.includes(Number(sample.id))) {
@@ -41,7 +39,9 @@ export function ShareSamples({ projectId }) {
     setExisting(updateExisting);
   }, [allSamples, ids, idsLoading, isSamplesLoading]);
 
-  return (
+  return idsLoading ? (
+    <Spin />
+  ) : (
     <div>
       <Typography.Title level={4}>Available Samples</Typography.Title>
       <Space direction="vertical" style={{ display: "block" }}>
