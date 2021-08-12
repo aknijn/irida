@@ -30,7 +30,7 @@ export function ShareSamples({ projectId }) {
       console.log(allSamples);
       allSamples.forEach((sample) => {
         // Find out if sample is in the selected project
-        if (ids.includes(Number(sample.identifier))) {
+        if (ids.includes(Number(sample.id))) {
           updateExisting.push(sample);
         } else {
           updatedSamples.push(sample);

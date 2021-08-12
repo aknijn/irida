@@ -1,8 +1,9 @@
-import { Button, Form, Select, Space, Spin } from "antd";
+import { Button, Form, Select, Space, Spin, Tag, Tooltip } from "antd";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useGetCartQuery } from "../../../../apis/cart/cart";
 import { useGetProjectsForUserQuery } from "../../../../apis/projects/projects";
+import { IconShoppingCart } from "../../../../components/icons/Icons";
 import { ShareSamples } from "./ShareSamples";
 import { nextStep, setProject } from "./shareSlice";
 
@@ -15,7 +16,6 @@ import { nextStep, setProject } from "./shareSlice";
 export function ShareProject() {
   const project = useSelector((state) => state.share.project);
   const { data: samples = [] } = useGetCartQuery();
-  const [projectSamplesInCart, setProjectSamplesInCart] = React.useState([]);
   const [options, setOptions] = React.useState();
 
   const [query, setQuery] = React.useState("");
@@ -32,23 +32,25 @@ export function ShareProject() {
     if (!isFetching) {
       setOptions(
         projects.map((project) => ({
-          label: project.name,
+          label: (
+            <div style={{ display: "flex", justifyContent: "space-between" }}>
+              {project.name}
+              {samples.findIndex(
+                (s) => s.project.id === Number(project.identifier)
+              ) > -1 && (
+                <Tooltip placement="left" title="Samples in cart">
+                  <Tag color="red">
+                    <IconShoppingCart />
+                  </Tag>
+                </Tooltip>
+              )}
+            </div>
+          ),
           value: project.identifier,
         }))
       );
     }
-  }, [isFetching, projects]);
-
-  React.useEffect(() => {
-    if (project) {
-      // Check to see if the project is in the cart
-      setProjectSamplesInCart(
-        samples.filter(
-          (s) => Number(s.project.id) === Number(project.identifier)
-        )
-      );
-    }
-  }, [project, samples]);
+  }, [isFetching, projects, samples]);
 
   return (
     <Space direction="vertical" style={{ display: "block" }}>
