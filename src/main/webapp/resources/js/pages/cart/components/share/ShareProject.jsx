@@ -49,7 +49,7 @@ export function ShareProject() {
                     placement="left"
                     title={i18n("ShareProject.samples-in-cart")}
                   >
-                    <Tag color="blues">
+                    <Tag color="blue">
                       <IconShoppingCart />
                     </Tag>
                   </Tooltip>
