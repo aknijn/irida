@@ -28,40 +28,43 @@ export function ShareProject() {
     dispatch(setProject(project));
   };
 
+  const createOptions = React.useCallback(() => {
+    const options = projects.map((project) => ({
+      label: (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignContent: "center",
+          }}
+        >
+          {project.name}
+          {samples.findIndex(
+            (s) => s.project.id === Number(project.identifier)
+          ) > -1 && (
+            <span>
+              <Tooltip
+                placement="left"
+                title={i18n("ShareProject.samples-in-cart")}
+              >
+                <Tag color="blue">
+                  <IconShoppingCart />
+                </Tag>
+              </Tooltip>
+            </span>
+          )}
+        </div>
+      ),
+      value: project.identifier,
+    }));
+    setOptions(options);
+  }, [projects, samples]);
+
   React.useEffect(() => {
     if (!isFetching) {
-      setOptions(
-        projects.map((project) => ({
-          label: (
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignContent: "center",
-              }}
-            >
-              {project.name}
-              {samples.findIndex(
-                (s) => s.project.id === Number(project.identifier)
-              ) > -1 && (
-                <span>
-                  <Tooltip
-                    placement="left"
-                    title={i18n("ShareProject.samples-in-cart")}
-                  >
-                    <Tag color="blue">
-                      <IconShoppingCart />
-                    </Tag>
-                  </Tooltip>
-                </span>
-              )}
-            </div>
-          ),
-          value: project.identifier,
-        }))
-      );
+      createOptions();
     }
-  }, [isFetching, projects, samples]);
+  }, [createOptions, isFetching, projects, samples]);
 
   return (
     <Space direction="vertical" style={{ display: "block" }}>
