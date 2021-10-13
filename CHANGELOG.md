@@ -3,7 +3,6 @@ Changes
 
 21.09 to 22.01
 --------------
-* [REST]: Fixed bug prevending REST API clients from updating the `collectedDate` on samples.
 
 21.05 to 21.09
 --------------
