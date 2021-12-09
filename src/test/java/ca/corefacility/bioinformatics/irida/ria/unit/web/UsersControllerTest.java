@@ -15,6 +15,7 @@ import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.ui.ExtendedModelMap;
 
 import ca.corefacility.bioinformatics.irida.config.services.IridaApiServicesConfig;
@@ -62,6 +63,7 @@ public class UsersControllerTest {
 	private EmailController emailController;
 	private UsersController controller;
 	private MessageSource messageSource;
+	private SessionRegistry sessionRegistry;
 
 	@Before
 	public void setUp() {
@@ -71,7 +73,8 @@ public class UsersControllerTest {
 		emailController = mock(EmailController.class);
 		passwordResetService = mock(PasswordResetService.class);
 		controller = new UsersController(userService, projectService, passwordResetService, emailController,
-				messageSource, new IridaApiServicesConfig.IridaLocaleList(Lists.newArrayList(Locale.ENGLISH)));
+				messageSource, new IridaApiServicesConfig.IridaLocaleList(Lists.newArrayList(Locale.ENGLISH)),
+				sessionRegistry);
 
 		User u1 = new User(1L, "tom", "tom@nowhere.com", "123456798", "Tom", "Matthews", "1234");
 		u1.setModifiedDate(new Date());

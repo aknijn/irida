@@ -17,6 +17,8 @@ import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.mail.MailSendException;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.session.SessionInformation;
+import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -46,7 +48,6 @@ import com.google.common.collect.Lists;
 
 /**
  * Controller for all {@link User} related views
- *
  */
 @Controller
 @RequestMapping(value = "/users")
@@ -64,6 +65,7 @@ public class UsersController {
 	private final ProjectService projectService;
 	private final PasswordResetService passwordResetService;
 	private final EmailController emailController;
+	private final SessionRegistry sessionRegistry;
 
 	private final List<Role> adminAllowedRoles = Lists.newArrayList(Role.ROLE_ADMIN, Role.ROLE_MANAGER, Role.ROLE_USER,
 			Role.ROLE_TECHNICIAN, Role.ROLE_SEQUENCER);
@@ -73,13 +75,15 @@ public class UsersController {
 	@Autowired
 	public UsersController(UserService userService, ProjectService projectService,
 			PasswordResetService passwordResetService, EmailController emailController, MessageSource messageSource,
-			IridaApiServicesConfig.IridaLocaleList locales) {
+			IridaApiServicesConfig.IridaLocaleList locales, SessionRegistry sessionRegistry) {
 		this.userService = userService;
 		this.projectService = projectService;
 		this.passwordResetService = passwordResetService;
 		this.emailController = emailController;
 		this.messageSource = messageSource;
 		this.locales = locales.getLocales();
+		this.sessionRegistry = sessionRegistry;
+
 	}
 
 	/**
@@ -97,21 +101,16 @@ public class UsersController {
 	/**
 	 * Request for a specific user details page.
 	 *
-	 * @param userId
-	 *            The id for the user to show details for.
-	 * @param model
-	 *            Spring model to populate the html page
-	 * @param principal
-	 *            the currently logged in user
-	 * @param mailFailure
-	 * 			  if sending a user activation e-mail passed or failed
-	 *
+	 * @param userId      The id for the user to show details for.
+	 * @param model       Spring model to populate the html page
+	 * @param principal   the currently logged in user
+	 * @param mailFailure if sending a user activation e-mail passed or failed
 	 * @return The name of the user/details page
 	 */
 
 	@RequestMapping(value = "/{userId}", method = RequestMethod.GET)
 	public String getUserSpecificPage(@PathVariable("userId") Long userId,
-									  @RequestParam(value = "mailFailure", required = false, defaultValue = "false") final Boolean mailFailure,
+			@RequestParam(value = "mailFailure", required = false, defaultValue = "false") final Boolean mailFailure,
 			final Model model, Principal principal) {
 		logger.debug("Getting project information for [User " + userId + "]");
 
@@ -125,7 +124,8 @@ public class UsersController {
 		Locale locale = LocaleContextHolder.getLocale();
 
 		// add the user's role to the model
-		String roleMessageName = "systemrole." + user.getSystemRole().getName();
+		String roleMessageName = "systemrole." + user.getSystemRole()
+				.getName();
 		String systemRole = messageSource.getMessage(roleMessageName, null, locale);
 		model.addAttribute("systemRole", systemRole);
 
@@ -148,10 +148,12 @@ public class UsersController {
 			Map<String, Object> map = new HashMap<>();
 			map.put("identifier", project.getId());
 			map.put("name", project.getName());
-			map.put("isManager", pujoin.getProjectRole().equals(ProjectRole.PROJECT_OWNER));
-			map.put("subscribed" , pujoin.isEmailSubscription());
+			map.put("isManager", pujoin.getProjectRole()
+					.equals(ProjectRole.PROJECT_OWNER));
+			map.put("subscribed", pujoin.isEmailSubscription());
 
-			String proleMessageName = "projectRole." + pujoin.getProjectRole().toString();
+			String proleMessageName = "projectRole." + pujoin.getProjectRole()
+					.toString();
 			map.put("role", messageSource.getMessage(proleMessageName, null, locale));
 			map.put("date", pujoin.getCreatedDate());
 			projects.add(map);
@@ -164,11 +166,8 @@ public class UsersController {
 	/**
 	 * Get the currently logged in user's page
 	 *
-	 * @param model
-	 *            The model to pass on
-	 * @param principal
-	 *            The currently logged in user
-	 *
+	 * @param model     The model to pass on
+	 * @param principal The currently logged in user
 	 * @return getUserSpecificPage for the currently logged in user
 	 */
 	@RequestMapping("/current")
@@ -260,6 +259,8 @@ public class UsersController {
 						.equals(user.getUsername())) {
 					HttpSession session = request.getSession();
 					session.setAttribute(UserSecurityInterceptor.CURRENT_USER_DETAILS, user);
+				} else {
+					extracted(user);
 				}
 
 			} catch (ConstraintViolationException | DataIntegrityViolationException | PasswordReusedException ex) {
@@ -277,14 +278,31 @@ public class UsersController {
 		return returnView;
 	}
 
+	private void extracted(User user) {
+		// invalidate user session
+		List<Object> sessionUsers = sessionRegistry.getAllPrincipals();
+		for (Object sessionUser : sessionUsers) {
+			if (sessionUser instanceof User) {
+				final User loggedInUser = (User) sessionUser;
+				if (user.getUsername()
+						.equals(loggedInUser.getUsername())) {
+					List<SessionInformation> sessionsInfo = sessionRegistry.getAllSessions(sessionUser, false);
+					if (null != sessionsInfo && sessionsInfo.size() > 0) {
+						for (SessionInformation sessionInformation : sessionsInfo) {
+							sessionInformation.expireNow();
+							sessionRegistry.removeSessionInformation(sessionInformation.getSessionId());
+						}
+					}
+				}
+			}
+		}
+	}
+
 	/**
 	 * Get the user edit page
 	 *
-	 * @param userId
-	 *            The ID of the user to get
-	 * @param model
-	 *            The model for the returned view
-	 *
+	 * @param userId The ID of the user to get
+	 * @param model  The model for the returned view
 	 * @return The user edit view
 	 */
 	@RequestMapping(value = "/{userId}/edit", method = RequestMethod.GET)
@@ -309,8 +327,8 @@ public class UsersController {
 
 		model.addAttribute("allowedRoles", roleNames);
 
-		String currentRoleName = messageSource.getMessage(ROLE_MESSAGE_PREFIX + user.getSystemRole().getName(), null,
-				locale);
+		String currentRoleName = messageSource.getMessage(ROLE_MESSAGE_PREFIX + user.getSystemRole()
+				.getName(), null, locale);
 
 		model.addAttribute("currentRole", currentRoleName);
 
@@ -323,6 +341,7 @@ public class UsersController {
 
 	/**
 	 * Get the user creation view
+	 *
 	 * @param model Model for the view
 	 * @return user creation view
 	 */
@@ -458,6 +477,7 @@ public class UsersController {
 
 	/**
 	 * Check that email not already taken
+	 *
 	 * @param email Email address to check existence of
 	 * @return true if email not taken
 	 */
@@ -475,11 +495,8 @@ public class UsersController {
 	/**
 	 * Handle exceptions for the create and update pages
 	 *
-	 * @param ex
-	 *            an exception to handle
-	 * @param locale
-	 *            The locale to work with
-	 *
+	 * @param ex     an exception to handle
+	 * @param locale The locale to work with
 	 * @return A Map<String,String> of errors to render
 	 */
 	private Map<String, String> handleCreateUpdateException(Exception ex, Locale locale) {
@@ -491,20 +508,21 @@ public class UsersController {
 
 			for (ConstraintViolation<?> violation : constraintViolations) {
 				logger.debug(violation.getMessage());
-				String errorKey = violation.getPropertyPath().toString();
+				String errorKey = violation.getPropertyPath()
+						.toString();
 				errors.put(errorKey, violation.getMessage());
 			}
 		} else if (ex instanceof DataIntegrityViolationException) {
 			DataIntegrityViolationException divx = (DataIntegrityViolationException) ex;
 			logger.debug(divx.getMessage());
-			if (divx.getMessage().contains(User.USER_EMAIL_CONSTRAINT_NAME)) {
+			if (divx.getMessage()
+					.contains(User.USER_EMAIL_CONSTRAINT_NAME)) {
 				errors.put("email", messageSource.getMessage("user.edit.emailConflict", null, locale));
 			}
 		} else if (ex instanceof EntityExistsException) {
 			EntityExistsException eex = (EntityExistsException) ex;
 			errors.put(eex.getFieldName(), eex.getMessage());
-		}
-		else if(ex instanceof PasswordReusedException){
+		} else if (ex instanceof PasswordReusedException) {
 			errors.put("password", messageSource.getMessage("user.edit.passwordReused", null, locale));
 		}
 
@@ -514,15 +532,13 @@ public class UsersController {
 	/**
 	 * Check if the logged in user is allowed to edit the given user.
 	 *
-	 * @param principalUser
-	 *            The currently logged in principal
-	 * @param user
-	 *            The user to edit
-	 *
+	 * @param principalUser The currently logged in principal
+	 * @param user          The user to edit
 	 * @return boolean if the principal can edit the user
 	 */
 	private boolean canEditUser(User principalUser, User user) {
-		boolean principalAdmin = principalUser.getAuthorities().contains(Role.ROLE_ADMIN);
+		boolean principalAdmin = principalUser.getAuthorities()
+				.contains(Role.ROLE_ADMIN);
 		boolean usersEqual = user.equals(principalUser);
 
 		return principalAdmin || usersEqual;
@@ -531,15 +547,14 @@ public class UsersController {
 	/**
 	 * Check if the logged in user is an Admin
 	 *
-	 * @param principal
-	 *            The logged in user to check
-	 *
+	 * @param principal The logged in user to check
 	 * @return if the user is an admin
 	 */
 	private boolean isAdmin(Principal principal) {
 		logger.trace("Checking if user is admin");
 		User readPrincipal = userService.getUserByUsername(principal.getName());
-		return readPrincipal.getAuthorities().contains(Role.ROLE_ADMIN);
+		return readPrincipal.getAuthorities()
+				.contains(Role.ROLE_ADMIN);
 	}
 
 	/**

@@ -12,6 +12,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.session.SessionRegistry;
+import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.web.firewall.DefaultHttpFirewall;
 import org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter;
 import org.springframework.web.filter.GenericFilterBean;
@@ -43,6 +45,11 @@ public class IridaWebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 		@Autowired
 		private LocaleResolver localeResolver;
+
+		@Bean
+		public SessionRegistry sessionRegistry() {
+			return new SessionRegistryImpl();
+		}
 
 		@Bean
 		public LoginSuccessHandler getLoginSuccessHandler() {
@@ -94,7 +101,10 @@ public class IridaWebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/password_reset/**").permitAll()
 				.antMatchers("/admin/**").hasRole("ADMIN")
 				.antMatchers("/**").fullyAuthenticated()
-			.and().addFilterAfter(getSessionModelFilter(), SecurityContextHolderAwareRequestFilter.class);
+			.and().addFilterAfter(getSessionModelFilter(), SecurityContextHolderAwareRequestFilter.class)
+					.sessionManagement().invalidSessionUrl("/login")
+					.maximumSessions(-1).maxSessionsPreventsLogin(false).sessionRegistry(sessionRegistry()).expiredUrl("/logout");
+
 			// @formatter:on
 		}
 
