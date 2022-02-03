@@ -32,14 +32,17 @@ public class ProjectShareSamplesIT extends AbstractIridaUIITChromeDriver {
 		assertTrue(shareSamplesPage.isPreviousButtonEnabled(),
 				"Since on the second step, the previous button should be enabled");
 		shareSamplesPage.gotToNextStep();
-		assertEquals(0, shareSamplesPage.getNumberOfSharedMetadataEntries(), "Should have no fields to share");
+		assertEquals(1, shareSamplesPage.getNumberOfSharedMetadataEntries(), "Should have one field to share");
+		assertTrue(shareSamplesPage.metadataFieldNewTagDisplayed("symptom"),
+				"Symptom is a new field and should display a new tag");
 		shareSamplesPage.submitShareRequest();
 		assertTrue(shareSamplesPage.isShareSingleSuccessDisplayed(), "Success message should be displayed");
 
 		// MOVING MULTIPLE SAMPLES
 
 		addMultipleSamples();
-		assertFalse(shareSamplesPage.isNextButtonEnabled(), "Share button should be disabled without a project selected");
+		assertFalse(shareSamplesPage.isNextButtonEnabled(),
+				"Share button should be disabled without a project selected");
 		shareSamplesPage.searchForProject("project2");
 		shareSamplesPage.gotToNextStep();
 		assertEquals(3, shareSamplesPage.getNumberOfSamplesDisplayed(), "Should display the 3 samples selected");
@@ -77,11 +80,6 @@ public class ProjectShareSamplesIT extends AbstractIridaUIITChromeDriver {
 		shareSamplesPage.submitShareRequest();
 		assertTrue(shareSamplesPage.isSuccessResultDisplayed(), "Success result should be displayed");
 		assertEquals(shareSamplesPage.getSuccessTitle(), "Successfully Shared Samples");
-	}
-
-	@Test
-	public void testShareSamplesWithMetadataRestrictions() {
-
 	}
 
 	private void addOneSample() {

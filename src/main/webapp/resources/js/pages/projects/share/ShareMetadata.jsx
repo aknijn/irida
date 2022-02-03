@@ -136,7 +136,9 @@ export function ShareMetadata() {
       width: 100,
       render(restriction, item) {
         if (targetExistingFields === undefined || item.target) return undefined;
-        return <Tag>{i18n("ShareMetadata.newField")}</Tag>;
+        return (
+          <Tag className="t-new-tag">{i18n("ShareMetadata.newField")}</Tag>
+        );
       },
     },
   ];

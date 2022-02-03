@@ -2,6 +2,7 @@ package ca.corefacility.bioinformatics.irida.ria.integration.pages.projects;
 
 import java.util.List;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -64,6 +65,9 @@ public class ShareSamplesPage {
 
 	@FindBy(className = "t-field-label")
 	private List<WebElement> metadataFieldLabels;
+
+	@FindBy(css = ".t-meta-table tbody tr")
+	private List<WebElement> metadataRows;
 
 	public static ShareSamplesPage initPage(WebDriver driver) {
 		return PageFactory.initElements(driver, ShareSamplesPage.class);
@@ -148,5 +152,18 @@ public class ShareSamplesPage {
 
 	public int getNumberOfSharedMetadataEntries() {
 		return metadataFieldLabels.size();
+	}
+
+	public boolean metadataFieldNewTagDisplayed(String field) {
+		WebElement metadataRow = metadataRows.stream()
+				.filter(row -> row.findElement(By.className("t-field-label"))
+						.getText()
+						.equals(field))
+				.findFirst()
+				.orElse(null);
+		if (metadataRow == null)
+			return false;
+		return metadataRow.findElements(By.className("t-new-tag"))
+				.size() > 0;
 	}
 }
