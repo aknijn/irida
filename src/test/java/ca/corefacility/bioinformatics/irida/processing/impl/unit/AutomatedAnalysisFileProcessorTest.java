@@ -44,6 +44,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
+/* ISS */
+import ca.corefacility.bioinformatics.irida.service.ProjectService;
+
 public class AutomatedAnalysisFileProcessorTest {
 	@Mock
 	private SequencingObjectRepository objectRepository;
@@ -64,6 +67,8 @@ public class AutomatedAnalysisFileProcessorTest {
 
 	@Mock
 	private MessageSource messageSource;
+	@Mock
+	private ProjectService projectService;
 
 	private AutomatedAnalysisFileProcessor processor;
 
@@ -77,7 +82,7 @@ public class AutomatedAnalysisFileProcessorTest {
 		MockitoAnnotations.openMocks(this);
 
 		processor = new AutomatedAnalysisFileProcessor(ssoRepository, psjRepository, submissionRepository,
-				templateRepository, pasRepository, workflowsService, objectRepository, messageSource);
+				templateRepository, pasRepository, workflowsService, objectRepository, messageSource, projectService);
 
 		//assembly
 		UUID assemblyID = UUID.randomUUID();

@@ -94,10 +94,10 @@ public class LineListControllerTest {
 
 		when(projectService.read(projectId)).thenReturn(project);
 		when(sampleService.getFilteredSamplesForProjects(eq(Arrays.asList(project)), eq(Collections.emptyList()),
-				eq(""), eq(""), eq(""), isNull(), isNull(), eq(0), any(Integer.class), any(Sort.class)))
+				eq(""), eq(""), eq(""), eq(""), eq(""), eq(""), isNull(), isNull(), eq(0), any(Integer.class), any(Sort.class)))
 						.thenReturn(pageOne);
 		when(sampleService.getFilteredSamplesForProjects(eq(Arrays.asList(project)), eq(Collections.emptyList()),
-				eq(""), eq(""), eq(""), isNull(), isNull(), eq(1), any(Integer.class), any(Sort.class)))
+				eq(""), eq(""), eq(""), eq(""), eq(""), eq(""), isNull(), isNull(), eq(1), any(Integer.class), any(Sort.class)))
 						.thenReturn(pageTwo);
 		when(sampleService.getMetadataForProjectSamples(eq(project), anyList())).thenReturn(metadata);
 		EntriesResponse response = lineListController.getProjectSamplesMetadataEntries(projectId, 0, 5000);

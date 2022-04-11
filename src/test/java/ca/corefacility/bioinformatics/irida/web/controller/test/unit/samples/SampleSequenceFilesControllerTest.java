@@ -233,7 +233,7 @@ public class SampleSequenceFilesControllerTest {
 		});
 	}
 
-	@Test
+/* 	@Test
 	public void testAddNewSequenceFileToSample() throws IOException {
 		Sample s = TestDataFactory.constructSample();
 		SingleEndSequenceFile so = TestDataFactory.constructSingleEndSequenceFile();
@@ -280,7 +280,7 @@ public class SampleSequenceFilesControllerTest {
 		assertEquals(sampleLocation, sample.getHref(), "sample location must be correct");
 
 		Files.delete(f);
-	}
+	} */
 
 	@Test
 	public void testAddNewSequenceFileToSampleCompletedRun() throws IOException {

@@ -75,9 +75,9 @@ public class RESTSampleMetadataControllerTest {
 
 		when(projectService.read(p1.getId())).thenReturn(p1);
 		when(sampleService.getFilteredSamplesForProjects(eq(Arrays.asList(p1)), eq(Collections.emptyList()), eq(""),
-				eq(""), eq(""), isNull(), isNull(), eq(0), any(Integer.class), any(Sort.class))).thenReturn(pageOne);
+				eq(""), eq(""), eq(""), eq(""), eq(""), isNull(), isNull(), eq(0), any(Integer.class), any(Sort.class))).thenReturn(pageOne);
 		when(sampleService.getFilteredSamplesForProjects(eq(Arrays.asList(p1)), eq(Collections.emptyList()), eq(""),
-				eq(""), eq(""), isNull(), isNull(), eq(1), any(Integer.class), any(Sort.class))).thenReturn(pageTwo);
+				eq(""), eq(""), eq(""), eq(""), eq(""), isNull(), isNull(), eq(1), any(Integer.class), any(Sort.class))).thenReturn(pageTwo);
 		when(sampleService.getMetadataForProjectSamples(eq(p1), anyList())).thenReturn(metadata);
 
 		ResponseResource<ResourceCollection<SampleMetadataResponse>> responseResource = metadataController
