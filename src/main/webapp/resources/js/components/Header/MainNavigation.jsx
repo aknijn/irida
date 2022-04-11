@@ -169,7 +169,7 @@ export function MainNavigation() {
               </Button>
               <Menu.Item key="projects">
                 <Dropdown overlay={ProjectsMenu}>
-                  <Button type="link">{i18n("nav.main.project")}</Button>
+                  <Button type="link">{i18n("nav.main.projects")}</Button>
                 </Dropdown>
               </Menu.Item>
               <Menu.Item key="analyses">
