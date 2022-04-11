@@ -138,9 +138,17 @@ public class UIMetadataFileImportService {
 								keep their formatting from their excel files.  E.g. 2.222222 with formatting
 								for 2 decimal places will be saved as 2.22.
 								 */
-							DataFormatter formatter = new DataFormatter();
-							String value = formatter.formatCellValue(cell);
-							rowMap.put(header, value);
+							if (header.equals("DataSintomi") || header.equals("DataUltimaVaccinazione")) {
+								cell.setCellType(Cell.CELL_TYPE_STRING);
+								long excelDateLong = Long.parseLong(cell.getStringCellValue());
+								LocalDate dateOfExcel = LocalDate.of(1900, 1, 1);
+								LocalDate javadate = dateOfExcel.plusDays(excelDateLong - 2);
+								rowMap.put(header, javadate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+							} else {
+								DataFormatter formatter = new DataFormatter();
+								String value = formatter.formatCellValue(cell);
+								rowMap.put(header, value);
+							}
 						} else {
 							cell.setCellType(CellType.STRING);
 							rowMap.put(header, cell.getStringCellValue());
