@@ -26,6 +26,11 @@ import ca.corefacility.bioinformatics.irida.service.sample.SampleService;
 
 import com.google.common.base.Strings;
 
+//ISS
+import java.text.ParseException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 /**
  * UI service to handle parsing metadata files so they can be saved to the session.
  */
@@ -139,7 +144,7 @@ public class UIMetadataFileImportService {
 								for 2 decimal places will be saved as 2.22.
 								 */
 							if (header.equals("DataSintomi") || header.equals("DataUltimaVaccinazione")) {
-								cell.setCellType(Cell.CELL_TYPE_STRING);
+								cell.setCellType(CellType.STRING);
 								long excelDateLong = Long.parseLong(cell.getStringCellValue());
 								LocalDate dateOfExcel = LocalDate.of(1900, 1, 1);
 								LocalDate javadate = dateOfExcel.plusDays(excelDateLong - 2);
