@@ -100,7 +100,7 @@ public class RESTSampleMetadataController {
 
 		//fetch MAX_PAGE_SIZE samples at a time for the project
 		Page<ProjectSampleJoin> page = sampleService.getFilteredSamplesForProjects(Arrays.asList(project),
-				Collections.emptyList(), "", "", "", null, null, 0, MAX_PAGE_SIZE, sort);
+				Collections.emptyList(), "", "", "", "", "", "", null, null, 0, MAX_PAGE_SIZE, sort);
 		while (!page.isEmpty()) {
 			List<Sample> samples = page.stream().map(ProjectSampleJoin::getObject).collect(Collectors.toList());
 			List<Long> sampleIds = samples.stream().map(Sample::getId).collect(Collectors.toList());
@@ -118,7 +118,7 @@ public class RESTSampleMetadataController {
 			}
 
 			// Get the next page
-			page = sampleService.getFilteredSamplesForProjects(Arrays.asList(project), Collections.emptyList(), "", "",
+			page = sampleService.getFilteredSamplesForProjects(Arrays.asList(project), Collections.emptyList(), "", "", "", "", "",
 					"", null, null, page.getNumber() + 1, MAX_PAGE_SIZE, sort);
 		}
 
