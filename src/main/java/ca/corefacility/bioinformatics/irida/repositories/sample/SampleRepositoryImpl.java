@@ -57,7 +57,7 @@ public class SampleRepositoryImpl implements SampleRepositoryCustom {
 		Query query = entityManager.createQuery("SELECT mec.value FROM metadata_entry as mec " + 
 			"INNER JOIN metadata_entry as mes on mec.sample_id = mes.sample_id " +
 			"WHERE mec.field_id = 7 AND mes.field_id = 8 AND mes.value IN (?) " +
-			"ORDER BY ABS(length(mec.value) - length(replace(mec.value, '_', ''))-1.4) LIMIT 1");
+			"ORDER BY ABS(length(mec.value) - length(replace(mec.value, '_', ''))-1.4)");
 		query.setParameter(1, sampleCodes);
 		String result = (String) query.getSingleResult();
 		return result;
