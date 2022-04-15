@@ -41,7 +41,7 @@ public class SampleRepositoryImpl implements SampleRepositoryCustom {
 	 */
  	public List<Long> getSampleIdsByCodeInProject(Project project, List<String> sampleCodes) {
 		//query to read samples for a project
-		Query query = entityManager.createQuery("SELECT s.id FROM sample s INNER JOIN project_sample p ON p.sample_id=s.id INNER JOIN metadata_entry AS me ON s.id=me.sample_id " +
+		Query query = entityManager.createNativeQuery("SELECT s.id FROM sample s INNER JOIN project_sample p ON p.sample_id=s.id INNER JOIN metadata_entry AS me ON s.id=me.sample_id " +
 			"WHERE p.project_id=? AND me.field_id=8 AND me.value IN (?)");
 		query.setParameter(1, project.getId());
 		query.setParameter(2, sampleCodes);
@@ -54,7 +54,7 @@ public class SampleRepositoryImpl implements SampleRepositoryCustom {
 	 * {@inheritDoc}
 	 */
  	public String getClusterIdByCodes(Project project, List<String> sampleCodes) {
-		Query query = entityManager.createQuery("SELECT mec.value FROM metadata_entry as mec " + 
+		Query query = entityManager.createNativeQuery("SELECT mec.value FROM metadata_entry as mec " + 
 			"INNER JOIN metadata_entry as mes on mec.sample_id = mes.sample_id " +
 			"WHERE mec.field_id = 7 AND mes.field_id = 8 AND mes.value IN (?) " +
 			"ORDER BY ABS(length(mec.value) - length(replace(mec.value, '_', ''))-1.4)");
@@ -64,7 +64,7 @@ public class SampleRepositoryImpl implements SampleRepositoryCustom {
 	}
 
  	public Long getMasterProjectIdByCode(String sampleCode) {
-		Query query = entityManager.createQuery("SELECT s.organism FROM sample AS s " +
+		Query query = entityManager.createNativeQuery("SELECT s.organism FROM sample AS s " +
 			"INNER JOIN metadata_entry AS mes ON s.id = mes.sample_id " +
 			"WHERE mes.field_id = 8 AND mes.value = ?");
 		query.setParameter(1, sampleCode);
@@ -89,7 +89,7 @@ public class SampleRepositoryImpl implements SampleRepositoryCustom {
 	}
 
  	public String getNextClusterId(Project project) {
-		Query query = entityManager.createQuery("SELECT MAX(CAST(SUBSTRING(mec.value,9) AS int))+1 FROM metadata_entry AS mec WHERE mec.field_id = 7");
+		Query query = entityManager.createNativeQuery("SELECT MAX(CAST(SUBSTRING(mec.value,9) AS int))+1 FROM metadata_entry AS mec WHERE mec.field_id = 7");
 		String result = (String) query.getSingleResult();
 		return "Cluster_" + result;
 	}
@@ -99,7 +99,7 @@ public class SampleRepositoryImpl implements SampleRepositoryCustom {
 
 		//query to read samples for a project
 		if (isAlert) {
-			query = entityManager.createQuery("select DISTINCT u.email FROM project_sample ps INNER JOIN project_user pu ON pu.project_id=ps.project_id " +
+			query = entityManager.createNativeQuery("select DISTINCT u.email FROM project_sample ps INNER JOIN project_user pu ON pu.project_id=ps.project_id " +
 				"INNER JOIN user u ON u.id=pu.user_id INNER JOIN metadata_entry AS mes ON ps.sample_id=mes.sample_id " +
 				"WHERE mes.field_id = 8 AND mes.value IN (?)");
 		} else {
@@ -117,19 +117,19 @@ public class SampleRepositoryImpl implements SampleRepositoryCustom {
 		Query query;
 
 		if (clusterId.contains("_ext")) {
-			query = entityManager.createQuery("select s.id, s.createdDate, s.modifiedDate, s.description, s.sampleName, s.collectedBy, s.geographicLocationName, s.isolate, s.isolationSource, s.latitude, s.longitude, s.organism, s.strain, s.collectionDate, s.arrivalDate, null as remote_status " +
+			query = entityManager.createNativeQuery("select s.id, s.createdDate, s.modifiedDate, s.description, s.sampleName, s.collectedBy, s.geographicLocationName, s.isolate, s.isolationSource, s.latitude, s.longitude, s.organism, s.strain, s.collectionDate, s.arrivalDate, null as remote_status " +
 				"FROM sample AS s " +
 				"INNER JOIN metadata_entry AS mec ON mec.sample_id = s.id " +
 				"WHERE mec.value = ? AND mec.field_id = 7");
 			query.setParameter(1, clusterId.substring(0, clusterId.length() - 4));
 		} else if (clusterId.contains("Cluster_")) {
-			query = entityManager.createQuery("select s.id, s.createdDate, s.modifiedDate, s.description, s.sampleName, s.collectedBy, s.geographicLocationName, s.isolate, s.isolationSource, s.latitude, s.longitude, s.organism, s.strain, s.collectionDate, s.arrivalDate, null as remote_status " +
+			query = entityManager.createNativeQuery("select s.id, s.createdDate, s.modifiedDate, s.description, s.sampleName, s.collectedBy, s.geographicLocationName, s.isolate, s.isolationSource, s.latitude, s.longitude, s.organism, s.strain, s.collectionDate, s.arrivalDate, null as remote_status " +
 				"FROM sample AS s " +
 				"INNER JOIN metadata_entry AS mec ON mec.sample_id = s.id " +
 				"WHERE mec.value = ? AND mec.field_id = 7");
 			query.setParameter(1, clusterId);
 		} else {
-			query = entityManager.createQuery("select s.id, s.createdDate, s.modifiedDate, s.description, s.sampleName, s.collectedBy, s.geographicLocationName, s.isolate, s.isolationSource, s.latitude, s.longitude, s.organism, s.strain, s.collectionDate, s.arrivalDate, null as remote_status " +
+			query = entityManager.createNativeQuery("select s.id, s.createdDate, s.modifiedDate, s.description, s.sampleName, s.collectedBy, s.geographicLocationName, s.isolate, s.isolationSource, s.latitude, s.longitude, s.organism, s.strain, s.collectionDate, s.arrivalDate, null as remote_status " +
 				"FROM sample AS s " +
 				"INNER JOIN metadata_entry AS mes ON mes.sample_id = s.id " +
 				"WHERE mes.value = ? AND mes.field_id = 8");
