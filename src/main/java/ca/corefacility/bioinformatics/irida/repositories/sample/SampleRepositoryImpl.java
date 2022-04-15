@@ -90,7 +90,7 @@ public class SampleRepositoryImpl implements SampleRepositoryCustom {
 
  	public String getNextClusterId(Project project) {
 		Query query = entityManager.createNativeQuery("SELECT MAX(CAST(SUBSTRING(mec.value,9) AS int))+1 FROM metadata_entry AS mec WHERE mec.field_id = 7");
-		String result = (String) query.getSingleResult();
+		String result = query.getSingleResult().toString();
 		return "Cluster_" + result;
 	}
 
