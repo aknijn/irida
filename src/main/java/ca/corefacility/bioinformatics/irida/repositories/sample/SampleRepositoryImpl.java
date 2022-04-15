@@ -107,7 +107,7 @@ public class SampleRepositoryImpl implements SampleRepositoryCustom {
 				"INNER JOIN user u ON u.id=pu.user_id INNER JOIN metadata_entry AS mes ON ps.sample_id=mes.sample_id " +
 				"WHERE mes.field_id = 8 AND mes.value IN (?) AND u.system_role <>'ROLE_MANAGER'");
 		}
-		query.setParameter(1, sampleCodes);
+		query.setParameter(1, String.join(",", sampleCodes));
 
 		List<String> results = query.getResultList();
 		return results;		
