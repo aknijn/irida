@@ -53,7 +53,7 @@ public class SampleRepositoryImpl implements SampleRepositoryCustom {
 	/**ISS
 	 * {@inheritDoc}
 	 */
- 	public String getClusterIdByCodes(List<String> sampleCodes) {
+ 	public String getClusterIdByCodes(Project project, List<String> sampleCodes) {
 		Query query = entityManager.createNativeQuery("SELECT mec.value FROM metadata_entry as mec " + 
 			"INNER JOIN metadata_entry as mes on mec.sample_id = mes.sample_id " +
 			"WHERE mec.field_id = 7 AND mes.field_id = 8 AND mes.value IN (?) " +
@@ -84,7 +84,7 @@ public class SampleRepositoryImpl implements SampleRepositoryCustom {
 			"INNER JOIN metadata_entry as mes on mec.sample_id = mes.sample_id " +
 			"SET mec.value = ? WHERE mec.field_id = 7 AND mes.field_id = 8 AND mes.value IN (?)");
 		query.setParameter(1, clusterId);
-		query.setParameter(2, sampleCodes);
+		query.setParameter(2, String.join(",", sampleCodes));
 		query.executeUpdate();
 	}
 

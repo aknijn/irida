@@ -370,7 +370,7 @@ public class PHANTASTICSampleUpdater implements AnalysisSampleUpdater {
 			} else {
 				//sample is extended of an existing cluster (or extended of extended => no cluster)
 				logger.debug("getClusterIdByCodes");
-				String clusterId = sampleService.getClusterIdByCodes(clusterExtendedNodes);
+				String clusterId = sampleService.getClusterIdByCodes(masterProject, clusterExtendedNodes);
 				logger.debug("sample is extended of an existing cluster: " + clusterId);
 				if (clusterId.contains("_ext")) { clusterId = "-_ext"; } else { clusterId = clusterId + "_ext"; }
 				clusters.add(clusterId);
@@ -384,7 +384,7 @@ public class PHANTASTICSampleUpdater implements AnalysisSampleUpdater {
 			}
 		} else {
 			logger.debug("getClusterIdByCodes");
-			String clusterId = sampleService.getClusterIdByCodes(clusterNodes);
+			String clusterId = sampleService.getClusterIdByCodes(masterProject, clusterNodes);
 			logger.debug("clusterId: " + clusterId);
 			if (clusterId.equals("-")) {
 				//new cluster
