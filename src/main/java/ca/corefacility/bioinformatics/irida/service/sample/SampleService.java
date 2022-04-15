@@ -122,7 +122,7 @@ public interface SampleService extends CRUDService<Long, Sample> {
 
 	//ISS---
 	public List<Long> getSampleIdsByCodeInProject(Project project, List<String> sampleCodes);
-	public String getClusterIdByCodes(Project project, List<String> sampleCodes);
+	public String getClusterIdByCodes(List<String> sampleCodes);
 	public Long getMasterProjectIdByCode(String sampleCode);
 	public void setClusterIdByCode(Project project, List<String> sampleCodes, String clusterId);
 	public String getNextClusterId(Project project);
