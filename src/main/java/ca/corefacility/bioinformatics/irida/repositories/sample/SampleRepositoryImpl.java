@@ -13,6 +13,7 @@ import ca.corefacility.bioinformatics.irida.model.sample.Sample;
 //ISS
 import ca.corefacility.bioinformatics.irida.model.project.Project;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Implementation of custom repository methods for {@link Sample}s
