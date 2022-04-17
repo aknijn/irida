@@ -45,7 +45,7 @@ public class SampleRepositoryImpl implements SampleRepositoryCustom {
 		Query query = entityManager.createNativeQuery("SELECT s.id FROM sample s INNER JOIN project_sample p ON p.sample_id=s.id INNER JOIN metadata_entry AS me ON s.id=me.sample_id " +
 			"WHERE p.project_id=? AND me.field_id=8 AND me.value IN (?)");
 		query.setParameter(1, project.getId());
-		query.setParameter(2, sampleCodes);
+		query.setParameter(2, sampleCodes.stream().collect(Collectors.joining("','", "'", "'")));
 
 		List<Long> results = query.getResultList();
 		return results;
@@ -85,7 +85,7 @@ public class SampleRepositoryImpl implements SampleRepositoryCustom {
 			"INNER JOIN metadata_entry as mes on mec.sample_id = mes.sample_id " +
 			"SET mec.value = ? WHERE mec.field_id = 7 AND mes.field_id = 8 AND mes.value IN (?)");
 		query.setParameter(1, clusterId);
-		query.setParameter(2, String.join(",", sampleCodes));
+		query.setParameter(2, sampleCodes.stream().collect(Collectors.joining("','", "'", "'")));
 		query.executeUpdate();
 	}
 
@@ -108,7 +108,7 @@ public class SampleRepositoryImpl implements SampleRepositoryCustom {
 				"INNER JOIN user u ON u.id=pu.user_id INNER JOIN metadata_entry AS mes ON ps.sample_id=mes.sample_id " +
 				"WHERE mes.field_id = 8 AND mes.value IN (?) AND u.system_role <>'ROLE_MANAGER'");
 		}
-		query.setParameter(1, String.join(",", sampleCodes));
+		query.setParameter(1, sampleCodes.stream().collect(Collectors.joining("','", "'", "'")));
 
 		List<String> results = query.getResultList();
 		return results;		
