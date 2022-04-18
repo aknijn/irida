@@ -14,11 +14,14 @@ import ca.corefacility.bioinformatics.irida.model.sample.Sample;
 import ca.corefacility.bioinformatics.irida.model.project.Project;
 import java.util.List;
 import java.util.stream.Collectors;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Implementation of custom repository methods for {@link Sample}s
  */
 public class SampleRepositoryImpl implements SampleRepositoryCustom {
+    private static final Logger logger = LoggerFactory.getLogger(SampleRepositoryImpl.class);
 	private final EntityManager entityManager;
 
 	@Autowired
@@ -60,6 +63,7 @@ public class SampleRepositoryImpl implements SampleRepositoryCustom {
 			"WHERE mec.field_id = 7 AND mes.field_id = 8 AND mes.value IN (?) " +
 			"ORDER BY ABS(length(mec.value) - length(replace(mec.value, '_', ''))-1.4)");
 		query.setParameter(1, sampleCodes.stream().collect(Collectors.joining("','", "'", "'")));
+		logger.debug("query: " + SQLExtractor.from(query));
 		String result = (String) query.getSingleResult();
 		return result;
 	}
