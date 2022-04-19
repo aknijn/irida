@@ -361,7 +361,7 @@ public class EmailControllerImpl implements EmailController {
 					} else { 
 						header = sampleSpeciesShort + ": Vicino ad un cluster";
 						ctx.setVariable("header", header);
-						ctx.setVariable("clusters", "Il campione " + sampleCode + " dista " + neighbours[6].trim() + " o meno alleli dal cluster " + clusterId + ".");
+						ctx.setVariable("clusters", "Il campione " + sampleCode + " dista " + neighbours[6].trim() + " o meno alleli dal cluster " + clusterId.substring(0, clusterId.length() - 4) + ".");
 						ctx.setVariable("disclaimer","");
 					}
 				} else { 
