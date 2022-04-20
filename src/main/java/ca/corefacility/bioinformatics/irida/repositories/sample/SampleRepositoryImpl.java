@@ -14,8 +14,8 @@ import ca.corefacility.bioinformatics.irida.model.sample.Sample;
 import ca.corefacility.bioinformatics.irida.model.project.Project;
 import java.util.List;
 import java.util.stream.Collectors;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+/* import org.slf4j.Logger;
+import org.slf4j.LoggerFactory; */
 
 /**
  * Implementation of custom repository methods for {@link Sample}s
@@ -61,12 +61,12 @@ public class SampleRepositoryImpl implements SampleRepositoryCustom {
 			"WHERE mec.field_id = 7 AND mes.field_id = 8 AND mes.value IN (" + sampleCodes.stream().collect(Collectors.joining("','", "'", "'")) + ") " +
 			"ORDER BY ABS(length(mec.value) - length(replace(mec.value, '_', ''))-1.4) LIMIT 1";
 		Query query = entityManager.createNativeQuery(strSQL);
-/**		Query query = entityManager.createNativeQuery("SELECT mec.value FROM metadata_entry as mec " + 
+/*		Query query = entityManager.createNativeQuery("SELECT mec.value FROM metadata_entry as mec " + 
 			"INNER JOIN metadata_entry as mes on mec.sample_id = mes.sample_id " +
 			"WHERE mec.field_id = 7 AND mes.field_id = 8 AND mes.value IN (?) " +
 			"ORDER BY ABS(length(mec.value) - length(replace(mec.value, '_', ''))-1.4)");
-		query.setParameter(1, sampleCodes.stream().collect(Collectors.joining("','", "'", "'"))); **/
-		logger.debug("query: " + strSQL);
+		query.setParameter(1, sampleCodes.stream().collect(Collectors.joining("','", "'", "'")));
+		logger.debug("query: " + strSQL); */
 		String result = (String) query.getSingleResult();
 		return result;
 	}
