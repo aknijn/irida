@@ -21,7 +21,7 @@ import org.slf4j.LoggerFactory; */
  * Implementation of custom repository methods for {@link Sample}s
  */
 public class SampleRepositoryImpl implements SampleRepositoryCustom {
-    private static final Logger logger = LoggerFactory.getLogger(SampleRepositoryImpl.class);
+    //private static final Logger logger = LoggerFactory.getLogger(SampleRepositoryImpl.class);
 	private final EntityManager entityManager;
 
 	@Autowired
