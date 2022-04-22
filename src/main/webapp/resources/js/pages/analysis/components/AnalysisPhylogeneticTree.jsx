@@ -34,6 +34,7 @@ const ButtonGroupWrapper = styled.div`
 
 export default function Tree() {
   const [newickString, setNewickString] = useState(null);
+  const [branchString, setBranchString] = useState(null);
   const [serverMsg, setServerMsg] = useState(null);
   const [currTreeShape, setCurrTreeShape] = useState("rectangular");
   const { analysisIdentifier } = useContext(AnalysisContext);
@@ -48,6 +49,13 @@ export default function Tree() {
         setNewickString(data.newick);
       }
 
+      if (data.branch === null) {
+        //Empty tree
+        setBranchString("");
+      } else {
+        setBranchString(data.branch);
+      }
+
       if (data.message !== null) {
         setServerMsg(data.message);
       }
@@ -58,6 +66,7 @@ export default function Tree() {
     return (
       <PhylocanvasComponent
         data={newickString}
+		branch={branchString}
         treeType={currTreeShape}
         style={{ height: "100%" }}
       />

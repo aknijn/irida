@@ -963,6 +963,7 @@ public class AnalysisAjaxController {
 		//loop through the files looking for with a newick file.  Get the first one
 		Optional<AnalysisOutputFile> treeOptional = getTreeFileForSubmission(submission);
 		String tree = null;
+		String branch = null;
 		String message = null;
 
 		if (!treeOptional.isPresent()) {
@@ -977,7 +978,7 @@ public class AnalysisAjaxController {
 
 				if (lines.size() > 0) {
 					tree = lines.get(0);
-
+					branch = submission.getInputParameters().get("phantt-ec_sample_code");
 					if (lines.size() > 1) {
 						logger.warn("Multiple lines in tree file, will only display first tree. For analysis: "
 								+ submission);
@@ -996,7 +997,7 @@ public class AnalysisAjaxController {
 				logger.debug("File was not found: " + e.toString());
 			}
 		}
-		return new AnalysisTreeResponse(tree, message);
+		return new AnalysisTreeResponse(tree, branch, message);
 	}
 
 	/**

@@ -46,6 +46,7 @@
           phylo.setTreeType(scope.shape);
           phylo.contextMenu = false;
           phylo.load(attrs.newick);
+          phylo.draw();
         },
         controller: [
           "$scope",

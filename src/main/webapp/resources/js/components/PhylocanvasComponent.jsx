@@ -7,7 +7,7 @@ import React, { useEffect, useState } from "react";
 import PhyloCanvas, { treeTypes } from "phylocanvas";
 import _keys from "lodash/keys";
 
-export function PhylocanvasComponent({ data, className, style, treeType }) {
+export function PhylocanvasComponent({ data, branch, className, style, treeType }) {
   const [currentTree, setCurrentTree] = useState(null);
 
   /* Creates the (phylocanvas div, loads the tree data, and sets the tree type)
@@ -22,6 +22,7 @@ export function PhylocanvasComponent({ data, className, style, treeType }) {
         : PhyloCanvas.createTree("phyloCanvasDiv");
     tree.load(data);
     tree.setTreeType(treeType);
+	tree.leaves[branch].highlighted = true;
     setCurrentTree(tree);
   }, [treeType]);
 
@@ -30,6 +31,7 @@ export function PhylocanvasComponent({ data, className, style, treeType }) {
 }
 
 PhylocanvasComponent.propTypes = {
+  branch: PropTypes.string,
   className: PropTypes.string,
   data: PropTypes.string,
   style: PropTypes.object,

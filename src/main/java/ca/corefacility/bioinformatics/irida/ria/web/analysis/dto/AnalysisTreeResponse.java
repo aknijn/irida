@@ -8,14 +8,17 @@ package ca.corefacility.bioinformatics.irida.ria.web.analysis.dto;
 public class AnalysisTreeResponse {
 	//Tree
 	private String newick;
+	//Branch
+	private String branch;
 	//Server message
 	private String message;
 
 	public AnalysisTreeResponse() {
 	}
 
-	public AnalysisTreeResponse(String newick, String message) {
+	public AnalysisTreeResponse(String newick, String branch, String message) {
 		this.newick=newick;
+		this.branch=branch;
 		this.message=message;
 	}
 
@@ -25,6 +28,14 @@ public class AnalysisTreeResponse {
 
 	public void setNewick(String newick) {
 		this.newick = newick;
+	}
+
+	public String getBranch() {
+		return branch;
+	}
+
+	public void setBranch(String branch) {
+		this.branch = branch;
 	}
 
 	public String getMessage() {
