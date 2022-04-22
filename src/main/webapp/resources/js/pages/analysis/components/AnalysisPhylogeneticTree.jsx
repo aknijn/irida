@@ -51,7 +51,7 @@ export default function Tree() {
 
       if (data.branch === null) {
         //Empty tree
-        setBranchString("");
+        setBranchString("V_911");
       } else {
         setBranchString(data.branch);
       }

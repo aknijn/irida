@@ -979,14 +979,12 @@ public class AnalysisAjaxController {
 				if (lines.size() > 0) {
 					tree = lines.get(0);
 					branch = submission.getInputParameters().get("phantt-ec_sample_code");
-					logger.debug("phantt-ec_sample_code: " + branch);
 					if (lines.size() > 1) {
 						logger.warn("Multiple lines in tree file, will only display first tree. For analysis: "
 								+ submission);
 						message = messageSource.getMessage("AnalysisPhylogeneticTree.multipleTrees", new Object[] {},
 								locale);
 					}
-
 					if (EMPTY_TREE.equals(tree)) {
 						logger.debug("Empty tree found, will hide tree preview. For analysis: " + submission);
 						tree = null;
@@ -998,6 +996,7 @@ public class AnalysisAjaxController {
 				logger.debug("File was not found: " + e.toString());
 			}
 		}
+		logger.debug("Tree branch: " + branch);
 		return new AnalysisTreeResponse(tree, branch, message);
 	}
 
