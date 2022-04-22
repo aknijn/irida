@@ -23,7 +23,6 @@ export function PhylocanvasComponent({ data, branch, className, style, treeType 
     tree.load(data);
     tree.setTreeType(treeType);
 	tree.leaves[0].highlighted = true;
-	tree.branches[branch].selected = true;
     setCurrentTree(tree);
   }, [treeType]);
 
