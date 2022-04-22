@@ -996,7 +996,6 @@ public class AnalysisAjaxController {
 				logger.debug("File was not found: " + e.toString());
 			}
 		}
-		logger.debug("Tree branch: " + branch);
 		return new AnalysisTreeResponse(tree, branch, message);
 	}
 

@@ -34,7 +34,7 @@ const ButtonGroupWrapper = styled.div`
 
 export default function Tree() {
   const [newickString, setNewickString] = useState(null);
-  const [branchString, setBranchString] = useState(null);
+  const [branchString, setBranchString] = useState("V_911");
   const [serverMsg, setServerMsg] = useState(null);
   const [currTreeShape, setCurrTreeShape] = useState("rectangular");
   const { analysisIdentifier } = useContext(AnalysisContext);
@@ -50,8 +50,7 @@ export default function Tree() {
       }
 
       if (data.branch === null) {
-        //Empty tree
-        setBranchString("V_911");
+        setBranchString("");
       } else {
         setBranchString(data.branch);
       }
