@@ -36,9 +36,6 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import io.swagger.v3.oas.annotations.media.Schema;
 
-// ISS
-import com.fasterxml.jackson.annotation.JsonInclude;
-
 /**
  * A biological sample. Each sample may correspond to many files.
  * A {@link Sample} comprises of many attributes. The attributes assigned to a
@@ -112,7 +109,6 @@ public class Sample extends IridaRepresentationModel
 	 * Date of sampling
 	 */
 	@Temporal(TemporalType.DATE)
-	@JsonInclude(value= JsonInclude.Include.NON_EMPTY)
 	@JsonSerialize(using = DateJson.DateSerializer.class)
 	@JsonDeserialize(using = DateJson.DateDeserializer.class)
 	@NotNull(message = "{sample.collection.date.notnull}", groups = NCBISubmission.class)

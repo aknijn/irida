@@ -239,7 +239,7 @@ public class SamplesController extends BaseController {
 
 		// Special case because it is a date field.
 		updatedValues.put(ARRIVAL_DATE, arrivalDate);
-		if (arrivalDate != null) {
+		if (arrivalDate != null && arrivalDate != "") {
 			model.addAttribute(ARRIVAL_DATE, arrivalDate);
 		}
 
