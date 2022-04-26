@@ -37,7 +37,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 // ISS
-import com.fasterxml.jackson.databind.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 /**
  * A biological sample. Each sample may correspond to many files.
