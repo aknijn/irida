@@ -109,7 +109,7 @@ public class SampleRepositoryImpl implements SampleRepositoryCustom {
 				"INNER JOIN user u ON u.id=pu.user_id INNER JOIN metadata_entry AS mes ON ps.sample_id=mes.sample_id " +
 				"WHERE mes.field_id = 8 AND mes.value IN (" + sampleCodes.stream().collect(Collectors.joining("','", "'", "'")) + ")");
 		} else {
-			query = entityManager.createQuery("select DISTINCT u.email FROM project_sample ps INNER JOIN project_user pu ON pu.project_id=ps.project_id " +
+			query = entityManager.createNativeQuery("select DISTINCT u.email FROM project_sample ps INNER JOIN project_user pu ON pu.project_id=ps.project_id " +
 				"INNER JOIN user u ON u.id=pu.user_id INNER JOIN metadata_entry AS mes ON ps.sample_id=mes.sample_id " +
 				"WHERE mes.field_id = 8 AND mes.value IN (" + sampleCodes.stream().collect(Collectors.joining("','", "'", "'")) + ") AND u.system_role <>'ROLE_MANAGER'");
 		}
