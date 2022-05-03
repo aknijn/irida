@@ -31,6 +31,10 @@ import ca.corefacility.bioinformatics.irida.service.sample.SampleService;
 import com.google.common.collect.ImmutableList;
 import com.google.common.io.Files;
 
+//ISS
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 /**
  * UI service to handle importing metadata files, so they can be saved to the session.
  */
@@ -231,6 +235,7 @@ public class UIMetadataImportService {
 
 					// Save metadata back to the sample
 					// sampleService.mergeSampleMetadata(sample, metadataEntrySet);
+					// ISS
 					sampleService.update(sample);
 					row.setSaved(true);
 				} catch (Exception e) {
