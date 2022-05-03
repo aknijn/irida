@@ -189,7 +189,7 @@ public class UIMetadataImportService {
 							.entrySet()) {
 						// Make sure we are not saving non-metadata items.
 						if (!DEFAULT_HEADERS.contains(entry.getKey()) && !sampleNameColumn.contains(entry.getKey())) {
-							MetadataTemplateField key = metadataTemplateService.readMetadataFieldByLabel(
+/* 							MetadataTemplateField key = metadataTemplateService.readMetadataFieldByLabel(
 									entry.getKey());
 
 							if (key == null) {
@@ -197,12 +197,41 @@ public class UIMetadataImportService {
 										new MetadataTemplateField(entry.getKey(), "text"));
 							}
 
-							metadataEntrySet.add(new MetadataEntry(entry.getValue(), "text", key));
+							metadataEntrySet.add(new MetadataEntry(entry.getValue(), "text", key)); */
+							// ISS if the key is found, replace the entry
+							switch (entry.getKey()) {
+								case "CodiceInterno":  sample.setStrain(entry.getValue());
+										break;
+								case "Provincia":  sample.setGeographicLocationName2(entry.getValue());
+										break;
+								case "Comune":  sample.setGeographicLocationName3(entry.getValue());
+										break;
+								case "Ospedale":  sample.setCollectedBy(entry.getValue());
+										break;
+								case "DataSintomi":  LocalDate javaDate = LocalDate.parse(entry.getValue(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+										sample.setCollectionDate(java.sql.Date.valueOf(javaDate));
+										break;
+								case "DataArrivo":  LocalDate java3Date = LocalDate.parse(entry.getValue(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+										sample.setArrivalDate(java.sql.Date.valueOf(java3Date));
+										break;
+								case "OrigineIsolato":  sample.setIsolationSource(entry.getValue());
+										break;
+								case "CondizioneClinica":  sample.setIsolate(entry.getValue());
+										break;
+								case "FasciaEta":  sample.setPatientAge(entry.getValue());
+										break;
+								case "NumeroVaccinazione":  sample.setPatientVaccinationNumber(entry.getValue());
+										break;
+								case "DataUltimaVaccinazione":  LocalDate java2Date = LocalDate.parse(entry.getValue(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+										sample.setPatientVaccinationDate(java.sql.Date.valueOf(java2Date));
+										break;
+							}
 						}
 					}
 
 					// Save metadata back to the sample
-					sampleService.mergeSampleMetadata(sample, metadataEntrySet);
+					// sampleService.mergeSampleMetadata(sample, metadataEntrySet);
+					sampleService.update(sample);
 					row.setSaved(true);
 				} catch (Exception e) {
 					SampleMetadataStorageRow row = stored.getRow(sampleName, sampleNameColumn);

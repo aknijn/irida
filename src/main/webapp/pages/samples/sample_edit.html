@@ -86,7 +86,6 @@
                                  th:class="${#maps.containsKey(errors, 'isolationSource')} ? has-error">
                                 <label for="isolationSource" th:text="#{samples.isolation-source.title}">Source</label>
                                 <select class="form-control input-full" id="isolationSource" name="isolationSource"
-															 
                                        th:value="${isolationSource} != null ? ${isolationSource} : ${sample.getIsolationSource()}" />
                                     <option value="unknown" th:selected="${sample.getIsolationSource()=='unknown'}"></option>
                                     <option value="Feci" th:selected="${sample.getIsolationSource()=='Feci'}" th:if="${sample.getOrganism()=='Shiga toxin-producing Escherichia coli'}">Feci</option>
