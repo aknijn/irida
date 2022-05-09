@@ -21,14 +21,16 @@ $("#edit-form").submit(function () {
   }
 
   var isolated = '000000';
-  for (var option of $("#isolateCombo").options)
-  {
-    if (option.selected) {
-      isolated |= option.value;
-    }
-  }
-  isolated = '000000' + isolated;
-  $("#isolate").val(isolated.slice(-6));
+//  for (var option of $("#isolateCombo").options)
+//  {
+//    if (option.selected) {
+//      isolated |= option.value;
+//    }
+//  }
+//  isolated = '000000' + isolated;
+//  $("#isolate").val(isolated.slice(-6));
+  $("#isolate").val("001110");
+
 });
 
 /**
