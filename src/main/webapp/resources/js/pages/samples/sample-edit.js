@@ -21,13 +21,14 @@ $("#edit-form").submit(function () {
   }
 
   var isolated = '000000';
-  for (var option of $("#isolateCombo").options)
+  document.querySelectorAll("#isolateCombo :checked");
+  var selected = [...checked].map(option => option.value);
+  for (var selection of selected)
   {
-      if (option.selected) {
-          isolated |= option.value;
-      }
+    isolated |= selection;
   }
   isolated = '000000' + isolated;
+  alert(isolated);
   $("#isolate").val(isolated);
 });
 
