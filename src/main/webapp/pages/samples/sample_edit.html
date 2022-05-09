@@ -154,7 +154,21 @@
                                 <span id="isolate-error" th:if="${#maps.containsKey(errors, 'isolate')}"
                                       class="help-block" th:text="${errors.isolate}"></span>
                             </div>
-                            <div class="form-group"
+                            <div class="form-group" th:class="${#maps.containsKey(errors, 'isolate')} ? has-error" th:unless="${sample.getOrganism()=='Shiga toxin-producing Escherichia coli'}">
+                                <label for="isolateCombo" th:text="#{samples.details.isolate}">Isolate</label>
+                                <select class="form-control input-full" id="isolateCombo" name="isolateCombo" th:value="${isolate} != null ? ${isolate} : ${sample.getIsolate()}" multiple />
+                                    <option value="100000" th:selected="${#strings.substring(sample.getIsolate(),0,1)=='1'}">P1</option>
+                                    <option value="010000" th:selected="${#strings.substring(sample.getIsolate(),1,2)=='1'}">P2</option>
+                                    <option value="001000" th:selected="${#strings.substring(sample.getIsolate(),2,3)=='1'}">P3</option>
+                                    <option value="000100" th:selected="${#strings.substring(sample.getIsolate(),3,4)=='1'}">P4</option>
+                                    <option value="000010" th:selected="${#strings.substring(sample.getIsolate(),4,5)=='1'}">P5</option>
+                                    <option value="000001" th:selected="${#strings.substring(sample.getIsolate(),5,6)=='1'}">P6</option>
+                                </select>
+                                <span id="isolate-error" th:if="${#maps.containsKey(errors, 'isolate')}"
+                                      class="help-block" th:text="${errors.isolate}"></span>
+                                <input type="text" class="form-control input-full" id="isolate" name="isolate" th:value="${isolate} != null ? ${isolate} : ${sample.getIsolate()}"/>
+                            </div>
+                           <div class="form-group"
                                  th:class="${#maps.containsKey(errors, 'geographicLocationName')} ? has-error">
                                 <label for="geographicLocationName" th:text="#{location.geographic.title}">Geographic Location</label>
 													

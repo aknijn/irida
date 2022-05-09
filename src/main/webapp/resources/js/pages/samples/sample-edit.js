@@ -19,6 +19,16 @@ $("#edit-form").submit(function () {
   if (Object.keys(metadata).length > 0) {
     $("#metadata").val(JSON.stringify(metadata));
   }
+
+  var isolated = '000000';
+  for (var option of $("#isolateCombo").options)
+  {
+      if (option.selected) {
+          isolated |= option.value;
+      }
+  }
+  isolated = '000000' + isolated;
+  $("#isolate").val(isolated);
 });
 
 /**
