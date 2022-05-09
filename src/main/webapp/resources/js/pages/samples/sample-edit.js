@@ -21,7 +21,7 @@ $("#edit-form").submit(function () {
   }
 
   var isolated = '000000';
-  document.querySelectorAll("#isolateCombo :checked");
+  $("#edit-form").querySelectorAll("#isolateCombo :checked");
   var selected = [...checked].map(option => option.value);
   for (var selection of selected)
   {
