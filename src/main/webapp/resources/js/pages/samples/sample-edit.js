@@ -21,15 +21,14 @@ $("#edit-form").submit(function () {
   }
 
   var isolated = '000000';
-  $("#edit-form").querySelectorAll("#isolateCombo :checked");
-  var selected = [...checked].map(option => option.value);
-  for (var selection of selected)
+  for (var option of $("#isolateCombo").options)
   {
-    isolated |= selection;
+    if (option.selected) {
+      isolated |= option.value;
+    }
   }
   isolated = '000000' + isolated;
-  alert(isolated);
-  $("#isolate").val(isolated);
+  $("#isolate").val(isolated.slice(-6));
 });
 
 /**
