@@ -392,7 +392,13 @@ public class Sample extends IridaRepresentationModel
 	}
 
 	public String getIsolateValue(int indx) {
-		return isolate.substring(indx - 1, indx);
+		String isolateValue;
+		if isolate == null {
+			isolateValue = 0;
+		} else {
+			isolateValue = isolate.substring(indx - 1, indx);
+		}
+		return isolateValue
 	}
 
 	public String getIsolateText(int indx) {
@@ -403,19 +409,19 @@ public class Sample extends IridaRepresentationModel
 		if (organism == "Shiga toxin-producing Escherichia coli" || organism == "Listeria monocytogenes") {
 			switch (isolateValue) {
 				case "1":
-					isolateText = "";
-					break;
-				case "2":
 					isolateText = "SEU";
 					break;
-				case "3":
+				case "2":
 					isolateText = "Diarrea";
 					break;
-				case "4":
+				case "3":
 					isolateText = "Diarrea emorragica";
 					break;
-				default:
+				case "4":
 					isolateText = "Familiare";
+					break;
+				default:
+					isolateText = "";
 			}
 		} else {
 			switch (isolateValue) {
