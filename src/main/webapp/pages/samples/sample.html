@@ -82,14 +82,14 @@
                         <dt th:text="#{samples.patient-vaccination-date.title}" ></dt>
                         <dd th:text="${sample.patientVaccinationDate} ? ${#dates.format(sample.getPatientVaccinationDate(), 'dd-MM-yyyy')} : #{samples.patient-vaccination-date.unknown}"></dd>
                     </dl>
-                    <dl th:if="${sample.getOrganism()=='Shiga toxin-producing Escherichia coli'}">
-                        <dt th:text="#{samples.details.isolate}"></dt>
-                        <dd id="dd-isolate" th:text="${sample.getIsolate()} ?: #{isolate.unknown}"></dd>
-                    </dl>
-<!--                     <dl th:if="${canReadSampleCollection}">
+<!--                     <dl th:if="${sample.getOrganism()=='Shiga toxin-producing Escherichia coli'}">
                         <dt th:text="#{samples.details.isolate}"></dt>
                         <dd id="dd-isolate" th:text="${sample.getIsolate()} ?: #{isolate.unknown}"></dd>
                     </dl> -->
+                     <dl th:if="${canReadSampleCollection}">
+                        <dt th:text="#{samples.details.isolate}"></dt>
+                        <dd id="dd-isolate" th:text="${sample.getIsolate()} ?: #{isolate.unknown}"></dd>
+                    </dl>
                     <dl>
                         <dt th:text="#{location.geographic.title}"></dt>
                         <dd id="dd-geo-name" th:text="${sample.getGeographicLocationName()} ?: #{geographic.location.name.unknown}"></dd>

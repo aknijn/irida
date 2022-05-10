@@ -151,8 +151,7 @@
                                     <option value="Diarrea emorragica" th:selected="${sample.getIsolate()=='Diarrea emorragica'}" th:if="${sample.getOrganism()=='Shiga toxin-producing Escherichia coli'}">Diarrea emorragica</option>
                                     <option value="Familiare" th:selected="${sample.getIsolate()=='Familiare'}" th:if="${sample.getOrganism()=='Shiga toxin-producing Escherichia coli'}">Familiare</option>
                                 </select>
-                                <span id="isolate-error" th:if="${#maps.containsKey(errors, 'isolate')}"
-                                      class="help-block" th:text="${errors.isolate}"></span>
+                                <span id="isolate-error" th:if="${#maps.containsKey(errors, 'isolate')}" class="help-block" th:text="${errors.isolate}"></span>
                             </div>
                             <div class="form-group" th:class="${#maps.containsKey(errors, 'isolate')} ? has-error" th:unless="${sample.getOrganism()=='Shiga toxin-producing Escherichia coli'}">
                                 <label for="isolateCombo" th:text="#{samples.details.isolate}">Isolate</label>
@@ -164,8 +163,9 @@
                                     <option value="000010" th:selected="${#strings.substring(sample.getIsolate(),4,5)=='1'}">P5</option>
                                     <option value="000001" th:selected="${#strings.substring(sample.getIsolate(),5,6)=='1'}">P6</option>
                                 </select>
-                                <span id="isolate-error" th:if="${#maps.containsKey(errors, 'isolate')}"
-                                      class="help-block" th:text="${errors.isolate}"></span>
+                                <span id="isolate-error" th:if="${#maps.containsKey(errors, 'isolate')}" class="help-block" th:text="${errors.isolate}"></span>
+                            </div>
+                            <div class="form-group" th:class="${#maps.containsKey(errors, 'isolate')} ? has-error">
                                 <input type="text" class="form-control input-full" id="isolate" name="isolate" th:value="${isolate} != null ? ${isolate} : ${sample.getIsolate()}"/>
                             </div>
                            <div class="form-group"
