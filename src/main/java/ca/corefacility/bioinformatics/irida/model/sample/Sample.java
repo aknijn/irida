@@ -406,34 +406,15 @@ public class Sample extends IridaRepresentationModel
 		String isolateValue;
 		isolateValue = getIsolateValue(indx);
 		
-		if (organism.equals("Shiga toxin-producing Escherichia coli")) {
-			switch (isolateValue) {
-				case "1":
-					isolateText = "SEU";
-					break;
-				case "2":
-					isolateText = "Diarrea";
-					break;
-				case "3":
-					isolateText = "Diarrea emorragica";
-					break;
-				case "4":
-					isolateText = "Familiare";
-					break;
-				default:
-					isolateText = "";
-			}
-		} else {
-			switch (isolateValue) {
-				case "1":
-					isolateText = "Sì";
-					break;
-				case "2":
-					isolateText = "No";
-					break;
-				default:
-					isolateText = "ND";
-			}
+		switch (isolateValue) {
+			case "1":
+				isolateText = "Sì";
+				break;
+			case "2":
+				isolateText = "No";
+				break;
+			default:
+				isolateText = "ND";
 		}
 		return isolateText;
 	}
