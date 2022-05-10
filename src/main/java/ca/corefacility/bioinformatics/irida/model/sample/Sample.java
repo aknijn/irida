@@ -393,7 +393,7 @@ public class Sample extends IridaRepresentationModel
 
 	public String getIsolateValue(int indx) {
 		String isolateValue;
-		if isolate == null {
+		if (isolate == null) {
 			isolateValue = "0";
 		} else {
 			isolateValue = isolate.substring(indx - 1, indx);
