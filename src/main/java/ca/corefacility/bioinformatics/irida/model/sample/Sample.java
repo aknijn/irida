@@ -398,7 +398,7 @@ public class Sample extends IridaRepresentationModel
 		} else {
 			isolateValue = isolate.substring(indx - 1, indx);
 		}
-		return isolateValue
+		return isolateValue;
 	}
 
 	public String getIsolateText(int indx) {
