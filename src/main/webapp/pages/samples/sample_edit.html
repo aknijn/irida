@@ -153,6 +153,36 @@
                                 </select>
                                 <span id="isolate-error" th:if="${#maps.containsKey(errors, 'isolate')}" class="help-block" th:text="${errors.isolate}"></span>
                             </div>
+                            <div class="form-group" th:class="${#maps.containsKey(errors, 'isolate')} ? has-error" th:if="${sample.getOrganism()=='Coronavirus'}">
+                                <label for="isolate1" th:text="#{samples.details.isolate}">Ospedalizzato </label>
+								<input type="radio" id="isolate11" name="isolate1" value="0" th:checked="${#strings.substring(sample.getIsolate(),0,1)=='0'}">
+                                <label for="isolate11">ND</label>
+                                <input type="radio" id="isolate12" name="isolate1" value="1" th:checked="${#strings.substring(sample.getIsolate(),0,1)=='1'}">
+                                <label for="isolate12">Sì</label>
+                                <input type="radio" id="isolate13" name="isolate1" value="2" th:checked="${#strings.substring(sample.getIsolate(),0,1)=='2'}">
+                                <label for="isolate13">No</label>
+                                <span id="isolate-error" th:if="${#maps.containsKey(errors, 'isolate')}" class="help-block" th:text="${errors.isolate}"></span>
+                            </div>
+                            <div class="form-group" th:class="${#maps.containsKey(errors, 'isolate')} ? has-error" th:if="${sample.getOrganism()=='Coronavirus'}">
+                                <label for="isolate2" th:text="#{samples.details.isolate}">Terapia intensiva</label>
+								<input type="radio" id="isolate21" name="isolate2" value="0" th:checked="${#strings.substring(sample.getIsolate(),1,2)=='0'}">
+                                <label for="isolate21">ND</label>
+                                <input type="radio" id="isolate22" name="isolate2" value="1" th:checked="${#strings.substring(sample.getIsolate(),1,2)=='1'}">
+                                <label for="isolate22">Sì</label>
+                                <input type="radio" id="isolate23" name="isolate2" value="2" th:checked="${#strings.substring(sample.getIsolate(),1,2)=='2'}">
+                                <label for="isolate23">No</label>
+                                <span id="isolate-error" th:if="${#maps.containsKey(errors, 'isolate')}" class="help-block" th:text="${errors.isolate}"></span>
+                            </div>
+                            <div class="form-group" th:class="${#maps.containsKey(errors, 'isolate')} ? has-error" th:if="${sample.getOrganism()=='Coronavirus'}">
+                                <label for="isolate3" th:text="#{samples.details.isolate}">Terapia intensiva</label>
+								<input type="radio" id="isolate31" name="isolate3" value="0" th:checked="${#strings.substring(sample.getIsolate(),2,3)=='0'}">
+                                <label for="isolate31">ND</label>
+                                <input type="radio" id="isolate32" name="isolate3" value="1" th:checked="${#strings.substring(sample.getIsolate(),2,3)=='1'}">
+                                <label for="isolate32">Sì</label>
+                                <input type="radio" id="isolate33" name="isolate3" value="2" th:checked="${#strings.substring(sample.getIsolate(),2,3)=='2'}">
+                                <label for="isolate33">No</label>
+                                <span id="isolate-error" th:if="${#maps.containsKey(errors, 'isolate')}" class="help-block" th:text="${errors.isolate}"></span>
+                            </div>
                             <div class="form-group" th:class="${#maps.containsKey(errors, 'isolate')} ? has-error" th:unless="${sample.getOrganism()=='Shiga toxin-producing Escherichia coli'}">
                                 <label for="isolateCombo" th:text="#{samples.details.isolate}">Isolate</label>
                                 <select class="form-control input-full" id="isolateCombo" name="isolateCombo" th:value="${isolate} != null ? ${isolate} : ${sample.getIsolate()}" multiple />

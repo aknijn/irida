@@ -90,6 +90,10 @@
                         <dt th:text="#{samples.details.isolate}"></dt>
                         <dd id="dd-isolate" th:text="${sample.getIsolate()} ?: #{isolate.unknown}"></dd>
                     </dl>
+                     <dl th:if="${canReadSampleCollection}">
+                        <dt th:text="#{samples.details.isolate}"></dt>
+                        <dd id="dd-isolate" th:text="${#strings.substring(sample.getIsolate(),0,1)}"></dd>
+                    </dl>
                     <dl>
                         <dt th:text="#{location.geographic.title}"></dt>
                         <dd id="dd-geo-name" th:text="${sample.getGeographicLocationName()} ?: #{geographic.location.name.unknown}"></dd>
