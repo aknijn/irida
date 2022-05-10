@@ -21,7 +21,10 @@ $("#edit-form").submit(function () {
   }
 
   const isolateCombo = '000000';
-  if ($('input[name=isolate1]') != null) {
+  if ($("#isolate1") != null) {
+    isolateCombo = $("#isolate1")).val();
+    isolateCombo = $('input[name=isolate1]:checked').val();
+    isolateCombo = $('input[name=isolate2]:checked').val();
     isolateCombo = $('input[name=isolate1]:checked').val()+$('input[name=isolate2]:checked').val()+$('input[name=isolate3]:checked').val()+$('input[name=isolate4]:checked').val()+$('input[name=isolate5]:checked').val()+$('input[name=isolate6]:checked').val();
     $("#isolate").val(isolateCombo);
   }
