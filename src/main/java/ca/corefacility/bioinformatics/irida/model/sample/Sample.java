@@ -396,8 +396,8 @@ public class Sample extends IridaRepresentationModel
 	}
 
 	public String getIsolateText(Long indx) {
-		private String isolateText;
-		private String isolateValue;
+		String isolateText;
+		String isolateValue;
 		isolateValue = getIsolateValue(indx);
 		
 		if (organism == "Shiga toxin-producing Escherichia coli" || organism == "Listeria monocytogenes") {
