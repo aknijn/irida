@@ -391,11 +391,11 @@ public class Sample extends IridaRepresentationModel
 		this.isolate = isolate;
 	}
 
-	public String getIsolateValue(Long indx) {
+	public String getIsolateValue(int indx) {
 		return isolate.substring(indx + 1, indx);
 	}
 
-	public String getIsolateText(Long indx) {
+	public String getIsolateText(int indx) {
 		String isolateText;
 		String isolateValue;
 		isolateValue = getIsolateValue(indx);
