@@ -20,7 +20,7 @@ $("#edit-form").submit(function () {
     $("#metadata").val(JSON.stringify(metadata));
   }
 
-  if ($("#organism").val() != "Coronavirus") {
+  if ($("#organism").val() == "Coronavirus") {
     const isolateCombo = $('input[name=isolate1]:checked').val()+$('input[name=isolate2]:checked').val()+$('input[name=isolate3]:checked').val()+$('input[name=isolate4]:checked').val()+$('input[name=isolate5]:checked').val()+$('input[name=isolate6]:checked').val();
     $("#isolate").val(isolateCombo);
   }
