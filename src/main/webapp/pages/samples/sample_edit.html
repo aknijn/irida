@@ -142,20 +142,6 @@
                             <div class="form-group" th:class="${#maps.containsKey(errors, 'patientVaccinationDate')} ? has-error" th:unless="${sample.getOrganism()=='Coronavirus'}">
                                 <input type="date" class="form-control input-full" id="patientVaccinationDate" name="patientVaccinationDate" th:value="null" hidden="true" />
                             </div>
-                            <div class="form-group" th:class="${#maps.containsKey(errors, 'isolate')} ? has-error" th:if="${sample.getOrganism()=='Shiga toxin-producing Escherichia coli'}">
-                                <label for="isolate" th:text="#{samples.details.isolate}">Isolate</label>
-                                <select class="form-control input-full" id="isolate" name="isolate" th:value="${isolate} != null ? ${isolate} : ${sample.getIsolate()}" />
-                                    <option value="" th:selected="${sample.getIsolate()==''}"></option>
-                                    <option value="SEU" th:selected="${sample.getIsolate()=='SEU'}" th:if="${sample.getOrganism()=='Shiga toxin-producing Escherichia coli'}">SEU</option>
-                                    <option value="Diarrea" th:selected="${sample.getIsolate()=='Diarrea'}" th:if="${sample.getOrganism()=='Shiga toxin-producing Escherichia coli'}">Diarrea</option>
-                                    <option value="Diarrea emorragica" th:selected="${sample.getIsolate()=='Diarrea emorragica'}" th:if="${sample.getOrganism()=='Shiga toxin-producing Escherichia coli'}">Diarrea emorragica</option>
-                                    <option value="Familiare" th:selected="${sample.getIsolate()=='Familiare'}" th:if="${sample.getOrganism()=='Shiga toxin-producing Escherichia coli'}">Familiare</option>
-                                </select>
-                                <span id="isolate-error" th:if="${#maps.containsKey(errors, 'isolate')}" class="help-block" th:text="${errors.isolate}"></span>
-                            </div>
-                            <div class="form-group" th:class="${#maps.containsKey(errors, 'isolate')} ? has-error" th:if="${sample.getOrganism()=='Coronavirus'}">
-                                <input class="hidden" type="text" id="isolate" name="isolate"/>
-                            </div>
                             <div class="form-group" th:class="${#maps.containsKey(errors, 'isolate')} ? has-error" th:if="${sample.getOrganism()=='Coronavirus'}">
                                 <label for="isolate1" th:text="#{samples.details.corona.isolate1}">Isolate1</label>
                                 <input type="radio" id="isolate11" name="isolate1" value="0" th:checked="${sample.getIsolateValue(1)=='0'}">
@@ -215,6 +201,20 @@
                                 <input type="radio" id="isolate63" name="isolate6" value="2" th:checked="${sample.getIsolateValue(6)=='2'}">
                                 <label for="isolate63">No</label>
                                 <span id="isolate-error" th:if="${#maps.containsKey(errors, 'isolate')}" class="help-block" th:text="${errors.isolate}"></span>
+                            </div>
+                            <div class="form-group" th:class="${#maps.containsKey(errors, 'isolate')} ? has-error" th:if="${sample.getOrganism()=='Shiga toxin-producing Escherichia coli'}">
+                                <label for="isolate" th:text="#{samples.details.isolate}">Isolate</label>
+                                <select class="form-control input-full" id="isolate" name="isolate" th:value="${isolate} != null ? ${isolate} : ${sample.getIsolate()}" />
+                                    <option value="" th:selected="${sample.getIsolate()==''}"></option>
+                                    <option value="SEU" th:selected="${sample.getIsolate()=='SEU'}" th:if="${sample.getOrganism()=='Shiga toxin-producing Escherichia coli'}">SEU</option>
+                                    <option value="Diarrea" th:selected="${sample.getIsolate()=='Diarrea'}" th:if="${sample.getOrganism()=='Shiga toxin-producing Escherichia coli'}">Diarrea</option>
+                                    <option value="Diarrea emorragica" th:selected="${sample.getIsolate()=='Diarrea emorragica'}" th:if="${sample.getOrganism()=='Shiga toxin-producing Escherichia coli'}">Diarrea emorragica</option>
+                                    <option value="Familiare" th:selected="${sample.getIsolate()=='Familiare'}" th:if="${sample.getOrganism()=='Shiga toxin-producing Escherichia coli'}">Familiare</option>
+                                </select>
+                                <span id="isolate-error" th:if="${#maps.containsKey(errors, 'isolate')}" class="help-block" th:text="${errors.isolate}"></span>
+                            </div>
+                            <div class="form-group" th:class="${#maps.containsKey(errors, 'isolate')} ? has-error" th:if="${sample.getOrganism()=='Coronavirus'}">
+                                <input class="hidden" type="text" id="isolate" name="isolate"/>
                             </div>
                            <div class="form-group"
                                  th:class="${#maps.containsKey(errors, 'geographicLocationName')} ? has-error">
