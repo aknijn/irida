@@ -20,14 +20,7 @@ $("#edit-form").submit(function () {
     $("#metadata").val(JSON.stringify(metadata));
   }
 
-  var isolated = '000000';
-//  for (var option of $("#isolateCombo").options)
-//  {
-//    if (option.selected) {
-//      isolated |= option.val();
-//    }
-//  }
-  isolated = '000000' + isolated;
+  const isolated = '000000'+$("#isolate1").val+$("#isolate2").val+$("#isolate3").val+$("#isolate4").val+$("#isolate5").val+$("#isolate6").val;
   $("#isolate").val(isolated.slice(-6));
 });
 
