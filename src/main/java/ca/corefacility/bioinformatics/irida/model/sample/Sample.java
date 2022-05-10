@@ -406,7 +406,7 @@ public class Sample extends IridaRepresentationModel
 		String isolateValue;
 		isolateValue = getIsolateValue(indx);
 		
-		if (organism == "Shiga toxin-producing Escherichia coli" || organism == "Listeria monocytogenes") {
+		if (organism.equals("Shiga toxin-producing Escherichia coli")) {
 			switch (isolateValue) {
 				case "1":
 					isolateText = "SEU";

@@ -84,7 +84,7 @@
                     </dl>
                     <dl th:if="${sample.getOrganism()=='Shiga toxin-producing Escherichia coli'}">
                         <dt th:text="#{samples.details.isolate}"></dt>
-                        <dd id="dd-isolate1" th:text="${sample.getIsolateText(1)}"></dd>
+                        <dd id="dd-isolate" th:text="${sample.getIsolate()} ?: #{isolate.unknown}"></dd>
                     </dl>
 <!--                      <dl th:if="${canReadSampleCollection}">
                         <dt th:text="#{samples.details.isolate}"></dt>
