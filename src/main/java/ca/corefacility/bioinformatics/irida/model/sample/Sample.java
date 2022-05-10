@@ -404,12 +404,16 @@ public class Sample extends IridaRepresentationModel
 			switch (isolateValue) {
 				case "1":
 					isolateText = "";
+					break;
 				case "2":
 					isolateText = "SEU";
+					break;
 				case "3":
 					isolateText = "Diarrea";
+					break;
 				case "4":
 					isolateText = "Diarrea emorragica";
+					break;
 				default:
 					isolateText = "Familiare";
 			}
@@ -417,8 +421,10 @@ public class Sample extends IridaRepresentationModel
 			switch (isolateValue) {
 				case "1":
 					isolateText = "Sì";
+					break;
 				case "2":
 					isolateText = "No";
+					break;
 				default:
 					isolateText = "ND";
 			}
