@@ -82,37 +82,37 @@
                         <dt th:text="#{samples.patient-vaccination-date.title}" ></dt>
                         <dd th:text="${sample.patientVaccinationDate} ? ${#dates.format(sample.getPatientVaccinationDate(), 'dd-MM-yyyy')} : #{samples.patient-vaccination-date.unknown}"></dd>
                     </dl>
-<!--                     <dl th:if="${sample.getOrganism()=='Shiga toxin-producing Escherichia coli'}">
+                    <dl th:if="${sample.getOrganism()=='Shiga toxin-producing Escherichia coli'}">
+                        <dt th:text="#{samples.details.isolate}"></dt>
+                        <dd id="dd-isolate1" th:text="${sample.getIsolateText(1)}"></dd>
+                    </dl>
+<!--                      <dl th:if="${canReadSampleCollection}">
                         <dt th:text="#{samples.details.isolate}"></dt>
                         <dd id="dd-isolate" th:text="${sample.getIsolate()} ?: #{isolate.unknown}"></dd>
                     </dl> -->
-                     <dl th:if="${canReadSampleCollection}">
-                        <dt th:text="#{samples.details.isolate}"></dt>
-                        <dd id="dd-isolate" th:text="${sample.getIsolate()} ?: #{isolate.unknown}"></dd>
-                    </dl>
                      <dl th:if="${canReadSampleCollection} and ${sample.getOrganism()=='Coronavirus'}">
                         <dt th:text="#{samples.details.corona.isolate1}"></dt>
-                        <dd id="dd-isolate" th:text="${sample.getIsolateText(1)}"></dd>
+                        <dd id="dd-isolate1" th:text="${sample.getIsolateText(1)}"></dd>
                     </dl>
                      <dl th:if="${canReadSampleCollection} and ${sample.getOrganism()=='Coronavirus'}">
                         <dt th:text="#{samples.details.corona.isolate2}"></dt>
-                        <dd id="dd-isolate" th:text="${sample.getIsolateText(2)}"></dd>
+                        <dd id="dd-isolate2" th:text="${sample.getIsolateText(2)}"></dd>
                     </dl>
                      <dl th:if="${canReadSampleCollection} and ${sample.getOrganism()=='Coronavirus'}">
                         <dt th:text="#{samples.details.corona.isolate3}"></dt>
-                        <dd id="dd-isolate" th:text="${sample.getIsolateText(3)}"></dd>
+                        <dd id="dd-isolate3" th:text="${sample.getIsolateText(3)}"></dd>
                     </dl>
                      <dl th:if="${canReadSampleCollection} and ${sample.getOrganism()=='Coronavirus'}">
                         <dt th:text="#{samples.details.corona.isolate4}"></dt>
-                        <dd id="dd-isolate" th:text="${sample.getIsolateText(4)}"></dd>
+                        <dd id="dd-isolate4" th:text="${sample.getIsolateText(4)}"></dd>
                     </dl>
                      <dl th:if="${canReadSampleCollection} and ${sample.getOrganism()=='Coronavirus'}">
                         <dt th:text="#{samples.details.corona.isolate5}"></dt>
-                        <dd id="dd-isolate" th:text="${sample.getIsolateText(5)}"></dd>
+                        <dd id="dd-isolate5" th:text="${sample.getIsolateText(5)}"></dd>
                     </dl>
                      <dl th:if="${canReadSampleCollection} and ${sample.getOrganism()=='Coronavirus'}">
                         <dt th:text="#{samples.details.corona.isolate6}"></dt>
-                        <dd id="dd-isolate" th:text="${sample.getIsolateText(6)}"></dd>
+                        <dd id="dd-isolate6" th:text="${sample.getIsolateText(6)}"></dd>
                     </dl>
                     <dl>
                         <dt th:text="#{location.geographic.title}"></dt>
