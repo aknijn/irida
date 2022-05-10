@@ -24,13 +24,11 @@ $("#edit-form").submit(function () {
 //  for (var option of $("#isolateCombo").options)
 //  {
 //    if (option.selected) {
-//      isolated |= option.value;
+//      isolated |= option.val();
 //    }
 //  }
-//  isolated = '000000' + isolated;
-//  $("#isolate").val(isolated.slice(-6));
-  $("#isolate").val("001110");
-
+  isolated = '000000' + isolated;
+  $("#isolate").val(isolated.slice(-6));
 });
 
 /**
