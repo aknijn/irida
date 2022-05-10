@@ -154,62 +154,62 @@
                                 <span id="isolate-error" th:if="${#maps.containsKey(errors, 'isolate')}" class="help-block" th:text="${errors.isolate}"></span>
                             </div>
                             <div class="form-group" th:class="${#maps.containsKey(errors, 'isolate')} ? has-error" th:if="${sample.getOrganism()=='Coronavirus'}">
-                                <label for="isolate1" th:text="#{samples.details.isolate}">Isolate1</label>
-								<input type="radio" id="isolate11" name="isolate1" value="0" th:checked="${#strings.substring(sample.getIsolate(),0,1)=='0'}">
+                                <label for="isolate1" th:text="#{samples.details.corona.isolate1}">Isolate1</label>
+								<input type="radio" id="isolate11" name="isolate1" value="0" th:checked="${getIsolateValue(1)=='0'}">
                                 <label for="isolate11">ND</label>
-                                <input type="radio" id="isolate12" name="isolate1" value="1" th:checked="${#strings.substring(sample.getIsolate(),0,1)=='1'}">
+                                <input type="radio" id="isolate12" name="isolate1" value="1" th:checked="${getIsolateValue(1)=='1'}">
                                 <label for="isolate12">Sì</label>
-                                <input type="radio" id="isolate13" name="isolate1" value="2" th:checked="${#strings.substring(sample.getIsolate(),0,1)=='2'}">
+                                <input type="radio" id="isolate13" name="isolate1" value="2" th:checked="${getIsolateValue(1)=='2'}">
                                 <label for="isolate13">No</label>
                                 <span id="isolate-error" th:if="${#maps.containsKey(errors, 'isolate')}" class="help-block" th:text="${errors.isolate}"></span>
                             </div>
                             <div class="form-group" th:class="${#maps.containsKey(errors, 'isolate')} ? has-error" th:if="${sample.getOrganism()=='Coronavirus'}">
-                                <label for="isolate2" th:text="#{samples.details.isolate}">Isolate2</label>
-								<input type="radio" id="isolate21" name="isolate2" value="0" th:checked="${#strings.substring(sample.getIsolate(),1,2)=='0'}">
+                                <label for="isolate2" th:text="#{samples.details.corona.isolate2}">Isolate2</label>
+								<input type="radio" id="isolate21" name="isolate2" value="0" th:checked="${getIsolateValue(2)=='0'}">
                                 <label for="isolate21">ND</label>
-                                <input type="radio" id="isolate22" name="isolate2" value="1" th:checked="${#strings.substring(sample.getIsolate(),1,2)=='1'}">
+                                <input type="radio" id="isolate22" name="isolate2" value="1" th:checked="${getIsolateValue(2)=='1'}">
                                 <label for="isolate22">Sì</label>
-                                <input type="radio" id="isolate23" name="isolate2" value="2" th:checked="${#strings.substring(sample.getIsolate(),1,2)=='2'}">
+                                <input type="radio" id="isolate23" name="isolate2" value="2" th:checked="${getIsolateValue(2)=='2'}">
                                 <label for="isolate23">No</label>
                                 <span id="isolate-error" th:if="${#maps.containsKey(errors, 'isolate')}" class="help-block" th:text="${errors.isolate}"></span>
                             </div>
                             <div class="form-group" th:class="${#maps.containsKey(errors, 'isolate')} ? has-error" th:if="${sample.getOrganism()=='Coronavirus'}">
-                                <label for="isolate3" th:text="#{samples.details.isolate}">Isolate3</label>
-								<input type="radio" id="isolate31" name="isolate3" value="0" th:checked="${#strings.substring(sample.getIsolate(),2,3)=='0'}">
+                                <label for="isolate3" th:text="#{samples.details.corona.isolate3}">Isolate3</label>
+								<input type="radio" id="isolate31" name="isolate3" value="0" th:checked="${getIsolateValue(3)=='0'}">
                                 <label for="isolate31">ND</label>
-                                <input type="radio" id="isolate32" name="isolate3" value="1" th:checked="${#strings.substring(sample.getIsolate(),2,3)=='1'}">
+                                <input type="radio" id="isolate32" name="isolate3" value="1" th:checked="${getIsolateValue(3)=='1'}">
                                 <label for="isolate32">Sì</label>
-                                <input type="radio" id="isolate33" name="isolate3" value="2" th:checked="${#strings.substring(sample.getIsolate(),2,3)=='2'}">
+                                <input type="radio" id="isolate33" name="isolate3" value="2" th:checked="${getIsolateValue(3)=='2'}">
                                 <label for="isolate33">No</label>
                                 <span id="isolate-error" th:if="${#maps.containsKey(errors, 'isolate')}" class="help-block" th:text="${errors.isolate}"></span>
                             </div>
                            <div class="form-group" th:class="${#maps.containsKey(errors, 'isolate')} ? has-error" th:if="${sample.getOrganism()=='Coronavirus'}">
-                                <label for="isolate4" th:text="#{samples.details.isolate}">Isolate4</label>
-								<input type="radio" id="isolate41" name="isolate4" value="0" th:checked="${#strings.substring(sample.getIsolate(),3,4)=='0'}">
+                                <label for="isolate4" th:text="#{samples.details.corona.isolate4}">Isolate4</label>
+								<input type="radio" id="isolate41" name="isolate4" value="0" th:checked="${getIsolateValue(4)=='0'}">
                                 <label for="isolate41">ND</label>
-                                <input type="radio" id="isolate42" name="isolate4" value="1" th:checked="${#strings.substring(sample.getIsolate(),3,4)=='1'}">
+                                <input type="radio" id="isolate42" name="isolate4" value="1" th:checked="${getIsolateValue(4)=='1'}">
                                 <label for="isolate42">Sì</label>
-                                <input type="radio" id="isolate43" name="isolate4" value="2" th:checked="${#strings.substring(sample.getIsolate(),3,4)=='2'}">
+                                <input type="radio" id="isolate43" name="isolate4" value="2" th:checked="${getIsolateValue(4)=='2'}">
                                 <label for="isolate43">No</label>
                                 <span id="isolate-error" th:if="${#maps.containsKey(errors, 'isolate')}" class="help-block" th:text="${errors.isolate}"></span>
                             </div>
                            <div class="form-group" th:class="${#maps.containsKey(errors, 'isolate')} ? has-error" th:if="${sample.getOrganism()=='Coronavirus'}">
-                                <label for="isolate5" th:text="#{samples.details.isolate}">Isolate5</label>
-								<input type="radio" id="isolate51" name="isolate5" value="0" th:checked="${#strings.substring(sample.getIsolate(),4,5)=='0'}">
+                                <label for="isolate5" th:text="#{samples.details.corona.isolate5}">Isolate5</label>
+								<input type="radio" id="isolate51" name="isolate5" value="0" th:checked="${getIsolateValue(5)=='0'}">
                                 <label for="isolate51">ND</label>
-                                <input type="radio" id="isolate52" name="isolate5" value="1" th:checked="${#strings.substring(sample.getIsolate(),4,5)=='1'}">
+                                <input type="radio" id="isolate52" name="isolate5" value="1" th:checked="${getIsolateValue(5)=='1'}">
                                 <label for="isolate52">Sì</label>
-                                <input type="radio" id="isolate53" name="isolate5" value="2" th:checked="${#strings.substring(sample.getIsolate(),4,5)=='2'}">
+                                <input type="radio" id="isolate53" name="isolate5" value="2" th:checked="${getIsolateValue(5)=='2'}">
                                 <label for="isolate53">No</label>
                                 <span id="isolate-error" th:if="${#maps.containsKey(errors, 'isolate')}" class="help-block" th:text="${errors.isolate}"></span>
                             </div>
                            <div class="form-group" th:class="${#maps.containsKey(errors, 'isolate')} ? has-error" th:if="${sample.getOrganism()=='Coronavirus'}">
-                                <label for="isolate6" th:text="#{samples.details.isolate}">Isolate6</label>
-								<input type="radio" id="isolate61" name="isolate6" value="0" th:checked="${#strings.substring(sample.getIsolate(),5,6)=='0'}">
+                                <label for="isolate6" th:text="#{samples.details.corona.isolate6}">Isolate6</label>
+								<input type="radio" id="isolate61" name="isolate6" value="0" th:checked="${getIsolateValue(6)=='0'}">
                                 <label for="isolate61">ND</label>
-                                <input type="radio" id="isolate62" name="isolate6" value="1" th:checked="${#strings.substring(sample.getIsolate(),5,6)=='1'}">
+                                <input type="radio" id="isolate62" name="isolate6" value="1" th:checked="${getIsolateValue(6)=='1'}">
                                 <label for="isolate62">Sì</label>
-                                <input type="radio" id="isolate63" name="isolate6" value="2" th:checked="${#strings.substring(sample.getIsolate(),5,6)=='2'}">
+                                <input type="radio" id="isolate63" name="isolate6" value="2" th:checked="${getIsolateValue(6)=='2'}">
                                 <label for="isolate63">No</label>
                                 <span id="isolate-error" th:if="${#maps.containsKey(errors, 'isolate')}" class="help-block" th:text="${errors.isolate}"></span>
                             </div>

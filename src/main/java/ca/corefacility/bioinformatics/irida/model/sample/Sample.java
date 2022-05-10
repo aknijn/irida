@@ -391,6 +391,41 @@ public class Sample extends IridaRepresentationModel
 		this.isolate = isolate;
 	}
 
+	public String getIsolateValue(Long indx) {
+		return isolate.substring(indx + 1, indx);
+	}
+
+	public String getIsolateText(Long indx) {
+		private String isolateText;
+		private String isolateValue;
+		isolateValue = getIsolateValue(indx);
+		
+		if (organism == "Shiga toxin-producing Escherichia coli" || organism == "Listeria monocytogenes") {
+			switch (isolateValue) {
+				case "1":
+					isolateText = "";
+				case "2":
+					isolateText = "SEU";
+				case "3":
+					isolateText = "Diarrea";
+				case "4":
+					isolateText = "Diarrea emorragica";
+				default:
+					isolateText = "Familiare";
+			}
+		} else {
+			switch (isolateValue) {
+				case "1":
+					isolateText = "Sì";
+				case "2":
+					isolateText = "No";
+				default:
+					isolateText = "ND";
+			}
+		}
+		return isolateText;
+	}
+
 	public String getGeographicLocationName() {
 		return geographicLocationName;
 	}
