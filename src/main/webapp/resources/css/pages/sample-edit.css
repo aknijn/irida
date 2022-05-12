@@ -17,25 +17,26 @@ button.btn.delete-metadata {
     border-bottom: lighten(#f04124, 10) !important;
     color: #ffffff !important;
   }
+}
 
-div.switch-form-group {
+.switch-form-group {
     display: flex;
     overflow: hidden;
     direction: ltr;
     float: right;
     text-align:right;
-  }
+}
 
-div.switch-form-group input {
+.switch-form-group input {
     position: absolute !important;
     clip: rect(0, 0, 0, 0);
     height: 1px;
     width: 1px;
     border: 0;
     overflow: hidden;
-  }
+}
 
-div.switch-form-group label {
+.switch-form-group label {
     /*width: 33.33%;*/
     background-color: transparent;
     color: #666666;
@@ -47,26 +48,26 @@ div.switch-form-group label {
     /*margin-right: -1px;*/
     border: 1px solid #ddd;
     transition: all 0.1s ease-in-out;
-  }
+}
 
-div.switch-form-group label:hover {
+.switch-form-group label:hover {
     cursor: pointer;
-  }
+}
 
-div.switch-form-group input:checked + label {
+.switch-form-group input:checked + label {
     background-color: #F4F5F9;
     box-shadow: none;
     border-color: #3E7DE7;
     color: #3E7DE7;
-  }
+}
 
-div.switch-form-group label:first-of-type {
+.switch-form-group label:first-of-type {
     border-radius: 2px 0px 0px 2px;
 
-  }
+}
 
-div.switch-form-group label:last-of-type {
+.switch-form-group label:last-of-type {
     border-radius: 0px 2px 2px 0px;
 
-  }
 }
+
