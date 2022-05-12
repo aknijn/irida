@@ -86,6 +86,7 @@ public class Sample extends IridaRepresentationModel
 	/**
 	 * identification or description of the specific individual from which this
 	 * sample was obtained
+	 * ISS patient condition
 	 */
 	@NotNull(message = "{sample.isolate.notnull}", groups = { NCBISubmission.class, NCBISubmissionOneOf.class })
 	@Size(min = 3, message = "{sample.isolate.too.short}")
