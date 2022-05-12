@@ -23,7 +23,7 @@ button.btn.delete-metadata {
     display: flex;
     overflow: hidden;
     direction: ltr;
-    float: right;
+    float: left;
     text-align:right;
 }
 
@@ -71,3 +71,7 @@ button.btn.delete-metadata {
 
 }
 
+.switch-label-form-group::before{
+    content: "\a\a";
+    white-space: pre;
+}

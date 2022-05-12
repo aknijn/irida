@@ -122,11 +122,12 @@
                         <dt th:text="#{location.geographic2.title}"></dt>
                         <dd id="dd-geo-name2" th:text="${sample.getGeographicLocationName2()} ?: #{geographic.location.name.unknown}"></dd>
                     </dl>
+<!--
                     <dl th:if="${canReadSampleCollection}">
                         <dt th:text="#{location.geographic3.title}"></dt>
                         <dd id="dd-geo-name3" th:text="${sample.getGeographicLocationName3()} ?: #{geographic.location.name.unknown}"></dd>
                     </dl>
-<!--                     <div class="row">
+                     <div class="row">
                         <div class="col-md-6">
                             <dl>
                                 <dt th:text="#{location.latitude}"></dt>
