@@ -17,7 +17,8 @@ button.btn.delete-metadata {
     border-bottom: lighten(#f04124, 10) !important;
     color: #ffffff !important;
   }
-.switch-form-group {
+
+div.switch-form-group {
     display: flex;
     overflow: hidden;
     direction: ltr;
@@ -25,7 +26,7 @@ button.btn.delete-metadata {
     text-align:right;
   }
 
-.switch-form-group input {
+div.switch-form-group input {
     position: absolute !important;
     clip: rect(0, 0, 0, 0);
     height: 1px;
@@ -34,7 +35,7 @@ button.btn.delete-metadata {
     overflow: hidden;
   }
 
-.switch-form-group label {
+div.switch-form-group label {
     /*width: 33.33%;*/
     background-color: transparent;
     color: #666666;
@@ -48,23 +49,23 @@ button.btn.delete-metadata {
     transition: all 0.1s ease-in-out;
   }
 
-.switch-form-group label:hover {
+div.switch-form-group label:hover {
     cursor: pointer;
   }
 
-.switch-form-group input:checked + label {
+div.switch-form-group input:checked + label {
     background-color: #F4F5F9;
     box-shadow: none;
     border-color: #3E7DE7;
     color: #3E7DE7;
   }
 
-.switch-form-group label:first-of-type {
+div.switch-form-group label:first-of-type {
     border-radius: 2px 0px 0px 2px;
 
   }
 
-.switch-form-group label:last-of-type {
+div.switch-form-group label:last-of-type {
     border-radius: 0px 2px 2px 0px;
 
   }
