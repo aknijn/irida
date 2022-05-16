@@ -82,14 +82,10 @@
                         <dt th:text="#{samples.patient-vaccination-date.title}" ></dt>
                         <dd th:text="${sample.patientVaccinationDate} ? ${#dates.format(sample.getPatientVaccinationDate(), 'dd-MM-yyyy')} : #{samples.patient-vaccination-date.unknown}"></dd>
                     </dl>
-                    <dl th:if="${sample.getOrganism()=='Shiga toxin-producing Escherichia coli'}">
+                    <dl th:if="${canReadSampleCollection} and ${sample.getOrganism()=='Shiga toxin-producing Escherichia coli'}">
                         <dt th:text="#{samples.details.isolate}"></dt>
                         <dd id="dd-isolate" th:text="${sample.getIsolate()} ?: #{isolate.unknown}"></dd>
                     </dl>
-<!--                      <dl th:if="${canReadSampleCollection}">
-                        <dt th:text="#{samples.details.isolate}"></dt>
-                        <dd id="dd-isolate" th:text="${sample.getIsolate()} ?: #{isolate.unknown}"></dd>
-                    </dl> -->
                     <dl th:if="${canReadSampleCollection} and ${sample.getOrganism()=='Coronavirus'}">
                         <dt th:text="#{samples.details.corona.isolate1}"></dt>
                         <dd id="dd-isolate1" th:text="${sample.getIsolateText(1)}"></dd>
@@ -122,12 +118,11 @@
                         <dt th:text="#{location.geographic2.title}"></dt>
                         <dd id="dd-geo-name2" th:text="${sample.getGeographicLocationName2()} ?: #{geographic.location.name.unknown}"></dd>
                     </dl>
-<!--
-                    <dl th:if="${canReadSampleCollection}">
+                    <dl th:if="${canReadSampleCollection} and ${sample.getOrganism()!='Coronavirus'}">
                         <dt th:text="#{location.geographic3.title}"></dt>
                         <dd id="dd-geo-name3" th:text="${sample.getGeographicLocationName3()} ?: #{geographic.location.name.unknown}"></dd>
                     </dl>
-                     <div class="row">
+<!--                <div class="row">
                         <div class="col-md-6">
                             <dl>
                                 <dt th:text="#{location.latitude}"></dt>

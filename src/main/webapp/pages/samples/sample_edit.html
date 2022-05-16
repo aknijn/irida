@@ -221,7 +221,6 @@
                                 <label for="geographicLocationName" th:text="#{location.geographic.title}">Geographic Location</label>
                                                     
                                 <select class="form-control input-full" id="geographicLocationName" name="geographicLocationName"
-                                                                    
                                        th:value="${geographicLocationName} != null ? ${geographicLocationName} : ${sample.getGeographicLocationName()}" />
                                     <option value="" th:selected="${sample.getGeographicLocationName()==''}"></option>
                                     <option value="Abruzzo" th:selected="${sample.getGeographicLocationName()=='Abruzzo'}">Abruzzo</option>
@@ -260,7 +259,7 @@
                                       th:if="${#maps.containsKey(errors, 'geographicLocationName2')}" class="help-block"
                                       th:text="${errors.geographicLocationName2}"></span>
                             </div>
-                            <div class="form-group" th:if="${sample.getOrganism()=='test'}"
+                            <div class="form-group" th:unless="${sample.getOrganism()=='Coronavirus'}"
                                  th:class="${#maps.containsKey(errors, 'geographicLocationName3')} ? has-error">
                                 <label for="geographicLocationName3" th:text="#{location.geographic3.title}">Geographic Location</label>
                                 <input type="text" class="form-control input-full" id="geographicLocationName3" name="geographicLocationName3"

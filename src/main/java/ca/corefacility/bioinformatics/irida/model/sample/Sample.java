@@ -402,6 +402,24 @@ public class Sample extends IridaRepresentationModel
 		return isolateValue;
 	}
 
+	public String setIsolateValue(int indx, String isolateValue) {
+		String newIsolateValue;
+		switch (isolateValue) {
+			case "0", "1", "2":
+				newIsolateValue = isolateValue;
+				break;
+			case "Sì", "Si":
+				newIsolateValue = "1";
+				break;
+			case "No":
+				newIsolateValue = "2";
+				break;
+			default:
+				newIsolateValue = "0";
+		}
+		this.isolate = isolate.substring(0, indx - 1) + newIsolateValue + isolate.substring(indx);
+	}
+
 	public String getIsolateText(int indx) {
 		String isolateText;
 		String isolateValue;

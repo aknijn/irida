@@ -208,7 +208,7 @@ public class UIMetadataImportService {
 										break;
 								case "Provincia":  sample.setGeographicLocationName2(entry.getValue());
 										break;
-								case "Comune":  sample.setGeographicLocationName3(entry.getValue());
+								case "Comune": if sample.getOrganism() !='Coronavirus' { sample.setGeographicLocationName3(entry.getValue()); }
 										break;
 								case "Ospedale":  sample.setCollectedBy(entry.getValue());
 										break;
@@ -228,6 +228,18 @@ public class UIMetadataImportService {
 										break;
 								case "DataUltimaVaccinazione":  LocalDate java2Date = LocalDate.parse(entry.getValue(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 										sample.setPatientVaccinationDate(java.sql.Date.valueOf(java2Date));
+										break;
+								case "Ospedalizzato":  sample.setIsolateValue(1, entry.getValue());
+										break;
+								case "TerapiaIntensiva":  sample.setIsolateValue(2, entry.getValue());
+										break;
+								case "Reinfezione":  sample.setIsolateValue(3, entry.getValue());
+										break;
+								case "Immunocompromesso":  sample.setIsolateValue(4, entry.getValue());
+										break;
+								case "PaeseEsteroAttenzionato":  sample.setIsolateValue(5, entry.getValue());
+										break;
+								case "CampioneCasuale":  sample.setIsolateValue(6, entry.getValue());
 										break;
 							}
 						}
