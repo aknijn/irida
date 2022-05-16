@@ -402,7 +402,7 @@ public class Sample extends IridaRepresentationModel
 		return isolateValue;
 	}
 
-	public String setIsolateValue(int indx, String isolateValue) {
+	public void setIsolateValue(int indx, String isolateValue) {
 		String newIsolateValue;
 		switch (isolateValue) {
 			case "1":
