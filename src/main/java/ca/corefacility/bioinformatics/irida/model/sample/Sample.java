@@ -405,10 +405,12 @@ public class Sample extends IridaRepresentationModel
 	public String setIsolateValue(int indx, String isolateValue) {
 		String newIsolateValue;
 		switch (isolateValue) {
-			case "0", "1", "2":
+			case "1":
+			case "2":
 				newIsolateValue = isolateValue;
 				break;
-			case "Sì", "Si":
+			case "Sì":
+			case "Si":
 				newIsolateValue = "1";
 				break;
 			case "No":
