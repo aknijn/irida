@@ -208,7 +208,7 @@ public class UIMetadataImportService {
 										break;
 								case "Provincia":  sample.setGeographicLocationName2(entry.getValue());
 										break;
-								case "Comune": if (sample.getOrganism() !='Coronavirus') { sample.setGeographicLocationName3(entry.getValue()); }
+								case "Comune": if (sample.getOrganism()!="Coronavirus") { sample.setGeographicLocationName3(entry.getValue()); }
 										break;
 								case "Ospedale":  sample.setCollectedBy(entry.getValue());
 										break;
