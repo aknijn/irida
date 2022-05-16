@@ -105,8 +105,7 @@
                                 <span id="isolationSource-error" th:if="${#maps.containsKey(errors, 'isolationSource')}"
                                       class="help-block" th:text="${errors.isolationSource}"></span>
                             </div>
-                            <div class="form-group"
-                                 th:class="${#maps.containsKey(errors, 'patientAge')} ? has-error">
+                            <div class="form-group" th:class="${#maps.containsKey(errors, 'patientAge')} ? has-error" th:if="${sample.getOrganism()=='Coronavirus'}">
                                 <label for="patientAge" th:text="#{samples.patient-age.title}">Patient Age</label>
                                 <select class="form-control input-full" id="patientAge" name="patientAge"
                                        th:value="${patientAge} != null ? ${patientAge} : ${sample.getPatientAge()}" />

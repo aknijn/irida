@@ -233,9 +233,9 @@ public class UIMetadataImportService {
 										break;
 								case "TerapiaIntensiva":  sample.setIsolateValue(2, entry.getValue());
 										break;
-								case "Reinfezione":  sample.setIsolateValue(3, entry.getValue());
+								case "Immunodepresso":  sample.setIsolateValue(3, entry.getValue());
 										break;
-								case "Immunocompromesso":  sample.setIsolateValue(4, entry.getValue());
+								case "Reinfetto":  sample.setIsolateValue(4, entry.getValue());
 										break;
 								case "PaeseEsteroAttenzionato":  sample.setIsolateValue(5, entry.getValue());
 										break;
