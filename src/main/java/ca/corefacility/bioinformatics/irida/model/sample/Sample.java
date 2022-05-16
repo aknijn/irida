@@ -395,7 +395,7 @@ public class Sample extends IridaRepresentationModel
 	public String getIsolateValue(int indx) {
 		String isolateValue;
 		if (isolate == null) {
-			isolateValue = "0";
+			isolateValue = "000000";
 		} else {
 			isolateValue = isolate.substring(indx - 1, indx);
 		}
@@ -404,6 +404,12 @@ public class Sample extends IridaRepresentationModel
 
 	public void setIsolateValue(int indx, String isolateValue) {
 		String newIsolateValue;
+		String newIsolate;
+		if (isolate == null) {
+			newIsolate = "000000";
+		} else {
+			newIsolate = this.isolate;
+		}
 		switch (isolateValue) {
 			case "1":
 			case "2":
@@ -419,7 +425,7 @@ public class Sample extends IridaRepresentationModel
 			default:
 				newIsolateValue = "0";
 		}
-		this.isolate = isolate.substring(0, indx - 1) + newIsolateValue + isolate.substring(indx);
+		this.isolate = newIsolate.substring(0, indx - 1) + newIsolateValue + newIsolate.substring(indx);
 	}
 
 	public String getIsolateText(int indx) {
