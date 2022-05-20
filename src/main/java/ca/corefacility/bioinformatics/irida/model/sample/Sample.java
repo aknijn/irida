@@ -408,7 +408,7 @@ public class Sample extends IridaRepresentationModel
 		if (isolate == null) {
 			newIsolate = "000000";
 		} else {
-			newIsolate = isolate.replace("undefined","0");
+			newIsolate = this.isolate;
 		}
 		switch (isolateValue) {
 			case "1":
