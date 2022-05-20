@@ -399,7 +399,7 @@ public class Sample extends IridaRepresentationModel
 		} else {
 			isolateValue = isolate.substring(indx - 1, indx);
 		}
-		if (typeof(isolateValue) == "undefined") { isolateValue = 0; }
+		if (typeof(isolateValue) == "undefined") { isolateValue = "0"; }
 		return isolateValue;
 	}
 
