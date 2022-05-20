@@ -22,17 +22,17 @@ $("#edit-form").submit(function () {
 
   if ($("#organism").val() == "Coronavirus") {
     const isolateCombo1 = $('input[name=isolate1]:checked').val()
-	if (isolateCombo1 == "undefined") { isolateCombo1 = "0"; }
+	if (typeof(isolateCombo1) == "undefined") { isolateCombo1 = "0"; }
     const isolateCombo2 = $('input[name=isolate2]:checked').val()
-	if (isolateCombo2 == "undefined") { isolateCombo2 = "0"; }
+	if (typeof(isolateCombo2) == "undefined") { isolateCombo2 = "0"; }
     const isolateCombo3 = $('input[name=isolate3]:checked').val()
-	if (isolateCombo3 == "undefined") { isolateCombo3 = "0"; }
+	if (typeof(isolateCombo3) == "undefined") { isolateCombo3 = "0"; }
     const isolateCombo4 = $('input[name=isolate4]:checked').val()
-	if (isolateCombo4 == "undefined") { isolateCombo4 = "0"; }
+	if (typeof(isolateCombo4) == "undefined") { isolateCombo4 = "0"; }
     const isolateCombo5 = $('input[name=isolate5]:checked').val()
-	if (isolateCombo5 == "undefined") { isolateCombo5 = "0"; }
+	if (typeof(isolateCombo5) == "undefined") { isolateCombo5 = "0"; }
     const isolateCombo6 = $('input[name=isolate6]:checked').val()
-	if (isolateCombo6 == "undefined") { isolateCombo6 = "0"; }
+	if (typeof(isolateCombo6) == "undefined") { isolateCombo6 = "0"; }
     const isolateCombo = isolateCombo1+isolateCombo2+isolateCombo3+isolateCombo4+isolateCombo5+isolateCombo6;
     $("#isolate").val(isolateCombo);
   }
