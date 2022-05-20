@@ -389,7 +389,7 @@ public class Sample extends IridaRepresentationModel
 	}
 
 	public void setIsolate(String isolate) {
-		this.isolate = isolate.replace("undefined","0");
+		this.isolate = isolate;
 	}
 
 	public String getIsolateValue(int indx) {
@@ -408,7 +408,7 @@ public class Sample extends IridaRepresentationModel
 		if (isolate == null) {
 			newIsolate = "000000";
 		} else {
-			newIsolate = this.isolate;
+			newIsolate = isolate.replace("undefined","0");
 		}
 		switch (isolateValue) {
 			case "1":
