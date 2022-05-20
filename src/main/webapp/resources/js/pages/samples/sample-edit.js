@@ -21,17 +21,17 @@ $("#edit-form").submit(function () {
   }
 
   if ($("#organism").val() == "Coronavirus") {
-    const isolateCombo1 = "0";
+    let isolateCombo1 = "0";
 	if (typeof($('input[name=isolate1]:checked').val()) != "undefined") { isolateCombo1 = $('input[name=isolate1]:checked').val(); }
-    const isolateCombo2 = "0";
+    let isolateCombo2 = "0";
 	if (typeof($('input[name=isolate2]:checked').val()) != "undefined") { isolateCombo2 = $('input[name=isolate2]:checked').val(); }
-    const isolateCombo3 = "0";
+    let isolateCombo3 = "0";
 	if (typeof($('input[name=isolate3]:checked').val()) != "undefined") { isolateCombo3 = $('input[name=isolate3]:checked').val(); }
-    const isolateCombo4 = "0";
+    let isolateCombo4 = "0";
 	if (typeof($('input[name=isolate4]:checked').val()) != "undefined") { isolateCombo4 = $('input[name=isolate4]:checked').val(); }
-    const isolateCombo5 = "0";
+    let isolateCombo5 = "0";
 	if (typeof($('input[name=isolate5]:checked').val()) != "undefined") { isolateCombo5 = $('input[name=isolate5]:checked').val(); }
-    const isolateCombo6 = "0";
+    let isolateCombo6 = "0";
 	if (typeof($('input[name=isolate6]:checked').val()) != "undefined") { isolateCombo6 = $('input[name=isolate6]:checked').val(); }
     const isolateCombo = isolateCombo1+isolateCombo2+isolateCombo3+isolateCombo4+isolateCombo5+isolateCombo6;
     $("#isolate").val(isolateCombo);
