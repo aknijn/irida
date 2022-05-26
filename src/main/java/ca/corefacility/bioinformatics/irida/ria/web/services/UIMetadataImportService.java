@@ -204,6 +204,8 @@ public class UIMetadataImportService {
 							metadataEntrySet.add(new MetadataEntry(entry.getValue(), "text", key)); */
 							// ISS if the key is found, replace the entry
 							switch (entry.getKey()) {
+								case "Descrizione":  sample.setDescription(entry.getValue());
+										break;
 								case "CodiceInterno":  sample.setStrain(entry.getValue());
 										break;
 								case "Provincia":  sample.setGeographicLocationName2(entry.getValue());
