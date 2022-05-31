@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import javax.persistence.NoResultException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -56,6 +57,7 @@ public class SampleRepositoryImpl implements SampleRepositoryCustom {
 	 * {@inheritDoc}
 	 */
  	public String getClusterIdByCodes(Project project, List<String> sampleCodes) {
+		String result;
 		String strSQL = "SELECT mec.value FROM metadata_entry as mec " + 
 			"INNER JOIN metadata_entry as mes on mec.sample_id = mes.sample_id " +
 			"WHERE mec.field_id = 7 AND mes.field_id = 8 AND mes.value IN (" + sampleCodes.stream().collect(Collectors.joining("','", "'", "'")) + ") " +
@@ -68,6 +70,11 @@ public class SampleRepositoryImpl implements SampleRepositoryCustom {
 		query.setParameter(1, sampleCodes.stream().collect(Collectors.joining("','", "'", "'")));
 		logger.debug("query: " + strSQL); */
 		String result = (String) query.getSingleResult();
+		try{
+			result = (String) query.getSingleResult();
+		} catch (NoResultException nre) {
+			result = "-";
+		}
 		return result;
 	}
 
