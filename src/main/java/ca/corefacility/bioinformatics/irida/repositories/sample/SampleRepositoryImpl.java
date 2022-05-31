@@ -69,7 +69,6 @@ public class SampleRepositoryImpl implements SampleRepositoryCustom {
 			"ORDER BY ABS(length(mec.value) - length(replace(mec.value, '_', ''))-1.4)");
 		query.setParameter(1, sampleCodes.stream().collect(Collectors.joining("','", "'", "'")));
 		logger.debug("query: " + strSQL); */
-		String result = (String) query.getSingleResult();
 		try{
 			result = (String) query.getSingleResult();
 		} catch (NoResultException nre) {
