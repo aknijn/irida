@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<iridaWorkflow>
+	<id>08e20fd1-2866-49f5-a423-12246fa40080</id>
+	<name>Reports</name>
+	<version>1.0</version>
+	<analysisType>REPORTS</analysisType>
+	<inputs>
+		<sequenceReadsPaired>input_collection</sequenceReadsPaired>
+		<requiresSingleSample>false</requiresSingleSample>
+	</inputs>
+	<parameters>
+		<parameter name="phantr_species" defaultValue="Escherichia coli">
+			<toolParameter
+				toolId="phantr"
+				parameterName="species" />
+		</parameter>
+	</parameters>
+	<outputs>
+        <output name="reports" fileName="reports.zip"/>
+	</outputs>
+	<toolRepositories>
+		<repository>
+		  <name>collapse_collections</name>
+		  <owner>nml</owner>
+		  <url>https://irida.corefacility.ca/galaxy-shed</url>
+		  <revision>7e5a39b5dad3</revision>
+		</repository>
+	</toolRepositories>
+</iridaWorkflow>
