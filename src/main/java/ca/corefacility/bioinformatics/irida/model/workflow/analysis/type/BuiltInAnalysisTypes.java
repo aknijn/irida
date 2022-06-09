@@ -22,7 +22,7 @@ public class BuiltInAnalysisTypes {
 
 	public static final AnalysisType SUMMARY = new AnalysisType("SUMMARY");
 
-	public static final AnalysisType SUMMARY = new AnalysisType("REPORTS");
+	public static final AnalysisType REPORTS = new AnalysisType("REPORTS");
 
 	public static final AnalysisType META_EXPORT = new AnalysisType("META_EXPORT");
 
