@@ -2,7 +2,7 @@
     "a_galaxy_workflow": "true",
     "annotation": "Summary",
     "format-version": "0.1",
-    "name": "Summary 2.0",
+    "name": "Reports 1.0",
     "steps": {
         "0": {
             "annotation": "",
@@ -33,7 +33,7 @@
             "tool_state": "{\"optional\": false, \"collection_type\": \"list:paired\"}",
             "tool_version": null,
             "type": "data_collection_input",
-            "uuid": "7f34bab0-4866-43dc-95c4-78663409b3ed",
+            "uuid": "5a2eaaab-96ff-4f4a-994a-e0c085934504",
             "workflow_outputs": []
         },
         "1": {
@@ -77,7 +77,7 @@
             "tool_state": "{\"input_pc\": {\"__class__\": \"ConnectedValue\"}, \"__page__\": null, \"__rerun_remap_job_id__\": null}",
             "tool_version": "2.3",
             "type": "tool",
-            "uuid": "97322ce6-944d-483f-9b72-6ee689bfa882",
+            "uuid": "4266cf8c-4d31-4914-8f8f-0c9c2739c987",
             "workflow_outputs": []
         },
         "2": {
@@ -127,88 +127,65 @@
             "tool_state": "{\"filename\": {\"add_name\": \"false\", \"__current_case__\": 1}, \"input_list\": {\"__class__\": \"ConnectedValue\"}, \"one_header\": \"false\", \"__page__\": null, \"__rerun_remap_job_id__\": null}",
             "tool_version": "5.1.0",
             "type": "tool",
-            "uuid": "5d568261-86a5-4147-9fe1-a478aae0c3af",
+            "uuid": "810c713a-7b04-4819-a7ec-419174e223c2",
             "workflow_outputs": []
         },
         "3": {
             "annotation": "",
-            "content_id": "phants",
+            "content_id": "phantr",
             "errors": null,
             "id": 3,
             "input_connections": {
-                "phants_filenames": {
+                "phantr_filenames": {
                     "id": 2,
                     "output_name": "output"
                 }
             },
             "inputs": [],
             "label": null,
-            "name": "PHANtS",
+            "name": "PHANtR",
             "outputs": [
                 {
-                    "name": "phants_stat",
-                    "type": "html"
-                },
-                {
-                    "name": "phants_trend",
-                    "type": "csv"
+                    "name": "phantr_reports",
+                    "type": "zip"
                 }
             ],
             "position": {
-                "bottom": 283.6000061035156,
-                "height": 163.60000610351562,
+                "bottom": 234.8000030517578,
+                "height": 112.80000305175781,
                 "left": 915.2000122070312,
                 "right": 1115.2000122070312,
-                "top": 120,
+                "top": 122,
                 "width": 200,
                 "x": 915.2000122070312,
-                "y": 120
+                "y": 122
             },
             "post_job_actions": {
-                "ChangeDatatypeActionphants_stat": {
+                "ChangeDatatypeActionphantr_reports": {
                     "action_arguments": {
-                        "newtype": "txt"
+                        "newtype": "zip"
                     },
                     "action_type": "ChangeDatatypeAction",
-                    "output_name": "phants_stat"
+                    "output_name": "phantr_reports"
                 },
-                "ChangeDatatypeActionphants_trend": {
+                "RenameDatasetActionphantr_reports": {
                     "action_arguments": {
-                        "newtype": "csv"
-                    },
-                    "action_type": "ChangeDatatypeAction",
-                    "output_name": "phants_trend"
-                },
-                "RenameDatasetActionphants_stat": {
-                    "action_arguments": {
-                        "newname": "iridaaries.html"
+                        "newname": "reports.zip"
                     },
                     "action_type": "RenameDatasetAction",
-                    "output_name": "phants_stat"
-                },
-                "RenameDatasetActionphants_trend": {
-                    "action_arguments": {
-                        "newname": "iridaaries-trend.csv"
-                    },
-                    "action_type": "RenameDatasetAction",
-                    "output_name": "phants_trend"
+                    "output_name": "phantr_reports"
                 }
             },
-            "tool_id": "phants",
-            "tool_state": "{\"phants_filenames\": {\"__class__\": \"ConnectedValue\"}, \"species\": \"\", \"token\": \"\", \"__page__\": null, \"__rerun_remap_job_id__\": null}",
+            "tool_id": "phantr",
+            "tool_state": "{\"phantr_filenames\": {\"__class__\": \"ConnectedValue\"}, \"species\": \"\", \"__page__\": null, \"__rerun_remap_job_id__\": null}",
             "tool_version": "2.3",
             "type": "tool",
-            "uuid": "10043567-3e5b-40de-b56f-d81bdec1e012",
+            "uuid": "1032339b-e479-4cce-a2ec-dadbbfa84ce8",
             "workflow_outputs": [
                 {
-                    "label": null,
-                    "output_name": "phants_stat",
-                    "uuid": "1cfdd09d-8c1f-48cd-b39f-c7b6ad175970"
-                },
-                {
-                    "label": null,
-                    "output_name": "phants_trend",
-                    "uuid": "a0285a2b-c375-458c-9eb9-ec09b1667826"
+                    "label": "PHANtR on input dataset(s): reports",
+                    "output_name": "phantr_reports",
+                    "uuid": "f37ad6fd-0c6a-4536-9e38-8ff8e78b6e97"
                 }
             ]
         }
@@ -216,6 +193,6 @@
     "tags": [
         "IRIDA21"
     ],
-    "uuid": "49fb71c5-5c35-43e3-8d00-286ce229b277",
-    "version": 1
+    "uuid": "6f5bb66f-da04-4cf3-b456-6a3ee8792190",
+    "version": 2
 }
