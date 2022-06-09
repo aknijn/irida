@@ -42,6 +42,7 @@ public class IridaAnalysisTypesServiceConfig {
 		analysisTypesService.registerRunnableType(BuiltInAnalysisTypes.SNP_OBSERVER, "tree");
 		analysisTypesService.registerRunnableType(BuiltInAnalysisTypes.VIRULOTYPER);
 		analysisTypesService.registerRunnableType(BuiltInAnalysisTypes.SUMMARY);
+		analysisTypesService.registerRunnableType(BuiltInAnalysisTypes.REPORTS);
 		analysisTypesService.registerRunnableType(BuiltInAnalysisTypes.META_EXPORT);
 		analysisTypesService.registerRunnableType(BuiltInAnalysisTypes.GISAID);
 		analysisTypesService.registerRunnableType(BuiltInAnalysisTypes.CONSENSUS);

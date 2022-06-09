@@ -15,6 +15,9 @@
 				toolId="phantr"
 				parameterName="species" />
 		</parameter>
+		<parameter name="phantr_user" defaultValue="user">
+			<toolParameter toolId="phantr" parameterName="user" />
+		</parameter>
 	</parameters>
 	<outputs>
         <output name="reports" fileName="reports.zip"/>

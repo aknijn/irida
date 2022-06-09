@@ -108,6 +108,7 @@ public class AnalysisTypesServiceImpl implements AnalysisTypesService {
 		registerRunnableType(BuiltInAnalysisTypes.SNP_OBSERVER, "tree");
 		registerRunnableType(BuiltInAnalysisTypes.VIRULOTYPER);
 		registerRunnableType(BuiltInAnalysisTypes.SUMMARY);
+		registerRunnableType(BuiltInAnalysisTypes.REPORTS);
 		registerRunnableType(BuiltInAnalysisTypes.META_EXPORT);
 		registerRunnableType(BuiltInAnalysisTypes.GISAID);
 		registerRunnableType(BuiltInAnalysisTypes.CONSENSUS);
