@@ -20,14 +20,14 @@
             "name": "Input dataset collection",
             "outputs": [],
             "position": {
-                "bottom": 179.6999969482422,
+                "bottom": 139.6999969482422,
                 "height": 61.19999694824219,
                 "left": 130,
                 "right": 330,
-                "top": 118.5,
+                "top": 78.5,
                 "width": 200,
                 "x": 130,
-                "y": 118.5
+                "y": 78.5
             },
             "tool_id": null,
             "tool_state": "{\"optional\": false, \"collection_type\": \"list:paired\"}",
@@ -57,14 +57,14 @@
                 }
             ],
             "position": {
-                "bottom": 195.89999389648438,
+                "bottom": 155.89999389648438,
                 "height": 92.39999389648438,
                 "left": 408.3999938964844,
                 "right": 608.3999938964844,
-                "top": 103.5,
+                "top": 63.5,
                 "width": 200,
                 "x": 408.3999938964844,
-                "y": 103.5
+                "y": 63.5
             },
             "post_job_actions": {
                 "HideDatasetActionphants_filename": {
@@ -101,14 +101,14 @@
                 }
             ],
             "position": {
-                "bottom": 205.3000030517578,
+                "bottom": 165.3000030517578,
                 "height": 112.80000305175781,
                 "left": 686.7999877929688,
                 "right": 886.7999877929688,
-                "top": 92.5,
+                "top": 52.5,
                 "width": 200,
                 "x": 686.7999877929688,
-                "y": 92.5
+                "y": 52.5
             },
             "post_job_actions": {
                 "HideDatasetActionoutput": {
@@ -151,27 +151,45 @@
             "name": "PHANtR",
             "outputs": [
                 {
+                    "name": "phantr_list",
+                    "type": "csv"
+                },
+                {
                     "name": "phantr_reports",
                     "type": "zip"
                 }
             ],
             "position": {
-                "bottom": 227.3000030517578,
-                "height": 112.80000305175781,
+                "bottom": 236.10000610351562,
+                "height": 163.60000610351562,
                 "left": 965.2000122070312,
                 "right": 1165.2000122070312,
-                "top": 114.5,
+                "top": 72.5,
                 "width": 200,
                 "x": 965.2000122070312,
-                "y": 114.5
+                "y": 72.5
             },
             "post_job_actions": {
+                "ChangeDatatypeActionphantr_list": {
+                    "action_arguments": {
+                        "newtype": "csv"
+                    },
+                    "action_type": "ChangeDatatypeAction",
+                    "output_name": "phantr_list"
+                },
                 "ChangeDatatypeActionphantr_reports": {
                     "action_arguments": {
                         "newtype": "zip"
                     },
                     "action_type": "ChangeDatatypeAction",
                     "output_name": "phantr_reports"
+                },
+                "RenameDatasetActionphantr_list": {
+                    "action_arguments": {
+                        "newname": "report_list.csv"
+                    },
+                    "action_type": "RenameDatasetAction",
+                    "output_name": "phantr_list"
                 },
                 "RenameDatasetActionphantr_reports": {
                     "action_arguments": {
@@ -185,12 +203,17 @@
             "tool_state": "{\"phantr_filenames\": {\"__class__\": \"RuntimeValue\"}, \"species\": \"\", \"user\": \"\", \"__page__\": null, \"__rerun_remap_job_id__\": null}",
             "tool_version": "2.3",
             "type": "tool",
-            "uuid": "0a885cd4-43ca-405f-906a-5c25c0cac6c9",
+            "uuid": "8e2ab5bc-7bbe-4372-a62b-88a00f7f9e1d",
             "workflow_outputs": [
                 {
                     "label": "PHANtR on input dataset(s): reports",
                     "output_name": "phantr_reports",
-                    "uuid": "6a5c958b-5ca0-404b-82f9-6cfe9d1d3093"
+                    "uuid": "9e66bb6b-b304-43e4-b441-9d71c7532e5c"
+                },
+                {
+                    "label": "PHANtR on input dataset(s): list",
+                    "output_name": "phantr_list",
+                    "uuid": "2770fc18-0c46-4f2d-9f97-5759922fee2c"
                 }
             ]
         }
@@ -198,6 +221,6 @@
     "tags": [
         "IRIDA21"
     ],
-    "uuid": "48883abf-fe28-41dc-9e13-3a088615f826",
-    "version": 4
+    "uuid": "e1c12dad-c5b6-48a3-a70d-e576ce17c3bd",
+    "version": 6
 }

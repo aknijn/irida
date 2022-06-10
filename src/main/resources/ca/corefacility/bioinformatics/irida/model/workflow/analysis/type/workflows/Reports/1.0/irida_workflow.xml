@@ -20,7 +20,8 @@
 		</parameter>
 	</parameters>
 	<outputs>
-        <output name="reports" fileName="reports.zip"/>
+        <output name="phantr_list" fileName="report_list.csv"/>
+        <output name="phantr_reports" fileName="reports.zip"/>
 	</outputs>
 	<toolRepositories>
 		<repository>
