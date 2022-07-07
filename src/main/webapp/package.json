@@ -79,7 +79,7 @@
     "reactour": "^1.9.1",
     "redux": "4.0.1",
     "redux-saga": "^1.0.2",
-    "select2": "^3.5.1",
+    "select2": "^4.0.6",
     "showdown": "^1.9.1",
     "sortablejs": "^1.5.1",
     "styled-components": "^5.2.1",
