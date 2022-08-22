@@ -85,14 +85,15 @@
                             <div class="form-group"
                                  th:class="${#maps.containsKey(errors, 'isolationSource')} ? has-error">
                                 <label for="isolationSource" th:text="#{samples.isolation-source.title}">Source</label>
+                                <input type="text" class="form-control input-full" id="isolationSource" name="isolationSource"
+                                       th:value="${isolationSource} != null ? ${isolationSource} : ${sample.getIsolationSource()}"
+									   th:if="${sample.getOrganism()=='Shiga toxin-producing Escherichia coli' or ${sample.getOrganism()=='Listeria monocytogenes'" />
                                 <select class="form-control input-full" id="isolationSource" name="isolationSource"
-                                       th:value="${isolationSource} != null ? ${isolationSource} : ${sample.getIsolationSource()}" />
+                                       th:value="${isolationSource} != null ? ${isolationSource} : ${sample.getIsolationSource()}" 
+									   th:if="${sample.getOrganism()=='Coronavirus'" />
                                     <option value="unknown" th:selected="${sample.getIsolationSource()=='unknown'}"></option>
                                     <option value="Feci" th:selected="${sample.getIsolationSource()=='Feci'}" th:if="${sample.getOrganism()=='Shiga toxin-producing Escherichia coli'}">Feci</option>
                                     <option value="Sangue" th:selected="${sample.getIsolationSource()=='Sangue'}" th:if="${sample.getOrganism()=='Shiga toxin-producing Escherichia coli'}">Sangue</option>
-                                    <option value="Animale" th:selected="${sample.getIsolationSource()=='Animale'}" th:if="${sample.getOrganism()=='Shiga toxin-producing Escherichia coli'}">Animale</option>
-                                    <option value="Alimento" th:selected="${sample.getIsolationSource()=='Alimento'}" th:if="${sample.getOrganism()=='Shiga toxin-producing Escherichia coli'}">Alimento</option>
-                                    <option value="Ambiente" th:selected="${sample.getIsolationSource()=='Ambiente'}" th:if="${sample.getOrganism()=='Shiga toxin-producing Escherichia coli'}">Ambiente</option>
                                     <option value="Sangue" th:selected="${sample.getIsolationSource()=='Sangue'}" th:if="${sample.getOrganism()=='Listeria monocytogenes'}">Sangue</option>
                                     <option value="LCR" th:selected="${sample.getIsolationSource()=='LCR'}" th:if="${sample.getOrganism()=='Listeria monocytogenes'}">LCR</option>
                                     <option value="BAL" th:selected="${sample.getIsolationSource()=='BAL'}" th:if="${sample.getOrganism()=='Coronavirus'}">BAL</option>
@@ -212,6 +213,9 @@
                                     <option value="Diarrea" th:selected="${sample.getIsolate()=='Diarrea'}" th:if="${sample.getOrganism()=='Shiga toxin-producing Escherichia coli'}">Diarrea</option>
                                     <option value="Diarrea emorragica" th:selected="${sample.getIsolate()=='Diarrea emorragica'}" th:if="${sample.getOrganism()=='Shiga toxin-producing Escherichia coli'}">Diarrea emorragica</option>
                                     <option value="Familiare" th:selected="${sample.getIsolate()=='Familiare'}" th:if="${sample.getOrganism()=='Shiga toxin-producing Escherichia coli'}">Familiare</option>
+                                    <option value="Animale" th:selected="${sample.getIsolate()=='Animale'}" th:if="${sample.getOrganism()=='Shiga toxin-producing Escherichia coli'}">Animale</option>
+                                    <option value="Alimento" th:selected="${sample.getIsolate()=='Alimento'}" th:if="${sample.getOrganism()=='Shiga toxin-producing Escherichia coli'}">Alimento</option>
+                                    <option value="Ambiente" th:selected="${sample.getIsolate()=='Ambiente'}" th:if="${sample.getOrganism()=='Shiga toxin-producing Escherichia coli'}">Ambiente</option>
                                 </select>
                                 <span id="isolate-error" th:if="${#maps.containsKey(errors, 'isolate')}" class="help-block" th:text="${errors.isolate}"></span>
                             </div>
