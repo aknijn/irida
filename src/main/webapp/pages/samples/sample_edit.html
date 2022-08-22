@@ -90,7 +90,7 @@
 									   th:if="${sample.getOrganism()=='Shiga toxin-producing Escherichia coli' or sample.getOrganism()=='Listeria monocytogenes'}" />
                                 <select class="form-control input-full" id="isolationSource" name="isolationSource"
                                        th:value="${isolationSource} != null ? ${isolationSource} : ${sample.getIsolationSource()}" 
-									   th:if="${sample.getOrganism()=='Coronavirus'" />
+									   th:if="${sample.getOrganism()=='Coronavirus'}" />
                                     <option value="unknown" th:selected="${sample.getIsolationSource()=='unknown'}"></option>
                                     <option value="Feci" th:selected="${sample.getIsolationSource()=='Feci'}" th:if="${sample.getOrganism()=='Shiga toxin-producing Escherichia coli'}">Feci</option>
                                     <option value="Sangue" th:selected="${sample.getIsolationSource()=='Sangue'}" th:if="${sample.getOrganism()=='Shiga toxin-producing Escherichia coli'}">Sangue</option>
