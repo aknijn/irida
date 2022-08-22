@@ -87,7 +87,7 @@
                                 <label for="isolationSource" th:text="#{samples.isolation-source.title}">Source</label>
                                 <input type="text" class="form-control input-full" id="isolationSource" name="isolationSource"
                                        th:value="${isolationSource} != null ? ${isolationSource} : ${sample.getIsolationSource()}"
-									   th:if="${sample.getOrganism()=='Shiga toxin-producing Escherichia coli' or ${sample.getOrganism()=='Listeria monocytogenes'" />
+									   th:if="${sample.getOrganism()=='Shiga toxin-producing Escherichia coli' or ${sample.getOrganism()=='Listeria monocytogenes'}" />
                                 <select class="form-control input-full" id="isolationSource" name="isolationSource"
                                        th:value="${isolationSource} != null ? ${isolationSource} : ${sample.getIsolationSource()}" 
 									   th:if="${sample.getOrganism()=='Coronavirus'" />
