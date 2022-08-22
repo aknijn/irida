@@ -91,11 +91,6 @@
                                 <select class="form-control input-full" id="isolationSource" name="isolationSource"
                                        th:value="${isolationSource} != null ? ${isolationSource} : ${sample.getIsolationSource()}" 
 									   th:if="${sample.getOrganism()=='Coronavirus'}" />
-                                    <option value="unknown" th:selected="${sample.getIsolationSource()=='unknown'}"></option>
-                                    <option value="Feci" th:selected="${sample.getIsolationSource()=='Feci'}" th:if="${sample.getOrganism()=='Shiga toxin-producing Escherichia coli'}">Feci</option>
-                                    <option value="Sangue" th:selected="${sample.getIsolationSource()=='Sangue'}" th:if="${sample.getOrganism()=='Shiga toxin-producing Escherichia coli'}">Sangue</option>
-                                    <option value="Sangue" th:selected="${sample.getIsolationSource()=='Sangue'}" th:if="${sample.getOrganism()=='Listeria monocytogenes'}">Sangue</option>
-                                    <option value="LCR" th:selected="${sample.getIsolationSource()=='LCR'}" th:if="${sample.getOrganism()=='Listeria monocytogenes'}">LCR</option>
                                     <option value="BAL" th:selected="${sample.getIsolationSource()=='BAL'}" th:if="${sample.getOrganism()=='Coronavirus'}">BAL</option>
                                     <option value="Tampone nasofaringeo" th:selected="${sample.getIsolationSource()=='Tampone nasofaringeo'}" th:if="${sample.getOrganism()=='Coronavirus'}">Tampone nasofaringeo</option>
                                     <option value="Tampone oculare" th:selected="${sample.getIsolationSource()=='Tampone oculare'}" th:if="${sample.getOrganism()=='Coronavirus'}">Tampone oculare</option>
