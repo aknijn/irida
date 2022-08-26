@@ -291,7 +291,7 @@
                                 </div>
                             </div>
                         </fieldset>
-                        <fieldset id="other-metadata" th:if="${hasAnyRole('ROLE_ADMIN')}">
+                        <fieldset id="other-metadata" th:if="${sample.getOrganism()=='Shiga toxin-producing Escherichia coli'}">
                             <legend th:text="#{sample.metadata.other}">_Other Metadata_</legend>
                             <div class="row" id="metadata-fields">
                                 <div th:unless="${#sets.isEmpty(metadata)}">
