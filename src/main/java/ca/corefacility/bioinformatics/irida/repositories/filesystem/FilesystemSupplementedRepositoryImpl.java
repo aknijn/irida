@@ -166,7 +166,7 @@ public abstract class FilesystemSupplementedRepositoryImpl<Type extends Versione
 			logger.trace("file has never been saved before, writing to database.");
 			// save the initial version of the file to the database so that we
 			// get an identifier attached to it.
-			//entityManager.persist(entity);
+			entityManager.persist(entity);
 		}
 		logger.trace("About to write files to disk.");
 		writeFilesToDisk(baseDirectory, entity);
