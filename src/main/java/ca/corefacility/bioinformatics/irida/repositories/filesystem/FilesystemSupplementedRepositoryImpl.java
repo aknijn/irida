@@ -161,16 +161,16 @@ public abstract class FilesystemSupplementedRepositoryImpl<Type extends Versione
 	 * @return the persisted entity.
 	 */
 	protected Type saveInternal(final Type entity) {
-		logger.trace("In write internal, before doing any persisting.");
+		logger.debug("In write internal, before doing any persisting.");
 		if (entity.getId() == null) {
-			logger.trace("file has never been saved before, writing to database.");
+			logger.debug("file has never been saved before, writing to database.");
 			// save the initial version of the file to the database so that we
 			// get an identifier attached to it.
 			entityManager.persist(entity);
 		}
-		logger.trace("About to write files to disk.");
+		logger.debug("About to write files to disk.");
 		writeFilesToDisk(baseDirectory, entity);
-		logger.trace("Returning merged entity.");
+		logger.debug("Returning merged entity.");
 		return entityManager.merge(entity);
 	}
 	
