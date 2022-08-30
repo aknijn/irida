@@ -19,26 +19,18 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-// import org.springframework.core.env.Environment;
-
 @Controller
 public class SEU {
-    // private Environment environment;
-	private @Value("${sqlserver.seu.cnstr}") String CN_STRING_SEU;
 	private @Value("${sqlserver.stec.cnstr}") String CN_STRING_STEC;
-	private @Value("${ngsarchive.linker.script}") String LINKER_SCRIPT;
 	private static final Logger logger = LoggerFactory.getLogger(SEU.class);
 
-	@Autowired
 	public Map<String, String> getData(String strainID) throws SQLException {
+    	private @Value("${sqlserver.seu.cnstr}") String CN_STRING_SEU;
         Map<String, String> SEUmap = new HashMap<String, String>();
 		try { Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); 
         } catch ( ClassNotFoundException ex ) {
 			logger.warn("Attempt to load class failed.", ex);
 		}
-		logger.debug("sqlserver.seu.cnstr " + CN_STRING_SEU);
-		logger.debug("sqlserver.stec.cnstr " + CN_STRING_STEC);
-		logger.debug("ngsarchive.linker.script " + LINKER_SCRIPT);
         //final String connectionUrl = environment.getProperty("seu.seu.cnstr");
         try (Connection con = DriverManager.getConnection(CN_STRING_SEU); Statement stmt = con.createStatement();) {
             String SQL = "SELECT TOP 1 * FROM ForIRIDAView WHERE Ceppo = '" + strainID + "' ORDER BY idCampioneVTECFeci";
