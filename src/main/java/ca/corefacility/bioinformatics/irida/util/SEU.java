@@ -16,10 +16,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Profile;
-import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
+@Service
 public class SEU {
 	private @Value("${sqlserver.seu.cnstr}") String CN_STRING_SEU;
 	private @Value("${sqlserver.stec.cnstr}") String CN_STRING_STEC;

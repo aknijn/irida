@@ -40,13 +40,15 @@ public class UIProjectSampleService {
 	private final ProjectService projectService;
 	private final SampleService sampleService;
 	private final MessageSource messageSource;
+	private final SEU seu;
 
 	@Autowired
 	public UIProjectSampleService(ProjectService projectService, SampleService sampleService,
-			MessageSource messageSource) {
+			MessageSource messageSource, SEU seu) {
 		this.projectService = projectService;
 		this.sampleService = sampleService;
 		this.messageSource = messageSource;
+		this.seu = seu;
 	}
 
 	/**
@@ -115,7 +117,7 @@ public class UIProjectSampleService {
 				if (sample.getOrganism().equals("Shiga toxin-producing Escherichia coli")) {
 					logger.debug("Adding information from SEU database");
 					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-					SEU seu = new SEU();
+					//SEU seu = new SEU();
 					Map<String, String> SEUmap = seu.getData(sample.getSampleName());
 					if (SEUmap.get("DataEsordio") != null) { sample.setCollectionDate(sdf.parse(SEUmap.get("DataEsordio"))); }
 					if (SEUmap.get("Ospedale") != null) { sample.setCollectedBy(SEUmap.get("Ospedale")); logger.debug("Ospedale: " + SEUmap.get("Ospedale"));}
