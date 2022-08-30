@@ -31,7 +31,6 @@ public class SEU {
         } catch ( ClassNotFoundException ex ) {
 			logger.warn("Attempt to load class failed.", ex);
 		}
-        //final String connectionUrl = environment.getProperty("seu.seu.cnstr");
         try (Connection con = DriverManager.getConnection(CN_STRING_SEU); Statement stmt = con.createStatement();) {
             String SQL = "SELECT TOP 1 * FROM ForIRIDAView WHERE Ceppo = '" + strainID + "' ORDER BY idCampioneVTECFeci";
             ResultSet rs = stmt.executeQuery(SQL);
@@ -56,19 +55,23 @@ public class SEU {
         } catch ( ClassNotFoundException ex ) {
 			logger.warn("Attempt to load class failed.", ex);
 		}
-		logger.debug("seu.stec.cnstr " + CN_STRING_STEC);
-        //final String connectionUrl = environment.getProperty("seu.stec.cnstr");
         try (Connection con = DriverManager.getConnection(CN_STRING_STEC); Statement stmt = con.createStatement();) {
             String SQL = "SELECT TOP 1 * FROM ForIRIDAView WHERE ISS_ID = '" + strainID + "'";
             ResultSet rs = stmt.executeQuery(SQL);
             if (rs.next()) {
 				STECmap.put("DateOfSampling", rs.getString("DateOfSampling"));
-				STECmap.put("sampArea", rs.getString("sampArea"));
-				STECmap.put("sampInfo", rs.getString("sampInfo"));
+				STECmap.put("DateOfReceiptReferenceLab", rs.getString("DateOfReceiptReferenceLab"));
+				STECmap.put("Sender", rs.getString("Sender"));
+				STECmap.put("sampId", rs.getString("sampId"));
+				//STECmap.put("SampleOrigin", rs.getString("SampleOrigin"));
+				STECmap.put("Regione", rs.getString("Regione"));
 			} else {
-				STECmap.put("DataEsordio", null);
-				STECmap.put("sampArea", null);
-				STECmap.put("sampInfo", null);
+				STECmap.put("DateOfSampling", null);
+				STECmap.put("DateOfReceiptReferenceLab", null);
+				STECmap.put("Sender", null);
+				STECmap.put("sampId", null);
+				//STECmap.put("SampleOrigin", null);
+				STECmap.put("Regione", null);
 			}
             return STECmap;
         }

@@ -112,19 +112,25 @@ public class UIProjectSampleService {
 			else { // ISS force project organism
 				sample.setOrganism(project.getOrganism());
 			}
-			//ISS collegamento con SEU
+			//ISS collegamento con SEU/STEC
 			try {
 				if (sample.getOrganism().equals("Shiga toxin-producing Escherichia coli")) {
 					logger.debug("Adding information from SEU database");
 					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-					//SEU seu = new SEU();
 					Map<String, String> SEUmap = seu.getData(sample.getSampleName());
 					if (SEUmap.get("DataEsordio") != null) { sample.setCollectionDate(sdf.parse(SEUmap.get("DataEsordio"))); }
-					if (SEUmap.get("Ospedale") != null) { sample.setCollectedBy(SEUmap.get("Ospedale")); logger.debug("Ospedale: " + SEUmap.get("Ospedale"));}
+					if (SEUmap.get("Ospedale") != null) { sample.setCollectedBy(SEUmap.get("Ospedale"));}
 					if (SEUmap.get("Regione") != null) { sample.setGeographicLocationName(SEUmap.get("Regione")); }
 					if (SEUmap.get("Provincia") != null) { sample.setGeographicLocationName2(SEUmap.get("Provincia")); }
 					if (SEUmap.get("Comune") != null) { sample.setGeographicLocationName3(SEUmap.get("Comune")); }
 					else { if (SEUmap.get("Localita") != null) { sample.setGeographicLocationName3(SEUmap.get("Localita")); } }
+					Map<String, String> STECmap = seu.getSTECData(sample.getSampleName());
+					if (STECmap.get("DateOfSampling") != null) { sample.setCollectionDate(sdf.parse(STECmap.get("DateOfSampling"))); }
+					if (STECmap.get("DateOfReceiptReferenceLab") != null) { sample.setArrivalDate(sdf.parse(STECmap.get("DateOfReceiptReferenceLab"))); }
+					if (STECmap.get("Sender") != null) { sample.setCollectedBy(STECmap.get("Sender"));}
+					if (STECmap.get("sampId") != null) { sample.setStrain(STECmap.get("sampId")); }
+					//if (STECmap.get("SampleOrigin") != null) { sample.setIsolationSource(STECmap.get("SampleOrigin")); }
+					if (STECmap.get("Regione") != null) { sample.setGeographicLocationName(STECmap.get("Regione")); }
 				}
 			} catch (SQLException ex) {
 				logger.warn("Attempt to connect to SQL database failed", ex);
