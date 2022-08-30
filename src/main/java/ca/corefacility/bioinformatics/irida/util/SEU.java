@@ -20,24 +20,24 @@ import org.springframework.context.annotation.Profile;
 
 public class SEU {
 
-	// @Autowired
     // private Environment environment;
 
 	private static final Logger logger = LoggerFactory.getLogger(SEU.class);
-	private @Value("${seu.seu.cnstr}") String CN_STR_SEU;
-	private @Value("${seu.stec.cnstr}") String CN_STR_STEC;
-	private @Value("${ngsarchive.linker.script}") String LINKER_SCRIPT;
+	@Value("${seu.seu.cnstr}") String CN_STRING_SEU;
+	@Value("${seu.stec.cnstr}") String CN_STRING_STEC;
+	@Value("${ngsarchive.linker.script}") String LINKER_SCRIPT;
 
+	@Autowired
 	public Map<String, String> getData(String strainID) throws SQLException {
         Map<String, String> SEUmap = new HashMap<String, String>();
 		try { Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); 
         } catch ( ClassNotFoundException ex ) {
 			logger.warn("Attempt to load class failed.", ex);
 		}
-		logger.debug("seu.seu.cnstr " + CN_STR_SEU);
+		logger.debug("seu.seu.cnstr " + CN_STRING_SEU);
 		logger.debug("ngsarchive.linker.script " + LINKER_SCRIPT);
         //final String connectionUrl = environment.getProperty("seu.seu.cnstr");
-        try (Connection con = DriverManager.getConnection(CN_STR_SEU); Statement stmt = con.createStatement();) {
+        try (Connection con = DriverManager.getConnection(CN_STRING_SEU); Statement stmt = con.createStatement();) {
             String SQL = "SELECT TOP 1 * FROM ForIRIDAView WHERE Ceppo = '" + strainID + "' ORDER BY idCampioneVTECFeci";
             ResultSet rs = stmt.executeQuery(SQL);
             if (rs.next()) {
@@ -61,9 +61,9 @@ public class SEU {
         } catch ( ClassNotFoundException ex ) {
 			logger.warn("Attempt to load class failed.", ex);
 		}
-		logger.debug("seu.stec.cnstr " + CN_STR_STEC);
+		logger.debug("seu.stec.cnstr " + CN_STRING_STEC);
         //final String connectionUrl = environment.getProperty("seu.stec.cnstr");
-        try (Connection con = DriverManager.getConnection(CN_STR_STEC); Statement stmt = con.createStatement();) {
+        try (Connection con = DriverManager.getConnection(CN_STRING_STEC); Statement stmt = con.createStatement();) {
             String SQL = "SELECT TOP 1 * FROM ForIRIDAView WHERE ISS_ID = '" + strainID + "'";
             ResultSet rs = stmt.executeQuery(SQL);
             if (rs.next()) {
