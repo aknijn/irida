@@ -25,12 +25,17 @@ import ca.corefacility.bioinformatics.irida.util.SEU;
 import java.text.SimpleDateFormat;
 import java.text.ParseException;
 import java.sql.SQLException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import java.util.*;
 
 /**
  * UI Service to handle samples within a project.
  */
 @Component
 public class UIProjectSampleService {
+
+	private static final Logger logger = LoggerFactory.getLogger(UIProjectSampleService.class);
 
 	private final ProjectService projectService;
 	private final SampleService sampleService;
