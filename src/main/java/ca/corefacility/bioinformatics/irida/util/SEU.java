@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.*;
 public class SEU {
     // private Environment environment;
 	static @Value("${sqlserver.seu.cnstr}") String CN_STRING_SEU;
-	static @Value("${sqlserver.stec.cnstr}") String CN_STRING_STEC;
+	static @Value("${ncbi.upload.namespace}") String CN_STRING_STEC;
 	private @Value("${ngsarchive.linker.script}") String LINKER_SCRIPT;
 	private static final Logger logger = LoggerFactory.getLogger(SEU.class);
 
@@ -37,7 +37,7 @@ public class SEU {
 			logger.warn("Attempt to load class failed.", ex);
 		}
 		logger.debug("sqlserver.seu.cnstr " + CN_STRING_SEU);
-		logger.debug("sqlserver.stec.cnstr " + CN_STRING_STEC);
+		logger.debug("ncbi.upload.namespace " + CN_STRING_STEC);
 		logger.debug("ngsarchive.linker.script " + LINKER_SCRIPT);
         //final String connectionUrl = environment.getProperty("seu.seu.cnstr");
         try (Connection con = DriverManager.getConnection(CN_STRING_SEU); Statement stmt = con.createStatement();) {
