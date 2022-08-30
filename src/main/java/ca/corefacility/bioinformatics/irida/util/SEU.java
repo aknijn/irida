@@ -18,23 +18,24 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Profile;
 // import org.springframework.core.env.Environment;
 
+@Controller
 public class SEU {
 
     // private Environment environment;
 
 	private static final Logger logger = LoggerFactory.getLogger(SEU.class);
-	// @Value("${seu.seu.cnstr}") String CN_STRING_SEU;
+	@Value("${seu.seu.cnstr}") String CN_STRING_SEU;
 	@Value("${seu.stec.cnstr}") static String CN_STRING_STEC;
 
 	@Autowired
 	public Map<String, String> getData(String strainID) throws SQLException {
-        @Value("${seu.seu.cnstr}") String CN_STRING_SEU;
         Map<String, String> SEUmap = new HashMap<String, String>();
 		try { Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); 
         } catch ( ClassNotFoundException ex ) {
 			logger.warn("Attempt to load class failed.", ex);
 		}
 		logger.debug("seu.seu.cnstr " + CN_STRING_SEU);
+		logger.debug("seu.stec.cnstr " + CN_STRING_STEC);
         //final String connectionUrl = environment.getProperty("seu.seu.cnstr");
         try (Connection con = DriverManager.getConnection(CN_STRING_SEU); Statement stmt = con.createStatement();) {
             String SQL = "SELECT TOP 1 * FROM ForIRIDAView WHERE Ceppo = '" + strainID + "' ORDER BY idCampioneVTECFeci";
