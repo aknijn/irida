@@ -20,12 +20,12 @@ import org.springframework.core.env.Environment;
 
 public class SEU {
 
-	@Autowired
-    private Environment environment;
+	// @Autowired
+    // private Environment environment;
 
 	private static final Logger logger = LoggerFactory.getLogger(SEU.class);
-	private @Value("${seu.seu.cnstr}") String cnstrSEU;
-	private @Value("${seu.stec.cnstr}") String cnstrSTEC;
+	private @Value("${seu.seu.cnstr}") String CN_STR_SEU;
+	private @Value("${seu.stec.cnstr}") String CN_STR_STEC;
 
 	public Map<String, String> getData(String strainID) throws SQLException {
         Map<String, String> SEUmap = new HashMap<String, String>();
@@ -33,8 +33,9 @@ public class SEU {
         } catch ( ClassNotFoundException ex ) {
 			logger.warn("Attempt to load class failed.", ex);
 		}
+		logger.debug("seu.seu.cnstr" + CN_STR_SEU);
         //final String connectionUrl = environment.getProperty("seu.seu.cnstr");
-        try (Connection con = DriverManager.getConnection(cnstrSEU); Statement stmt = con.createStatement();) {
+        try (Connection con = DriverManager.getConnection(CN_STR_SEU); Statement stmt = con.createStatement();) {
             String SQL = "SELECT TOP 1 * FROM ForIRIDAView WHERE Ceppo = '" + strainID + "' ORDER BY idCampioneVTECFeci";
             ResultSet rs = stmt.executeQuery(SQL);
             if (rs.next()) {
@@ -58,8 +59,9 @@ public class SEU {
         } catch ( ClassNotFoundException ex ) {
 			logger.warn("Attempt to load class failed.", ex);
 		}
+		logger.debug("seu.stec.cnstr" + CN_STR_STEC);
         //final String connectionUrl = environment.getProperty("seu.stec.cnstr");
-        try (Connection con = DriverManager.getConnection(cnstrSTEC); Statement stmt = con.createStatement();) {
+        try (Connection con = DriverManager.getConnection(CN_STR_STEC); Statement stmt = con.createStatement();) {
             String SQL = "SELECT TOP 1 * FROM ForIRIDAView WHERE ISS_ID = '" + strainID + "'";
             ResultSet rs = stmt.executeQuery(SQL);
             if (rs.next()) {
