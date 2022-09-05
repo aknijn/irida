@@ -9,6 +9,17 @@
 		<sequenceReadsPaired>input_collection</sequenceReadsPaired>
 		<requiresSingleSample>false</requiresSingleSample>
 	</inputs>
+	<parameters>
+		<parameter name="phante_species" defaultValue="Escherichia coli">
+			<toolParameter toolId="phante" parameterName="species" />
+		</parameter>
+		<parameter name="phante_user" defaultValue="user">
+			<toolParameter toolId="phante" parameterName="user" />
+		</parameter>
+	</parameters>
+	<outputs>
+        <output name="phante_csv" fileName="iridaaries-export.csv"/>
+	</outputs>
 	<toolRepositories>
 		<repository>
 		  <name>collapse_collections</name>

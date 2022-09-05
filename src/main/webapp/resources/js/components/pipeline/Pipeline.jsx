@@ -67,6 +67,7 @@ export default class Pipeline extends React.Component {
     let pipelineUrl = this.url;
     if (this.props.automatedProject !== null) {
       pipelineUrl = `${pipelineUrl}&automatedProject=${this.props.automatedProject}`;
+	  if (this.props.id == '9d8dd9c3-56cb-4423-8ce8-8972f7a91ee3') { pipelineUrl = `https://aries.iss.it/tool_runner/data_source_redirect?tool_id=iridaph_import`; }
     }
     return (
       <PipelineCard
