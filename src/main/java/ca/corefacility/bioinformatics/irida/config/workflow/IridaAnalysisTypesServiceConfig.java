@@ -44,6 +44,7 @@ public class IridaAnalysisTypesServiceConfig {
 		analysisTypesService.registerRunnableType(BuiltInAnalysisTypes.SUMMARY);
 		analysisTypesService.registerRunnableType(BuiltInAnalysisTypes.REPORTS);
 		analysisTypesService.registerRunnableType(BuiltInAnalysisTypes.META_EXPORT);
+		analysisTypesService.registerRunnableType(BuiltInAnalysisTypes.ARIES_EXPORT);
 		analysisTypesService.registerRunnableType(BuiltInAnalysisTypes.GISAID);
 		analysisTypesService.registerRunnableType(BuiltInAnalysisTypes.CONSENSUS);
 		analysisTypesService.registerRunnableType(BuiltInAnalysisTypes.ASSEMBLY_ANNOTATION);

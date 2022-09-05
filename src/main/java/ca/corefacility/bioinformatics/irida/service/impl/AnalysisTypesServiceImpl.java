@@ -110,6 +110,7 @@ public class AnalysisTypesServiceImpl implements AnalysisTypesService {
 		registerRunnableType(BuiltInAnalysisTypes.SUMMARY);
 		registerRunnableType(BuiltInAnalysisTypes.REPORTS);
 		registerRunnableType(BuiltInAnalysisTypes.META_EXPORT);
+		registerRunnableType(BuiltInAnalysisTypes.ARIES_EXPORT);
 		registerRunnableType(BuiltInAnalysisTypes.GISAID);
 		registerRunnableType(BuiltInAnalysisTypes.CONSENSUS);
 		registerRunnableType(BuiltInAnalysisTypes.ASSEMBLY_ANNOTATION);

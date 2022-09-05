@@ -26,6 +26,8 @@ public class BuiltInAnalysisTypes {
 
 	public static final AnalysisType META_EXPORT = new AnalysisType("META_EXPORT");
 
+	public static final AnalysisType ARIES_EXPORT = new AnalysisType("ARIES_EXPORT");
+
 	public static final AnalysisType GISAID = new AnalysisType("GISAID");
 
 	public static final AnalysisType CONSENSUS = new AnalysisType("CONSENSUS");
