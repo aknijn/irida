@@ -16,6 +16,8 @@ public class BuiltInAnalysisTypes {
 
 	public static final AnalysisType ALLELE_OBSERVER = new AnalysisType("ALLELE_OBSERVER");
 
+	public static final AnalysisType MST_OBSERVER = new AnalysisType("MST_OBSERVER");
+
 	public static final AnalysisType SNP_OBSERVER = new AnalysisType("SNP_OBSERVER");
 
 	public static final AnalysisType VIRULOTYPER = new AnalysisType("VIRULOTYPER");
@@ -25,6 +27,8 @@ public class BuiltInAnalysisTypes {
 	public static final AnalysisType REPORTS = new AnalysisType("REPORTS");
 
 	public static final AnalysisType META_EXPORT = new AnalysisType("META_EXPORT");
+
+	public static final AnalysisType MLST_EXPORT = new AnalysisType("MLST_EXPORT");
 
 	public static final AnalysisType ARIES_EXPORT = new AnalysisType("ARIES_EXPORT");
 

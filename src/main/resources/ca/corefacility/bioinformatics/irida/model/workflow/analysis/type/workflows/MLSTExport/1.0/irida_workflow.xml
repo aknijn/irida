@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<iridaWorkflow>
+	<id>b688ed61-35d8-48c9-b9f3-169338931c8d</id>
+	<name>MLSTExport</name>
+	<version>1.0</version>
+	<analysisType>MLST_EXPORT</analysisType>
+	<inputs>
+		<sequenceReadsPaired>input_collection</sequenceReadsPaired>
+		<requiresSingleSample>false</requiresSingleSample>
+	</inputs>
+	<parameters>
+		<parameter name="phantc-pre_species" defaultValue="Escherichia coli">
+			<toolParameter
+				toolId="phantc-pre"
+				parameterName="species" />
+		</parameter>
+		<parameter name="phantc_species" defaultValue="Escherichia coli">
+			<toolParameter
+				toolId="phantc"
+				parameterName="species" />
+		</parameter>
+	</parameters>
+	<outputs>
+		<output name="hashprofiles" fileName="hashprofiles.tsv"/>
+	</outputs>
+	<toolRepositories>
+		<repository>
+		  <name>collapse_collections</name>
+		  <owner>nml</owner>
+		  <url>https://irida.corefacility.ca/galaxy-shed</url>
+		  <revision>7e5a39b5dad3</revision>
+		</repository>
+	</toolRepositories>
+</iridaWorkflow>

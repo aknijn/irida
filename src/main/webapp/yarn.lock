@@ -23,13 +23,13 @@
     "@jridgewell/gen-mapping" "^0.1.0"
     "@jridgewell/trace-mapping" "^0.3.9"
 
-"@ant-design/charts@^1.1.1":
-  version "1.3.6"
-  resolved "https://registry.yarnpkg.com/@ant-design/charts/-/charts-1.3.6.tgz#edf652c89ca3edd75e0caa07347b957ef608fc66"
+"@ant-design/charts@^1.4.2":
+  version "1.4.2"
+  resolved "https://registry.yarnpkg.com/@ant-design/charts/-/charts-1.4.2.tgz#409d9d2205390f46c9942dd2ba3152629d214700"
   dependencies:
     "@ant-design/flowchart" "^1.0.2"
     "@ant-design/graphs" "^1.0.1"
-    "@ant-design/maps" "^0.0.3"
+    "@ant-design/maps" "^1.0.1"
     "@ant-design/plots" "^1.0.2"
 
 "@ant-design/colors@^4.0.5":
@@ -78,11 +78,11 @@
     classnames "^2.2.6"
     rc-util "^5.9.4"
 
-"@ant-design/maps@^0.0.3":
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/@ant-design/maps/-/maps-0.0.3.tgz#4c3082ace87ee8b819f0db83173b78532cb7ce5a"
+"@ant-design/maps@^1.0.1":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@ant-design/maps/-/maps-1.0.4.tgz#c6c635886b6209626d8ac178b32b14ff691bd0b0"
   dependencies:
-    "@antv/l7plot" "^0.0.3-alpha.5"
+    "@antv/l7plot" "~0.0.8"
     "@antv/util" "^2.0.9"
     react-content-loader "^5.0.4"
 
@@ -372,12 +372,12 @@
   dependencies:
     "@antv/util" "^2.0.7"
 
-"@antv/l7-component@2.9.11":
-  version "2.9.11"
-  resolved "https://registry.yarnpkg.com/@antv/l7-component/-/l7-component-2.9.11.tgz#4a2ad0d68fee8aadfa90aabec53cb05b6d33783c"
+"@antv/l7-component@2.9.26":
+  version "2.9.26"
+  resolved "https://registry.yarnpkg.com/@antv/l7-component/-/l7-component-2.9.26.tgz#65d9430093d90833347ac7bee288ddccf0e46dd6"
   dependencies:
-    "@antv/l7-core" "2.9.11"
-    "@antv/l7-utils" "2.9.11"
+    "@antv/l7-core" "2.9.26"
+    "@antv/l7-utils" "2.9.26"
     "@babel/runtime" "^7.7.7"
     eventemitter3 "^4.0.0"
     inversify "^5.0.1"
@@ -385,13 +385,14 @@
     reflect-metadata "^0.1.13"
     supercluster "^7.0.0"
 
-"@antv/l7-core@2.9.11":
-  version "2.9.11"
-  resolved "https://registry.yarnpkg.com/@antv/l7-core/-/l7-core-2.9.11.tgz#f1eba387ffc4d0f527ee78469c7f37240ffc3834"
+"@antv/l7-core@2.9.26":
+  version "2.9.26"
+  resolved "https://registry.yarnpkg.com/@antv/l7-core/-/l7-core-2.9.26.tgz#f47128a492029f792d9e8c7a0ff5f8a2febf5aa3"
   dependencies:
     "@antv/async-hook" "^2.1.0"
-    "@antv/l7-utils" "2.9.11"
+    "@antv/l7-utils" "2.9.26"
     "@babel/runtime" "^7.7.7"
+    "@turf/helpers" "^6.1.4"
     ajv "^6.10.2"
     element-resize-event "^3.0.3"
     eventemitter3 "^4.0.0"
@@ -404,21 +405,24 @@
     reflect-metadata "^0.1.13"
     viewport-mercator-project "^6.2.1"
 
-"@antv/l7-layers@2.9.11":
-  version "2.9.11"
-  resolved "https://registry.yarnpkg.com/@antv/l7-layers/-/l7-layers-2.9.11.tgz#2b9f19f76c7ade531f4ea824e3114bce1e7c8a89"
+"@antv/l7-layers@2.9.26":
+  version "2.9.26"
+  resolved "https://registry.yarnpkg.com/@antv/l7-layers/-/l7-layers-2.9.26.tgz#621b82350fbdeabcb0bac9d7ed31c4619b329c42"
   dependencies:
-    "@antv/l7-core" "2.9.11"
-    "@antv/l7-source" "2.9.11"
-    "@antv/l7-utils" "2.9.11"
+    "@antv/async-hook" "^2.1.0"
+    "@antv/l7-core" "2.9.26"
+    "@antv/l7-maps" "2.9.26"
+    "@antv/l7-source" "2.9.26"
+    "@antv/l7-utils" "2.9.26"
     "@babel/runtime" "^7.7.7"
     "@mapbox/martini" "^0.2.0"
     "@turf/helpers" "^6.1.4"
     "@turf/meta" "^6.0.2"
+    "@turf/polygon-to-line" "^6.5.0"
     "@turf/union" "^6.5.0"
     d3-array "1"
     d3-color "^1.4.0"
-    d3-interpolate "1.0.0"
+    d3-interpolate "1.4.0"
     d3-scale "2"
     earcut "^2.2.1"
     eventemitter3 "^4.0.0"
@@ -427,29 +431,29 @@
     gl-vec2 "^1.3.0"
     inversify "^5.0.1"
     lodash "^4.17.15"
-    merge-json-schemas "1.0.0"
     polyline-miter-util "^1.0.1"
     reflect-metadata "^0.1.13"
 
-"@antv/l7-map@2.9.11":
-  version "2.9.11"
-  resolved "https://registry.yarnpkg.com/@antv/l7-map/-/l7-map-2.9.11.tgz#d27bf792e0a6afa078088a9135514af83c059799"
+"@antv/l7-map@2.9.26":
+  version "2.9.26"
+  resolved "https://registry.yarnpkg.com/@antv/l7-map/-/l7-map-2.9.26.tgz#11aef56c6e7f32ccab0cba8a4e40b697ad40b875"
   dependencies:
-    "@antv/l7-utils" "2.9.11"
+    "@antv/l7-utils" "2.9.26"
     "@babel/runtime" "^7.7.7"
     "@mapbox/point-geometry" "^0.1.0"
     "@mapbox/unitbezier" "^0.0.0"
     eventemitter3 "^4.0.4"
+    gl-matrix "^3.1.0"
     lodash "^4.17.15"
 
-"@antv/l7-maps@2.9.11":
-  version "2.9.11"
-  resolved "https://registry.yarnpkg.com/@antv/l7-maps/-/l7-maps-2.9.11.tgz#4ba955f12fdec70356a55098f220b0cb63584843"
+"@antv/l7-maps@2.9.26":
+  version "2.9.26"
+  resolved "https://registry.yarnpkg.com/@antv/l7-maps/-/l7-maps-2.9.26.tgz#8f0dc9729a112eae81199a57bf5e281ed2d7e2c0"
   dependencies:
     "@amap/amap-jsapi-loader" "^0.0.3"
-    "@antv/l7-core" "2.9.11"
-    "@antv/l7-map" "2.9.11"
-    "@antv/l7-utils" "2.9.11"
+    "@antv/l7-core" "2.9.26"
+    "@antv/l7-map" "2.9.26"
+    "@antv/l7-utils" "2.9.26"
     "@babel/runtime" "^7.7.7"
     "@types/amap-js-api" "^1.4.6"
     "@types/mapbox-gl" "^1.11.2"
@@ -459,41 +463,42 @@
     reflect-metadata "^0.1.13"
     viewport-mercator-project "^6.2.1"
 
-"@antv/l7-renderer@2.9.11":
-  version "2.9.11"
-  resolved "https://registry.yarnpkg.com/@antv/l7-renderer/-/l7-renderer-2.9.11.tgz#da4e332f0bd5d785a4b7db2c2455f14dee43bfe1"
+"@antv/l7-renderer@2.9.26":
+  version "2.9.26"
+  resolved "https://registry.yarnpkg.com/@antv/l7-renderer/-/l7-renderer-2.9.26.tgz#4666b29c463a9ee59e786145fa20efc27680bb99"
   dependencies:
-    "@antv/l7-core" "2.9.11"
+    "@antv/l7-core" "2.9.26"
+    "@antv/l7-utils" "2.9.26"
     "@babel/runtime" "^7.7.7"
     inversify "^5.0.1"
     l7regl "^0.0.20"
     lodash "^4.17.15"
     reflect-metadata "^0.1.13"
 
-"@antv/l7-scene@2.9.11":
-  version "2.9.11"
-  resolved "https://registry.yarnpkg.com/@antv/l7-scene/-/l7-scene-2.9.11.tgz#cf71ad0b44c9904210d5cac3814eb84e82af03af"
+"@antv/l7-scene@2.9.26":
+  version "2.9.26"
+  resolved "https://registry.yarnpkg.com/@antv/l7-scene/-/l7-scene-2.9.26.tgz#355fe96e3787652e1b595858487e5f92ebf6e9a0"
   dependencies:
-    "@antv/l7-component" "2.9.11"
-    "@antv/l7-core" "2.9.11"
-    "@antv/l7-layers" "2.9.11"
-    "@antv/l7-maps" "2.9.11"
-    "@antv/l7-renderer" "2.9.11"
-    "@antv/l7-utils" "2.9.11"
+    "@antv/l7-component" "2.9.26"
+    "@antv/l7-core" "2.9.26"
+    "@antv/l7-layers" "2.9.26"
+    "@antv/l7-maps" "2.9.26"
+    "@antv/l7-renderer" "2.9.26"
+    "@antv/l7-utils" "2.9.26"
     "@babel/runtime" "^7.7.7"
     inversify "^5.0.1"
     mapbox-gl "^1.2.1"
     reflect-metadata "^0.1.13"
 
-"@antv/l7-source@2.9.11":
-  version "2.9.11"
-  resolved "https://registry.yarnpkg.com/@antv/l7-source/-/l7-source-2.9.11.tgz#27ad8be5bf0cd987de9a0b578fdbc3e62e1da69f"
+"@antv/l7-source@2.9.26":
+  version "2.9.26"
+  resolved "https://registry.yarnpkg.com/@antv/l7-source/-/l7-source-2.9.26.tgz#b1b95d4035f8563f687ceab9312b6fa26b7cec10"
   dependencies:
     "@antv/async-hook" "^2.1.0"
-    "@antv/l7-core" "2.9.11"
-    "@antv/l7-utils" "2.9.11"
+    "@antv/l7-core" "2.9.26"
+    "@antv/l7-utils" "2.9.26"
     "@babel/runtime" "^7.7.7"
-    "@mapbox/geojson-rewind" "^0.4.0"
+    "@mapbox/geojson-rewind" "^0.5.2"
     "@mapbox/vector-tile" "^1.3.1"
     "@turf/helpers" "^6.1.4"
     "@turf/invariant" "^6.1.2"
@@ -501,48 +506,53 @@
     d3-dsv "^1.1.1"
     d3-hexbin "^0.2.2"
     eventemitter3 "^4.0.0"
+    geojson-vt "^3.2.1"
     inversify "^5.0.1"
     lodash "^4.17.15"
     pbf "^3.2.1"
     reflect-metadata "^0.1.13"
     supercluster "^7.0.0"
 
-"@antv/l7-utils@2.9.11":
-  version "2.9.11"
-  resolved "https://registry.yarnpkg.com/@antv/l7-utils/-/l7-utils-2.9.11.tgz#d2583a8739fcceea3ea09366a0fb85341541a26e"
+"@antv/l7-utils@2.9.26":
+  version "2.9.26"
+  resolved "https://registry.yarnpkg.com/@antv/l7-utils/-/l7-utils-2.9.26.tgz#77bbfe52e1f75614f65f6e1f74a7dc0a11e5f4d0"
   dependencies:
     "@babel/runtime" "^7.7.7"
     "@turf/bbox-polygon" "^6.5.0"
     "@turf/helpers" "^6.1.4"
     d3-color "^1.4.0"
+    earcut "^2.1.0"
+    eventemitter3 "^4.0.0"
+    gl-matrix "^3.1.0"
+    web-worker-helper "^0.0.3"
 
-"@antv/l7@^2.6.25":
-  version "2.9.11"
-  resolved "https://registry.yarnpkg.com/@antv/l7/-/l7-2.9.11.tgz#d9e8dc3fafc558d9b13204264a05966d65809fe8"
+"@antv/l7@^2.9.14":
+  version "2.9.26"
+  resolved "https://registry.yarnpkg.com/@antv/l7/-/l7-2.9.26.tgz#de36553d0657df768bcbb20434370313fa011858"
   dependencies:
-    "@antv/l7-component" "2.9.11"
-    "@antv/l7-core" "2.9.11"
-    "@antv/l7-layers" "2.9.11"
-    "@antv/l7-maps" "2.9.11"
-    "@antv/l7-scene" "2.9.11"
-    "@antv/l7-source" "2.9.11"
-    "@antv/l7-utils" "2.9.11"
+    "@antv/l7-component" "2.9.26"
+    "@antv/l7-core" "2.9.26"
+    "@antv/l7-layers" "2.9.26"
+    "@antv/l7-maps" "2.9.26"
+    "@antv/l7-scene" "2.9.26"
+    "@antv/l7-source" "2.9.26"
+    "@antv/l7-utils" "2.9.26"
     "@babel/runtime" "^7.7.7"
 
-"@antv/l7plot-component@^0.0.3-alpha.5":
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/@antv/l7plot-component/-/l7plot-component-0.0.3.tgz#d4bc15a85da2b244418e713b05b1fa8e8888b560"
+"@antv/l7plot-component@^0.0.7":
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/@antv/l7plot-component/-/l7plot-component-0.0.7.tgz#47afcf8ce17ff9571909f873f2cbefcd73e34da6"
   dependencies:
     "@antv/dom-util" "^2.0.3"
     "@antv/util" "^2.0.14"
 
-"@antv/l7plot@^0.0.3-alpha.5":
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/@antv/l7plot/-/l7plot-0.0.3.tgz#e70096265c1359fbf76b821c053e47b093ff243e"
+"@antv/l7plot@~0.0.8":
+  version "0.0.13"
+  resolved "https://registry.yarnpkg.com/@antv/l7plot/-/l7plot-0.0.13.tgz#6663a39e2d2c9acc080d73d27c15efe28309d444"
   dependencies:
     "@antv/event-emitter" "^0.1.2"
-    "@antv/l7" "^2.6.25"
-    "@antv/l7plot-component" "^0.0.3-alpha.5"
+    "@antv/l7" "^2.9.14"
+    "@antv/l7plot-component" "^0.0.7"
     "@antv/util" "^2.0.13"
     lodash-es "^4.17.21"
     topojson-client "^3.1.0"
@@ -1884,22 +1894,7 @@
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
-"@mapbox/geojson-area@0.2.2":
-  version "0.2.2"
-  resolved "https://registry.yarnpkg.com/@mapbox/geojson-area/-/geojson-area-0.2.2.tgz#18d7814aa36bf23fbbcc379f8e26a22927debf10"
-  dependencies:
-    wgs84 "0.0.0"
-
-"@mapbox/geojson-rewind@^0.4.0":
-  version "0.4.1"
-  resolved "https://registry.yarnpkg.com/@mapbox/geojson-rewind/-/geojson-rewind-0.4.1.tgz#357d79300adb7fec7c1f091512988bca6458f068"
-  dependencies:
-    "@mapbox/geojson-area" "0.2.2"
-    concat-stream "~1.6.0"
-    minimist "^1.2.5"
-    sharkdown "^0.1.0"
-
-"@mapbox/geojson-rewind@^0.5.0":
+"@mapbox/geojson-rewind@^0.5.0", "@mapbox/geojson-rewind@^0.5.2":
   version "0.5.2"
   resolved "https://registry.yarnpkg.com/@mapbox/geojson-rewind/-/geojson-rewind-0.5.2.tgz#591a5d71a9cd1da1a0bf3420b3bea31b0fc7946a"
   dependencies:
@@ -2105,6 +2100,13 @@
   resolved "https://registry.yarnpkg.com/@turf/meta/-/meta-6.5.0.tgz#b725c3653c9f432133eaa04d3421f7e51e0418ca"
   dependencies:
     "@turf/helpers" "^6.5.0"
+
+"@turf/polygon-to-line@^6.5.0":
+  version "6.5.0"
+  resolved "https://registry.yarnpkg.com/@turf/polygon-to-line/-/polygon-to-line-6.5.0.tgz#4dc86db66168b32bb83ce448cf966208a447d952"
+  dependencies:
+    "@turf/helpers" "^6.5.0"
+    "@turf/invariant" "^6.5.0"
 
 "@turf/union@^6.5.0":
   version "6.5.0"
@@ -2739,10 +2741,6 @@ ansi-styles@^4.0.0, ansi-styles@^4.1.0:
   dependencies:
     color-convert "^2.0.1"
 
-ansicolors@~0.2.1:
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/ansicolors/-/ansicolors-0.2.1.tgz#be089599097b74a5c9c4a84a0cdbcdb62bd87aef"
-
 antd@4.16.13:
   version "4.16.13"
   resolved "https://registry.yarnpkg.com/antd/-/antd-4.16.13.tgz#e9b9b4a590db28747aae1cab98981649a35880af"
@@ -3290,13 +3288,6 @@ capture-exit@^2.0.0:
   dependencies:
     rsvp "^4.8.4"
 
-cardinal@~0.4.2:
-  version "0.4.4"
-  resolved "https://registry.yarnpkg.com/cardinal/-/cardinal-0.4.4.tgz#ca5bb68a5b511b90fe93b9acea49bdee5c32bfe2"
-  dependencies:
-    ansicolors "~0.2.1"
-    redeyed "~0.4.0"
-
 center-align@^0.1.1:
   version "0.1.3"
   resolved "https://registry.yarnpkg.com/center-align/-/center-align-0.1.3.tgz#aa0d32629b6ee972200411cbd4461c907bc2b7ad"
@@ -3564,15 +3555,6 @@ compute-scroll-into-view@^1.0.17:
 concat-map@0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/concat-map/-/concat-map-0.0.1.tgz#d8a96bd77fd68df7793a73036a3ba0d5405d477b"
-
-concat-stream@~1.6.0:
-  version "1.6.2"
-  resolved "https://registry.yarnpkg.com/concat-stream/-/concat-stream-1.6.2.tgz#904bdf194cd3122fc675c77fc4ac3d4ff0fd1a34"
-  dependencies:
-    buffer-from "^1.0.0"
-    inherits "^2.0.3"
-    readable-stream "^2.2.2"
-    typedarray "^0.0.6"
 
 contour_plot@^0.0.1:
   version "0.0.1"
@@ -3915,15 +3897,9 @@ d3-hierarchy@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/d3-hierarchy/-/d3-hierarchy-2.0.0.tgz#dab88a58ca3e7a1bc6cab390e89667fcc6d20218"
 
-d3-interpolate@1, d3-interpolate@^1.3.2:
+d3-interpolate@1, d3-interpolate@1.4.0, d3-interpolate@^1.3.2:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/d3-interpolate/-/d3-interpolate-1.4.0.tgz#526e79e2d80daa383f9e0c1c1c7dcc0f0583e987"
-  dependencies:
-    d3-color "1"
-
-d3-interpolate@1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/d3-interpolate/-/d3-interpolate-1.0.0.tgz#e90ea90bee58268e08643290d160445f26511dfa"
   dependencies:
     d3-color "1"
 
@@ -4065,8 +4041,8 @@ decimal.js@^10.2.1:
   resolved "https://registry.yarnpkg.com/decimal.js/-/decimal.js-10.3.1.tgz#d8c3a444a9c6774ba60ca6ad7261c3a94fd5e783"
 
 decode-uri-component@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/decode-uri-component/-/decode-uri-component-0.2.0.tgz#eb3913333458775cb84cd1a1fae062106bb87545"
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/decode-uri-component/-/decode-uri-component-0.2.2.tgz#e69dbe25d37941171dd540e024c444cd5188e1e9"
 
 decompress-response@^6.0.0:
   version "6.0.0"
@@ -4247,7 +4223,7 @@ dotignore@~0.1.2:
   dependencies:
     minimatch "^3.0.4"
 
-earcut@^2.2.1, earcut@^2.2.2:
+earcut@^2.1.0, earcut@^2.2.1, earcut@^2.2.2:
   version "2.2.4"
   resolved "https://registry.yarnpkg.com/earcut/-/earcut-2.2.4.tgz#6d02fd4d68160c114825d06890a92ecaae60343a"
 
@@ -4533,10 +4509,6 @@ espree@^7.3.0, espree@^7.3.1:
 esprima@^4.0.0, esprima@^4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/esprima/-/esprima-4.0.1.tgz#13b04cdb3e6c5d19df91ab6987a8695619b0aa71"
-
-esprima@~1.0.4:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/esprima/-/esprima-1.0.4.tgz#9f557e08fc3b4d26ece9dd34f8fbf476b62585ad"
 
 esquery@^1.4.0:
   version "1.4.0"
@@ -6305,8 +6277,8 @@ loader-runner@^4.2.0:
   resolved "https://registry.yarnpkg.com/loader-runner/-/loader-runner-4.3.0.tgz#c1b4a163b99f614830353b16755e7149ac2314e1"
 
 loader-utils@^2.0.0:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/loader-utils/-/loader-utils-2.0.2.tgz#d6e3b4fb81870721ae4e0868ab11dd638368c129"
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/loader-utils/-/loader-utils-2.0.4.tgz#8b5cb38b5c34a9a018ee1fc0e6a066d1dfcc528c"
   dependencies:
     big.js "^5.2.2"
     emojis-list "^3.0.0"
@@ -6351,18 +6323,6 @@ lodash.has@^4.0:
   version "4.5.2"
   resolved "https://registry.yarnpkg.com/lodash.has/-/lodash.has-4.5.2.tgz#d19f4dc1095058cccbe2b0cdf4ee0fe4aa37c862"
 
-lodash.isarray@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/lodash.isarray/-/lodash.isarray-4.0.0.tgz#2aca496b28c4ca6d726715313590c02e6ea34403"
-
-lodash.isnil@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/lodash.isnil/-/lodash.isnil-4.0.0.tgz#49e28cd559013458c814c5479d3c663a21bfaa6c"
-
-lodash.isplainobject@^4.0.6:
-  version "4.0.6"
-  resolved "https://registry.yarnpkg.com/lodash.isplainobject/-/lodash.isplainobject-4.0.6.tgz#7c526a52d89b45c45cc690b88163be0497f550cb"
-
 lodash.memoize@^4.1.2:
   version "4.1.2"
   resolved "https://registry.yarnpkg.com/lodash.memoize/-/lodash.memoize-4.1.2.tgz#bcc6c49a42a2840ed997f323eada5ecd182e0bfe"
@@ -6370,10 +6330,6 @@ lodash.memoize@^4.1.2:
 lodash.merge@^4.6.2:
   version "4.6.2"
   resolved "https://registry.yarnpkg.com/lodash.merge/-/lodash.merge-4.6.2.tgz#558aa53b43b661e1925a0afdfa36a9a1085fe57a"
-
-lodash.mergewith@^4.6.0:
-  version "4.6.2"
-  resolved "https://registry.yarnpkg.com/lodash.mergewith/-/lodash.mergewith-4.6.2.tgz#617121f89ac55f59047c7aec1ccd6654c6590f55"
 
 lodash.pick@4.4.0:
   version "4.4.0"
@@ -6504,16 +6460,6 @@ mdn-data@2.0.4:
   version "5.2.1"
   resolved "https://registry.yarnpkg.com/memoize-one/-/memoize-one-5.2.1.tgz#8337aa3c4335581839ec01c3d594090cebe8f00e"
 
-merge-json-schemas@1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/merge-json-schemas/-/merge-json-schemas-1.0.0.tgz#2d635eaa8401c5fa3d03f30f89349fc7cafee62f"
-  dependencies:
-    lodash.isarray "^4.0.0"
-    lodash.isnil "^4.0.0"
-    lodash.isplainobject "^4.0.6"
-    lodash.mergewith "^4.6.0"
-    lodash.uniq "^4.5.0"
-
 merge-stream@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/merge-stream/-/merge-stream-2.0.0.tgz#52823629a14dd00c9770fb6ad47dc6310f2c1f60"
@@ -6586,10 +6532,6 @@ minimatch@^3.0.4, minimatch@^3.1.1, minimatch@^3.1.2:
   resolved "https://registry.yarnpkg.com/minimatch/-/minimatch-3.1.2.tgz#19cd194bfd3e428f049a70817c038d89ab4be35b"
   dependencies:
     brace-expansion "^1.1.7"
-
-minimist@0.0.5:
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/minimist/-/minimist-0.0.5.tgz#d7aa327bcecf518f9106ac6b8f003fa3bcea8566"
 
 minimist@^1.1.1, minimist@^1.2.0, minimist@^1.2.5, minimist@^1.2.6, minimist@~1.2.6:
   version "1.2.6"
@@ -8466,7 +8408,15 @@ read-pkg@^5.2.0:
     parse-json "^5.0.0"
     type-fest "^0.6.0"
 
-readable-stream@^2.2.2, readable-stream@~2.3.6:
+readable-stream@^3.1.1, readable-stream@^3.4.0:
+  version "3.6.0"
+  resolved "https://registry.yarnpkg.com/readable-stream/-/readable-stream-3.6.0.tgz#337bbda3adc0706bd3e024426a286d4b4b2c9198"
+  dependencies:
+    inherits "^2.0.3"
+    string_decoder "^1.1.1"
+    util-deprecate "^1.0.1"
+
+readable-stream@~2.3.6:
   version "2.3.7"
   resolved "https://registry.yarnpkg.com/readable-stream/-/readable-stream-2.3.7.tgz#1eca1cf711aef814c04f62252a36a62f6cb23b57"
   dependencies:
@@ -8478,25 +8428,11 @@ readable-stream@^2.2.2, readable-stream@~2.3.6:
     string_decoder "~1.1.1"
     util-deprecate "~1.0.1"
 
-readable-stream@^3.1.1, readable-stream@^3.4.0:
-  version "3.6.0"
-  resolved "https://registry.yarnpkg.com/readable-stream/-/readable-stream-3.6.0.tgz#337bbda3adc0706bd3e024426a286d4b4b2c9198"
-  dependencies:
-    inherits "^2.0.3"
-    string_decoder "^1.1.1"
-    util-deprecate "^1.0.1"
-
 rechoir@^0.7.0:
   version "0.7.1"
   resolved "https://registry.yarnpkg.com/rechoir/-/rechoir-0.7.1.tgz#9478a96a1ca135b5e88fc027f03ee92d6c645686"
   dependencies:
     resolve "^1.9.0"
-
-redeyed@~0.4.0:
-  version "0.4.4"
-  resolved "https://registry.yarnpkg.com/redeyed/-/redeyed-0.4.4.tgz#37e990a6f2b21b2a11c2e6a48fd4135698cba97f"
-  dependencies:
-    esprima "~1.0.4"
 
 redux-saga@^1.0.2:
   version "1.1.3"
@@ -8913,14 +8849,6 @@ shallowequal@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/shallowequal/-/shallowequal-1.1.0.tgz#188d521de95b9087404fd4dcb68b13df0ae4e7f8"
 
-sharkdown@^0.1.0:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/sharkdown/-/sharkdown-0.1.1.tgz#64484bd0f08f347f8319e9ff947a670f6b48b1b2"
-  dependencies:
-    cardinal "~0.4.2"
-    minimist "0.0.5"
-    split "~0.2.10"
-
 shebang-command@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/shebang-command/-/shebang-command-1.2.0.tgz#44aac65b695b03398968c39f363fee5deafdf1ea"
@@ -9112,12 +9040,6 @@ split-string@^3.0.2:
   resolved "https://registry.yarnpkg.com/split-string/-/split-string-3.1.0.tgz#7cb09dda3a86585705c64b39a6466038682e8fe2"
   dependencies:
     extend-shallow "^3.0.0"
-
-split@~0.2.10:
-  version "0.2.10"
-  resolved "https://registry.yarnpkg.com/split/-/split-0.2.10.tgz#67097c601d697ce1368f418f06cd201cf0521a57"
-  dependencies:
-    through "2"
 
 sprintf-js@~1.0.2:
   version "1.0.3"
@@ -9498,7 +9420,7 @@ throttle-debounce@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/throttle-debounce/-/throttle-debounce-3.0.1.tgz#32f94d84dfa894f786c9a1f290e7a645b6a19abb"
 
-through@2, through@~2.3.4, through@~2.3.8:
+through@~2.3.4, through@~2.3.8:
   version "2.3.8"
   resolved "https://registry.yarnpkg.com/through/-/through-2.3.8.tgz#0dd4c9ffaabc357960b1b724115d7e0e86a2e1f5"
 
@@ -9651,10 +9573,6 @@ typedarray-to-buffer@^3.1.5:
   resolved "https://registry.yarnpkg.com/typedarray-to-buffer/-/typedarray-to-buffer-3.1.5.tgz#a97ee7a9ff42691b9f783ff1bc5112fe3fca9080"
   dependencies:
     is-typedarray "^1.0.0"
-
-typedarray@^0.0.6:
-  version "0.0.6"
-  resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
 
 typescript-compare@^0.0.2:
   version "0.0.2"
@@ -9958,6 +9876,10 @@ watchpack@^2.3.1:
     glob-to-regexp "^0.4.1"
     graceful-fs "^4.1.2"
 
+web-worker-helper@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/web-worker-helper/-/web-worker-helper-0.0.3.tgz#9ef60b9c463970dc324c381b9aaf2a22c5d0b77a"
+
 webidl-conversions@^5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/webidl-conversions/-/webidl-conversions-5.0.0.tgz#ae59c8a00b121543a2acc65c0434f57b0fc11aff"
@@ -10041,10 +9963,6 @@ webpack@^5.21.0:
     terser-webpack-plugin "^5.1.3"
     watchpack "^2.3.1"
     webpack-sources "^3.2.3"
-
-wgs84@0.0.0:
-  version "0.0.0"
-  resolved "https://registry.yarnpkg.com/wgs84/-/wgs84-0.0.0.tgz#34fdc555917b6e57cf2a282ed043710c049cdc76"
 
 whatwg-encoding@^1.0.5:
   version "1.0.5"

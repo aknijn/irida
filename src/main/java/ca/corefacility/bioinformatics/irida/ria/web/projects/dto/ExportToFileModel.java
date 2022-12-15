@@ -12,8 +12,8 @@ public class ExportToFileModel {
 	private List<String> sampleNames;
 	private List<Long> associated;
 	private String search;
-	private Date startDate;
-	private Date endDate;
+	private String startDate;
+	private String endDate;
 	private String type;
 	private String name;
 	private String organism;
@@ -24,8 +24,8 @@ public class ExportToFileModel {
 	public ExportToFileModel() {
 	}
 
-	public ExportToFileModel(List<String> sampleNames, List<Long> associated, String search, Date startDate,
-			Date endDate, String type, String name, String organism, String description, String collectedBy, String strain) {
+	public ExportToFileModel(List<String> sampleNames, List<Long> associated, String search, String startDate,
+			String endDate, String type, String name, String organism, String description, String collectedBy, String strain) {
 		this.sampleNames = sampleNames;
 		this.associated = associated;
 		this.search = search;
@@ -63,19 +63,35 @@ public class ExportToFileModel {
 		this.search = search;
 	}
 
+	// public Date getStartDate() {
+		// return startDate;
+	// }
+
 	public Date getStartDate() {
-		return startDate;
+		if (Strings.isNullOrEmpty(startDate)) {
+			return null;
+		} else {
+			return new Date(Long.valueOf(startDate));
+		}
 	}
 
-	public void setStartDate(Date startDate) {
+	public void setStartDate(String startDate) {
 		this.startDate = startDate;
 	}
 
+	// public Date getEndDate() {
+		// return endDate;
+	// }
+
 	public Date getEndDate() {
-		return endDate;
+		if (Strings.isNullOrEmpty(endDate)) {
+			return null;
+		} else {
+			return new Date(Long.valueOf(endDate));
+		}
 	}
 
-	public void setEndDate(Date endDate) {
+	public void setEndDate(String endDate) {
 		this.endDate = endDate;
 	}
 

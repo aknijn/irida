@@ -40,6 +40,10 @@
   background-color: rgba(30, 170, 241, 1) !important;
   color: #222 !important;
 }
+.MST_OBSERVER {
+  background-color: rgba(255, 255, 204, 1) !important;
+  color: #222 !important;
+}
 .SNP_OBSERVER {
   background-color: rgba(152, 180, 70, 1) !important;
   color: #222 !important;
@@ -59,6 +63,9 @@
 .META_EXPORT {
   background-color: rgba(253, 192, 47, 1) !important;
   color: #222 !important;
+}
+.MLST_EXPORT {
+  background-color: rgba(250, 159, 181, 1) !important;
 }
 .ARIES_EXPORT {
   background-color: rgba(189, 183, 107, 1) !important;

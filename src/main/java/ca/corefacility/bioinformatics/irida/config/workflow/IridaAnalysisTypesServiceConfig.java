@@ -39,11 +39,13 @@ public class IridaAnalysisTypesServiceConfig {
 		analysisTypesService.registerRunnableType(BuiltInAnalysisTypes.PHANTASTIC_TYPING, "tree");
 		analysisTypesService.registerRunnableType(BuiltInAnalysisTypes.RECOVERY_TYPING);
 		analysisTypesService.registerRunnableType(BuiltInAnalysisTypes.ALLELE_OBSERVER, "tree");
+		analysisTypesService.registerRunnableType(BuiltInAnalysisTypes.MST_OBSERVER, "tree");
 		analysisTypesService.registerRunnableType(BuiltInAnalysisTypes.SNP_OBSERVER, "tree");
 		analysisTypesService.registerRunnableType(BuiltInAnalysisTypes.VIRULOTYPER);
 		analysisTypesService.registerRunnableType(BuiltInAnalysisTypes.SUMMARY);
 		analysisTypesService.registerRunnableType(BuiltInAnalysisTypes.REPORTS);
 		analysisTypesService.registerRunnableType(BuiltInAnalysisTypes.META_EXPORT);
+		analysisTypesService.registerRunnableType(BuiltInAnalysisTypes.MLST_EXPORT);
 		analysisTypesService.registerRunnableType(BuiltInAnalysisTypes.ARIES_EXPORT);
 		analysisTypesService.registerRunnableType(BuiltInAnalysisTypes.GISAID);
 		analysisTypesService.registerRunnableType(BuiltInAnalysisTypes.CONSENSUS);

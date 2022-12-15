@@ -128,8 +128,8 @@ public class UIProjectSampleService {
 					if (STECmap.get("DateOfSampling") != null) { sample.setCollectionDate(sdf.parse(STECmap.get("DateOfSampling"))); }
 					if (STECmap.get("DateOfReceiptReferenceLab") != null) { sample.setArrivalDate(sdf.parse(STECmap.get("DateOfReceiptReferenceLab"))); }
 					if (STECmap.get("Sender") != null) { sample.setCollectedBy(STECmap.get("Sender")); logger.debug("Sender: " + STECmap.get("Sender"));}
-					if (STECmap.get("sampId") != null) { sample.setStrain(STECmap.get("sampId")); }
-					//if (STECmap.get("SampleOrigin") != null) { sample.setIsolationSource(STECmap.get("SampleOrigin")); }
+					if (STECmap.get("sampId") != null && STECmap.get("sampId").length() > 2) { sample.setStrain(STECmap.get("sampId")); }
+					if (STECmap.get("IsolationSource") != null) { sample.setIsolationSource(STECmap.get("IsolationSource")); }
 					if (STECmap.get("Regione") != null) { sample.setGeographicLocationName(STECmap.get("Regione")); }
 				}
 			} catch (SQLException ex) {

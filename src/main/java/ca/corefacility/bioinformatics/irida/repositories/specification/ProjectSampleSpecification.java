@@ -80,10 +80,10 @@ public class ProjectSampleSpecification {
 			}
 			// Check if there is a minimum search date
 			if (minDate != null) {
-				predicates.add(criteriaBuilder.greaterThanOrEqualTo(root.get("sample").get("modifiedDate"), minDate));
+				predicates.add(criteriaBuilder.greaterThanOrEqualTo(root.get("sample").get("createdDate"), minDate));
 			}
 			if (maxDate != null) {
-				predicates.add(criteriaBuilder.lessThanOrEqualTo(root.get("sample").get("modifiedDate"), maxDate));
+				predicates.add(criteriaBuilder.lessThanOrEqualTo(root.get("sample").get("createdDate"), maxDate));
 			}
 			return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
 		};

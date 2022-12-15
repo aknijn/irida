@@ -167,7 +167,8 @@ public class PHANTASTICSampleUpdater implements AnalysisSampleUpdater {
 				Long masterProjectId = 3L;
                 if (result.containsKey("serotype_serogroup")) {
                     PHANTASTIC_FIELDS = PHANTASTIC_LM_FIELDS;
-					clusterCriterium = 7;
+					clusterCriterium = 4;
+					clusterExtendedCriterium = 7;
 					masterProjectId = 4L;
 					PipelineProvidedMetadataEntry metadataEntry = new PipelineProvidedMetadataEntry("-", "text", analysis);
 					stringEntries.put("Serotype", metadataEntry);
