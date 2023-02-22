@@ -904,7 +904,7 @@
     <apache.jena.version>4.3.2</apache.jena.version>
     <commons-csv.version>1.8</commons-csv.version>
     <biojava.version>3.0</biojava.version>
-    <commons.fileupload.version>1.4</commons.fileupload.version>
+    <commons.fileupload.version>1.5</commons.fileupload.version>
     <oltu.version>1.0.0</oltu.version>
     <apache.poi.version>5.1.0</apache.poi.version>
     <selenium-driver.version>3.141.59</selenium-driver.version>
